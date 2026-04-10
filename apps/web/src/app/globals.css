@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --brand-primary: 231 89% 62%;
+    --a11y-focus: 211 100% 40%; /* #005fcc — contraste 4.5:1 mínimo */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+
+  /* WCAG 2.4.7 — Foco visible: nunca eliminar outline sin reemplazo */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--a11y-focus));
+    outline-offset: 2px;
+  }
+
+  /* WCAG 1.4.12 — Espaciado de texto: respetar sobreescrituras del usuario */
+  * {
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    line-height: inherit;
+  }
+
+  /* WCAG 2.3.3 — Movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Clase sr-only WCAG — oculto visualmente, accesible para AT */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}

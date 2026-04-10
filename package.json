@@ -1,0 +1,33 @@
+{
+  "name": "olaac-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Observatorio Latinoamericano de Accesibilidad — Monorepo oficial",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "lint:a11y": "turbo run lint:a11y",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "lhci": "turbo run lhci",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.6",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.1.4"
+}

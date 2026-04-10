@@ -1,0 +1,5 @@
+{
+  "extends": "@olaac/tsconfig/react-library.json",
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

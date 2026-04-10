@@ -1,0 +1,45 @@
+{
+  "name": "@olaac/web",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Sitio principal OLAAC — diagnósticos de accesibilidad y sistema de tickets",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:a11y": "eslint . --ext .tsx --rulesdir ../../node_modules/eslint-plugin-jsx-a11y/lib/rules",
+    "type-check": "tsc --noEmit",
+    "lhci": "lhci autorun",
+    "clean": "rm -rf .next .turbo"
+  },
+  "dependencies": {
+    "@olaac/ui": "*",
+    "@supabase/supabase-js": "^2.43.4",
+    "@supabase/ssr": "^0.4.0",
+    "@tanstack/react-query": "^5.40.0",
+    "@tanstack/react-table": "^8.17.3",
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.51.5",
+    "zod": "^3.23.8",
+    "@hookform/resolvers": "^3.6.0",
+    "nanoid": "^5.0.7",
+    "date-fns": "^3.6.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "@olaac/eslint-config": "*",
+    "@olaac/tsconfig": "*",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "axe-core": "^4.9.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
+  }
+}
