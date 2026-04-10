@@ -1,6 +1,3 @@
-// Auto-generado: npx supabase gen types typescript --project-id <tu-project-ref>
-// Re-ejecutar tras cada migración de base de datos.
-
 export type Json =
   | string
   | number
@@ -58,6 +55,47 @@ export type Database = {
           violations?: Json | null
         }
         Relationships: []
+      }
+      certificates: {
+        Row: {
+          course_id: string
+          course_title: string
+          folio: string
+          id: string
+          issued_at: string
+          storage_path: string | null
+          student_name: string
+          user_id: string
+        }
+        Insert: {
+          course_id: string
+          course_title: string
+          folio: string
+          id?: string
+          issued_at?: string
+          storage_path?: string | null
+          student_name: string
+          user_id: string
+        }
+        Update: {
+          course_id?: string
+          course_title?: string
+          folio?: string
+          id?: string
+          issued_at?: string
+          storage_path?: string | null
+          student_name?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "certificates_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       courses: {
         Row: {
@@ -206,6 +244,48 @@ export type Database = {
           },
         ]
       }
+      lighthouse_metrics: {
+        Row: {
+          accessibility_score: number | null
+          alias: string
+          categoria: string
+          created_at: string
+          critical_issues: Json
+          id: string
+          measured_at: string
+          nombre_sitio: string
+          pais: string
+          subcategoria: string | null
+          url: string
+        }
+        Insert: {
+          accessibility_score?: number | null
+          alias: string
+          categoria: string
+          created_at?: string
+          critical_issues?: Json
+          id?: string
+          measured_at?: string
+          nombre_sitio: string
+          pais: string
+          subcategoria?: string | null
+          url: string
+        }
+        Update: {
+          accessibility_score?: number | null
+          alias?: string
+          categoria?: string
+          created_at?: string
+          critical_issues?: Json
+          id?: string
+          measured_at?: string
+          nombre_sitio?: string
+          pais?: string
+          subcategoria?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       ticket_events: {
         Row: {
           created_at: string
@@ -291,19 +371,19 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_a11y_ranking_by_pais: {
+        Row: {
+          avg_score: number | null
+          criticos: number | null
+          pais: string | null
+          total_sitios: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      show_limit: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
-      show_trgm: {
-        Args: {
-          "": string
-        }
-        Returns: string[]
-      }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
       enrollment_status: "inscrito" | "en_curso" | "completado" | "abandonado"
@@ -421,6 +501,23 @@ export type Enums<
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
 
 export const Constants = {

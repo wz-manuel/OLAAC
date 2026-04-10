@@ -5,7 +5,8 @@
   "description": "Observatorio Latinoamericano de Accesibilidad — Monorepo oficial",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "toolchain/*"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -17,7 +18,10 @@
     "lhci": "turbo run lhci",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
+    "audit:sync": "pnpm --filter @olaac/lighthouse-audit sync",
+    "audit:dry-run": "pnpm --filter @olaac/lighthouse-audit sync:dry-run",
+    "storage:test": "pnpm --filter @olaac/lighthouse-audit test:storage"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",

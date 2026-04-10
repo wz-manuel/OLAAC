@@ -1,0 +1,55 @@
+# OLAAC — Listado de sitios para auditoría de accesibilidad
+# Columnas: nombre_sitio, url, alias, pais, categoria, subcategoria
+# alias: lowercase, solo letras, números y guiones (se usa como slug en URLs)
+nombre_sitio,url,alias,pais,categoria,subcategoria
+Gobierno de México,https://www.gob.mx,gob-mx,México,Gobierno,Portal Nacional
+IMSS — Instituto Mexicano del Seguro Social,https://www.imss.gob.mx,imss-mx,México,Gobierno,Salud
+SEP — Secretaría de Educación Pública,https://www.sep.gob.mx,sep-mx,México,Gobierno,Educación
+UNAM — Universidad Nacional Autónoma de México,https://www.unam.mx,unam-mx,México,Educación,Universidad Pública
+Tecnológico de Monterrey,https://www.tec.mx,tec-mx,México,Educación,Universidad Privada
+Gobierno de Argentina,https://www.argentina.gob.ar,gob-ar,Argentina,Gobierno,Portal Nacional
+ANSES — Administración Nacional de Seguridad Social,https://www.anses.gob.ar,anses-ar,Argentina,Gobierno,Seguridad Social
+UBA — Universidad de Buenos Aires,https://www.uba.ar,uba-ar,Argentina,Educación,Universidad Pública
+Gobierno de Colombia,https://www.gov.co,gov-co,Colombia,Gobierno,Portal Nacional
+MinSalud Colombia,https://www.minsalud.gov.co,minsalud-co,Colombia,Gobierno,Salud
+Ministerio de Educación Nacional Colombia,https://www.mineducacion.gov.co,mineducacion-co,Colombia,Gobierno,Educación
+UNAL — Universidad Nacional de Colombia,https://unal.edu.co,unal-co,Colombia,Educación,Universidad Pública
+Gobierno de Chile,https://www.gob.cl,gob-cl,Chile,Gobierno,Portal Nacional
+FONASA — Fondo Nacional de Salud,https://www.fonasa.cl,fonasa-cl,Chile,Gobierno,Salud
+MINEDUC Chile,https://www.mineduc.cl,mineduc-cl,Chile,Gobierno,Educación
+PUC — Pontificia Universidad Católica de Chile,https://www.uc.cl,puc-cl,Chile,Educación,Universidad Privada
+Gobierno de Perú,https://www.gob.pe,gob-pe,Perú,Gobierno,Portal Nacional
+ESSALUD,https://www.essalud.gob.pe,essalud-pe,Perú,Gobierno,Salud
+MINEDU Perú,https://www.minedu.gob.pe,minedu-pe,Perú,Gobierno,Educación
+PUCP — Pontificia Universidad Católica del Perú,https://www.pucp.edu.pe,pucp-pe,Perú,Educación,Universidad Privada
+Gobierno de Brasil,https://www.gov.br,gov-br,Brasil,Gobierno,Portal Nacional
+Ministério da Saúde Brasil,https://www.saude.gov.br,saude-br,Brasil,Gobierno,Salud
+MEC — Ministério da Educação,https://www.gov.br/mec,mec-br,Brasil,Gobierno,Educación
+USP — Universidade de São Paulo,https://www5.usp.br,usp-br,Brasil,Educación,Universidad Pública
+Governo do Estado de São Paulo,https://www.saopaulo.sp.gov.br,sp-br,Brasil,Gobierno,Gobierno Estatal
+Gobierno de Ecuador,https://www.gob.ec,gob-ec,Ecuador,Gobierno,Portal Nacional
+IESS — Instituto Ecuatoriano de Seguridad Social,https://www.iess.gob.ec,iess-ec,Ecuador,Gobierno,Seguridad Social
+Ministerio de Educación Ecuador,https://educacion.gob.ec,educacion-ec,Ecuador,Gobierno,Educación
+ESPOL — Escuela Superior Politécnica del Litoral,https://www.espol.edu.ec,espol-ec,Ecuador,Educación,Universidad Pública
+Gobierno de Bolivia,https://www.gob.bo,gob-bo,Bolivia,Gobierno,Portal Nacional
+Ministerio de Salud Bolivia,https://www.minsalud.gob.bo,minsalud-bo,Bolivia,Gobierno,Salud
+UMSA — Universidad Mayor de San Andrés,https://www.umsa.bo,umsa-bo,Bolivia,Educación,Universidad Pública
+Gobierno de Paraguay,https://www.paraguay.gov.py,gov-py,Paraguay,Gobierno,Portal Nacional
+IPS — Instituto de Previsión Social Paraguay,https://www.ips.gov.py,ips-py,Paraguay,Gobierno,Seguridad Social
+UNA — Universidad Nacional de Asunción,https://www.una.py,una-py,Paraguay,Educación,Universidad Pública
+Gobierno de Uruguay,https://www.gub.uy,gub-uy,Uruguay,Gobierno,Portal Nacional
+ASSE — Administración de Servicios de Salud del Estado,https://www.asse.com.uy,asse-uy,Uruguay,Gobierno,Salud
+UDELAR — Universidad de la República,https://udelar.edu.uy,udelar-uy,Uruguay,Educación,Universidad Pública
+Gobierno de Venezuela,https://www.venezuela.gob.ve,gov-ve,Venezuela,Gobierno,Portal Nacional
+UCV — Universidad Central de Venezuela,https://www.ucv.ve,ucv-ve,Venezuela,Educación,Universidad Pública
+Gobierno de Guatemala,https://www.guatemala.gob.gt,gov-gt,Guatemala,Gobierno,Portal Nacional
+USAC — Universidad de San Carlos de Guatemala,https://www.usac.edu.gt,usac-gt,Guatemala,Educación,Universidad Pública
+Gobierno de Costa Rica,https://www.costarica.go.cr,gov-cr,Costa Rica,Gobierno,Portal Nacional
+CCSS — Caja Costarricense de Seguro Social,https://www.ccss.sa.cr,ccss-cr,Costa Rica,Gobierno,Salud
+UCR — Universidad de Costa Rica,https://www.ucr.ac.cr,ucr-cr,Costa Rica,Educación,Universidad Pública
+Gobierno de Panamá,https://www.panama.gob.pa,gov-pa,Panamá,Gobierno,Portal Nacional
+CSS — Caja de Seguro Social Panamá,https://www.css.gob.pa,css-pa,Panamá,Gobierno,Seguridad Social
+UP — Universidad de Panamá,https://www.up.ac.pa,up-pa,Panamá,Educación,Universidad Pública
+Gobierno de Honduras,https://www.gob.hn,gov-hn,Honduras,Gobierno,Portal Nacional
+UNAH — Universidad Nacional Autónoma de Honduras,https://www.unah.edu.hn,unah-hn,Honduras,Educación,Universidad Pública
+Gobierno de El Salvador,https://www.transparencia.gob.sv,gov-sv,El Salvador,Gobierno,Portal Nacional

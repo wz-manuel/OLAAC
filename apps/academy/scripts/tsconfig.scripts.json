@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "paths": {
+      "@/*": ["../src/*"],
+      "@olaac/ui": ["../../../packages/ui/src"]
+    }
+  },
+  "include": ["*.ts", "*.tsx"]
+}

@@ -49,3 +49,7 @@ coverage
 
 # TypeScript
 *.tsbuildinfo
+
+# Certificados generados localmente (pruebas)
+certificado-CERT-*.pdf
+apps/academy/certificado-*.pdf

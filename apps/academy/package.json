@@ -11,7 +11,8 @@
     "lint:a11y": "eslint . --ext .tsx",
     "type-check": "tsc --noEmit",
     "lhci": "lhci autorun",
-    "clean": "rm -rf .next .turbo"
+    "clean": "rm -rf .next .turbo",
+    "cert:emit": "tsx --tsconfig scripts/tsconfig.scripts.json scripts/emit-certificate.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -26,9 +27,12 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
     "remark-gfm": "^4.0.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@react-pdf/renderer": "^3.4.4",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
+    "@types/qrcode": "^1.5.5",
     "@lhci/cli": "^0.14.0",
     "@olaac/eslint-config": "workspace:*",
     "@olaac/tsconfig": "workspace:*",

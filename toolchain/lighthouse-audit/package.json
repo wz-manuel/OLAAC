@@ -1,0 +1,24 @@
+{
+  "name": "@olaac/lighthouse-audit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Motor de sincronización batch de scores de accesibilidad — OLAAC",
+  "type": "module",
+  "scripts": {
+    "sync": "tsx sync-scores.ts",
+    "sync:dry-run": "tsx sync-scores.ts --dry-run",
+    "test:storage": "tsx test-storage.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
+    "chrome-launcher": "^1.1.2",
+    "csv-parse": "^5.5.5",
+    "lighthouse": "^12.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
+}

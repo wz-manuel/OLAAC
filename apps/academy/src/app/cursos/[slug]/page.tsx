@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { ProgressBar } from '@/components/courses/progress-bar'
+import { DownloadCertificateButton } from '@/components/courses/download-certificate-button'
 import { enrollCourse } from '@/lib/actions/courses'
 import { createClient } from '@/lib/supabase/server'
 
@@ -105,9 +106,21 @@ export default async function CourseDetailPage({ params }: Props) {
               <p className="text-sm font-medium text-gray-700">Tu progreso</p>
               <ProgressBar value={enrollment.progress} />
               {enrollment.estado === 'completado' && (
-                <p className="text-sm font-medium text-green-700">
-                  ¡Curso completado!
-                </p>
+                <div className="space-y-3 rounded-lg border border-green-200 bg-green-50 p-4">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-green-800">
+                    <svg className="h-4 w-4 shrink-0" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
+                    </svg>
+                    ¡Curso completado!
+                  </p>
+                  <p className="text-xs text-green-700">
+                    Ya puedes descargar tu certificado de finalización.
+                  </p>
+                  <DownloadCertificateButton
+                    courseId={course.id}
+                    courseTitle={course.titulo}
+                  />
+                </div>
               )}
             </div>
           ) : user ? (

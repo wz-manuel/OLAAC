@@ -1,0 +1,120 @@
+# ============================================================
+# OLAAC — Workflow: Auditoría de Accesibilidad (Lighthouse)
+# ============================================================
+# Ejecuta el motor de sincronización de scores definido en
+# toolchain/lighthouse-audit/sync-scores.ts.
+#
+# Disparadores:
+#   - Cron: domingos a las 00:00 UTC
+#   - Manual: workflow_dispatch desde la pestaña Actions
+#             (incluye opción de dry-run para pruebas)
+#
+# Secrets requeridos (Settings → Secrets and variables → Actions):
+#   NEXT_PUBLIC_SUPABASE_URL     → URL del proyecto Supabase
+#   SUPABASE_SERVICE_ROLE_KEY    → Service role key (bypassa RLS)
+# ============================================================
+
+name: Accessibility Audit — Sync Scores
+
+on:
+  schedule:
+    # Domingos a las 00:00 UTC
+    # Nota: los cron jobs de GitHub Actions pueden tener hasta 15 min
+    # de retraso en horas de alta demanda.
+    - cron: '0 0 * * 0'
+
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run: audita pero NO escribe en Supabase'
+        type: boolean
+        default: false
+
+# Principio de mínimo privilegio: solo lectura del repositorio.
+# La escritura a Supabase se hace vía service_role key, no via GITHUB_TOKEN.
+permissions:
+  contents: read
+
+# Evita ejecuciones paralelas del mismo job.
+# cancel-in-progress: false para no interrumpir una auditoría en curso
+# si se dispara manualmente mientras el cron ya está corriendo.
+concurrency:
+  group: accessibility-audit
+  cancel-in-progress: false
+
+jobs:
+  sync-scores:
+    name: Lighthouse · Audit → Supabase
+    runs-on: ubuntu-latest
+
+    # Máximo: 50 sitios × 60 s de timeout + overhead de install ≈ 75 min.
+    # Aumentar si se amplía el urls.csv significativamente.
+    timeout-minutes: 90
+
+    steps:
+      # ── 1. Código ─────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Chrome ─────────────────────────────────────────────────────────
+      # Instalación explícita para no depender de la imagen del runner,
+      # que puede cambiar en actualizaciones de ubuntu-latest.
+      - name: Instalar Google Chrome (estable)
+        uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Verificar versión de Chrome
+        run: google-chrome --version
+        # Solo informativo; útil para debug si Lighthouse cambia requisitos.
+
+      # ── 3. Node / pnpm ────────────────────────────────────────────────────
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          # Versión fija igual al campo "packageManager" en package.json.
+          # Actualizar aquí si se actualiza pnpm en el repo.
+          version: 9.1.4
+
+      - name: Instalar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # setup-node maneja el caché de pnpm usando pnpm-lock.yaml como clave.
+          # Si el lockfile no cambia entre runs, se restaura la caché en ~10 s.
+          cache: 'pnpm'
+
+      # ── 4. Dependencias ───────────────────────────────────────────────────
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+        # --frozen-lockfile garantiza reproducibilidad:
+        # falla si pnpm-lock.yaml está desactualizado respecto a package.json.
+
+      # ── 5. Auditoría + Sync ───────────────────────────────────────────────
+      - name: Ejecutar auditoría de accesibilidad y sync
+        run: |
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo "::notice::Modo dry-run activado — no se escribirá en Supabase."
+            pnpm audit:dry-run
+          else
+            pnpm audit:sync
+          fi
+        env:
+          # El script lee SUPABASE_URL; el secret está nombrado
+          # NEXT_PUBLIC_SUPABASE_URL (comparte nombre con la app Next.js).
+          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+          # Le indica a chrome-launcher dónde está el binario instalado en el paso 2.
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+
+          # Activa los logs en formato GitHub Actions (::group::, ::error::, etc.)
+          CI: 'true'
+
+          # Propagado desde workflow_dispatch input; vacío en runs de cron (= false).
+          DRY_RUN: ${{ inputs.dry_run }}
+
+        # Si el script sale con código ≠ 0, el step falla → el job falla →
+        # GitHub envía notificación por correo a los maintainers del repo.
+        # No es necesario ningún paso adicional de notificación.
