@@ -1,0 +1,118 @@
+import Link from 'next/link'
+import { notFound, redirect } from 'next/navigation'
+
+import { createClient } from '@/lib/supabase/server'
+import { StatusBadge } from '@/components/tickets/status-badge'
+import { PriorityBadge } from '@/components/tickets/priority-badge'
+
+export const metadata = { title: 'Detalle de ticket' }
+
+export default async function TicketDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect(`/login?next=/tickets/${id}`)
+
+  const [{ data: ticket }, { data: events }] = await Promise.all([
+    supabase
+      .from('tickets')
+      .select('*')
+      .eq('id', id)
+      .single(),
+    supabase
+      .from('ticket_events')
+      .select('id, evento, payload, created_at')
+      .eq('ticket_id', id)
+      .order('created_at', { ascending: true }),
+  ])
+
+  if (!ticket) notFound()
+
+  const CATEGORIA_LABELS: Record<string, string> = {
+    digital: 'Digital', fisico: 'Físico', comunicacion: 'Comunicación', servicio: 'Servicio',
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      {/* Breadcrumb */}
+      <nav aria-label="Migas de pan" className="mb-6 text-sm text-gray-500">
+        <ol className="flex items-center gap-1.5">
+          <li><Link href="/tickets" className="hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded">Tickets</Link></li>
+          <li aria-hidden="true">/</li>
+          <li className="text-gray-900 font-medium" aria-current="page">{ticket.folio}</li>
+        </ol>
+      </nav>
+
+      {/* Header */}
+      <div className="rounded-lg border border-gray-200 bg-white p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="font-mono text-xs text-gray-400">{ticket.folio}</p>
+            <h1 className="mt-1 text-xl font-semibold text-gray-900">{ticket.titulo}</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <PriorityBadge priority={ticket.prioridad} />
+            <StatusBadge status={ticket.estado} />
+          </div>
+        </div>
+
+        {/* Descripción */}
+        <div className="mt-5">
+          <h2 className="text-xs font-medium uppercase tracking-wide text-gray-400">Descripción</h2>
+          <p className="mt-2 whitespace-pre-wrap text-sm text-gray-700">{ticket.descripcion}</p>
+        </div>
+
+        {/* Metadata */}
+        <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-gray-100 pt-5 sm:grid-cols-3 text-sm">
+          <div>
+            <dt className="text-xs font-medium text-gray-400">Categoría</dt>
+            <dd className="mt-0.5 text-gray-700 capitalize">{CATEGORIA_LABELS[ticket.categoria] ?? ticket.categoria}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-medium text-gray-400">Creado</dt>
+            <dd className="mt-0.5 text-gray-700">{new Date(ticket.created_at).toLocaleDateString('es-MX')}</dd>
+          </div>
+          {ticket.resolved_at && (
+            <div>
+              <dt className="text-xs font-medium text-gray-400">Resuelto</dt>
+              <dd className="mt-0.5 text-gray-700">{new Date(ticket.resolved_at).toLocaleDateString('es-MX')}</dd>
+            </div>
+          )}
+          {ticket.url_afectada && (
+            <div className="col-span-2 sm:col-span-3">
+              <dt className="text-xs font-medium text-gray-400">URL afectada</dt>
+              <dd className="mt-0.5 break-all">
+                <a
+                  href={ticket.url_afectada}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                >
+                  {ticket.url_afectada}
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+      </div>
+
+      {/* Timeline de eventos */}
+      {events && events.length > 0 && (
+        <section aria-labelledby="timeline-heading" className="mt-6">
+          <h2 id="timeline-heading" className="mb-3 text-sm font-semibold text-gray-900">Historial</h2>
+          <ol className="space-y-3">
+            {events.map((event) => (
+              <li key={event.id} className="flex gap-3 rounded-lg border border-gray-100 bg-white px-4 py-3 text-sm">
+                <time className="shrink-0 text-xs text-gray-400 mt-0.5">
+                  {new Date(event.created_at).toLocaleDateString('es-MX')}
+                </time>
+                <p className="text-gray-700">{event.evento}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </div>
+  )
+}

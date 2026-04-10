@@ -3,7 +3,6 @@
 -- ============================================================
 
 -- Extensiones
-create extension if not exists "uuid-ossp";
 create extension if not exists "pg_trgm"; -- Búsqueda de texto completo
 
 -- ============================================================
@@ -15,7 +14,7 @@ create type ticket_priority as enum ('baja', 'media', 'alta', 'critica');
 create type ticket_category as enum ('digital', 'fisico', 'comunicacion', 'servicio');
 
 create table tickets (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   folio       text unique not null, -- OLAAC-2024-XXXX
   titulo      text not null,
   descripcion text not null,
@@ -32,7 +31,7 @@ create table tickets (
 
 -- Historial de cambios de estado
 create table ticket_events (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   ticket_id   uuid not null references tickets(id) on delete cascade,
   user_id     uuid references auth.users(id) on delete set null,
   evento      text not null, -- e.g. 'estado_cambiado', 'comentario_agregado'
@@ -64,7 +63,7 @@ create trigger set_ticket_folio
 -- ============================================================
 
 create table accessibility_scores (
-  id              uuid primary key default uuid_generate_v4(),
+  id              uuid primary key default gen_random_uuid(),
   url             text not null,
   score_total     numeric(5,2) check (score_total between 0 and 100),
   score_a11y      numeric(5,2) check (score_a11y between 0 and 100),
@@ -88,7 +87,7 @@ create type lesson_type as enum ('video', 'lectura', 'ejercicio', 'evaluacion');
 create type enrollment_status as enum ('inscrito', 'en_curso', 'completado', 'abandonado');
 
 create table courses (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   slug        text unique not null,
   titulo      text not null,
   descripcion text,
@@ -99,7 +98,7 @@ create table courses (
 );
 
 create table lessons (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   course_id   uuid not null references courses(id) on delete cascade,
   titulo      text not null,
   tipo        lesson_type not null default 'lectura',
@@ -111,7 +110,7 @@ create table lessons (
 );
 
 create table enrollments (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   user_id     uuid not null references auth.users(id) on delete cascade,
   course_id   uuid not null references courses(id) on delete cascade,
   estado      enrollment_status not null default 'inscrito',
@@ -122,7 +121,7 @@ create table enrollments (
 );
 
 create table lesson_progress (
-  id          uuid primary key default uuid_generate_v4(),
+  id          uuid primary key default gen_random_uuid(),
   user_id     uuid not null references auth.users(id) on delete cascade,
   lesson_id   uuid not null references lessons(id) on delete cascade,
   completed   boolean not null default false,

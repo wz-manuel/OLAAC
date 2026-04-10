@@ -241,48 +241,146 @@ pnpm turbo run lint
 
 ---
 
-## Próximos pasos
+## Sesión 2 — 2026-04-09
 
-### Inmediatos (configuración de entorno)
+### Objetivos de la sesión
 
-```bash
-# 1. Configurar variables de entorno
-cp apps/web/.env.example apps/web/.env.local
-cp apps/academy/.env.example apps/academy/.env.local
-# Editar ambos archivos con las claves de Supabase
+1. Conectar el proyecto al Supabase remoto y empujar el esquema de base de datos.
+2. Generar tipos TypeScript desde el esquema real.
+3. Implementar autenticación completa con Magic Link (PKCE) en `apps/web` y `apps/academy`.
+4. Construir el módulo de tickets (lista, crear, mis reportes, detalle).
+5. Generar las rutas y páginas de contenido estático desde el JSON de migración de WordPress.
+6. Completar el módulo LMS de la Academia con curso de muestra.
 
-# 2. Levantar Supabase local
-supabase start
-supabase db push  # Aplica migrations/001_initial_schema.sql
+---
 
-# 3. Generar tipos desde el esquema real
-supabase gen types typescript --local > apps/web/src/lib/supabase/types.ts
+### Infraestructura y base de datos
 
-# 4. Iniciar desarrollo
-pnpm dev
+- Proyecto Supabase creado y enlazado (`supabase link --project-ref swcpyxdyidwyugyzenaz`).
+- `supabase/config.toml` actualizado: `major_version = 17` (PostgreSQL 17 en el remoto).
+- Migración `001_initial_schema.sql` corregida: eliminado `uuid-ossp`, reemplazado `uuid_generate_v4()` por `gen_random_uuid()`.
+- `supabase db push` aplicado correctamente al proyecto remoto.
+- Tipos TypeScript generados con `supabase gen types typescript --project-id` y copiados a ambas apps.
+
+### Autenticación — Magic Link (PKCE)
+
+Implementada en `apps/web` y `apps/academy` con la misma arquitectura:
+
+| Archivo | Propósito |
+|---|---|
+| `src/lib/supabase/client.ts` | `createBrowserClient<Database>` para componentes cliente |
+| `src/lib/supabase/server.ts` | `createServerClient<Database>` con cookies para RSC |
+| `src/lib/supabase/middleware.ts` | Cliente Edge Runtime para refresco de sesión |
+| `src/middleware.ts` | Protege rutas: `/tickets/*` (web) y `/cursos/*` (academy) |
+| `src/app/login/page.tsx` | Formulario Magic Link con Server Action |
+| `src/app/auth/callback/route.ts` | Intercambia código PKCE por sesión |
+
+**Componentes en `@olaac/ui`:**
+- `AuthForm` — Formulario accesible: `aria-live="assertive"` en errores, `role="alert"`, `aria-live="polite"` en éxito.
+- `UserNav` — Menú de usuario autenticado con botón de cierre de sesión.
+- `A11yDataTable` — Tabla de scores Lighthouse con `<caption>`, `scope="col"`, celdas con colores semánticos por rango.
+
+**Fix crítico de tipos:** `@supabase/ssr` se actualizó de `0.4.1` → `^0.10.0` para resolver incompatibilidad de tipos con `supabase-js@2.103.0` que causaba que todas las tablas resolvieran a `never`.
+
+### Módulo de Tickets (`apps/web`)
+
+Rutas implementadas:
+
+| Ruta | Descripción |
+|---|---|
+| `/tickets` | Lista de todos los tickets con folio, título, categoría, prioridad, estado |
+| `/tickets/nuevo` | Formulario de creación con `useFormState` + `useFormStatus` |
+| `/tickets/mis-reportes` | Tickets filtrados por usuario autenticado |
+| `/tickets/[id]` | Detalle con metadata y timeline de eventos |
+
+- Folio generado por trigger PostgreSQL: formato `OLAAC-2024-0001`.
+- Insert pasa `folio: ''`; el trigger `BEFORE INSERT` lo sobrescribe antes de persistir.
+- `StatusBadge` y `PriorityBadge` mapean los enums de la DB a variantes de `<Badge>`.
+
+### Páginas de contenido estático (`apps/web`)
+
+Todas las rutas generadas desde `olaac_contenido_extraido.json`:
+
+- `lib/content.ts` — carga el JSON, expone `getPageBySlug`, `getPostBySlug`, `getAllPosts`, `excerptFromMarkdown`.
+- `components/markdown-renderer.tsx` — `react-markdown` + `remark-gfm`; remapea `h1` → `h2` para mantener jerarquía semántica correcta.
+- `components/content-page.tsx` — layout compartido: breadcrumb + `<h1>` + `<MarkdownRenderer>` + children opcionales.
+- `app/sitemap.ts` — genera 21 entradas con prioridades diferenciadas.
+
+Páginas creadas: `/`, `/blog`, `/blog/[slug]`, `/proyectos`, `/proyectos/informar`, `/herramientas-y-recursos`, `/herramientas-y-recursos/evaluadores-de-accesibilidad-web`, `/sobre-el-observatorio`, `/sobre-el-observatorio/unirme-al-observatorio`, `/que-es-accesibilidad`, `/contacto`, `/aviso-legal`, `/politica-de-cookies`, `/politica-privacidad`.
+
+### Academia LMS (`apps/academy`)
+
+**Seed de base de datos** — Curso de muestra "Introducción a la Accesibilidad Digital":
+
+| Lección | Tipo | Duración |
+|---|---|---|
+| ¿Qué es la accesibilidad digital? | Lectura | 10 min |
+| Las WCAG: principios y niveles de conformidad | Lectura | 15 min |
+| Herramientas para auditar la accesibilidad | Ejercicio | 20 min |
+
+Aplicado al remoto con `supabase db query --linked -f supabase/seed.sql`. Confirmado con query: slug `introduccion-a-la-accesibilidad-digital` presente en la tabla `courses`.
+
+**Páginas y componentes implementados:**
+
+| Archivo | Descripción |
+|---|---|
+| `app/page.tsx` | Home: hero + cursos destacados |
+| `app/cursos/page.tsx` | Catálogo completo con conteo de lecciones y progreso por usuario |
+| `app/cursos/[slug]/page.tsx` | Detalle: lista de lecciones, botón de inscripción, barra de progreso |
+| `app/cursos/[slug]/leccion/[lessonId]/page.tsx` | Visor de lección: MDX via `next-mdx-remote/rsc`, navegación anterior/siguiente |
+| `components/courses/course-card.tsx` | Tarjeta de curso con progreso o CTA de inscripción |
+| `components/courses/progress-bar.tsx` | Barra accesible con `role="progressbar"` y `aria-valuenow/min/max` |
+| `components/courses/complete-lesson-button.tsx` | Botón cliente con `useTransition`; muestra checkmark al completar |
+| `lib/actions/courses.ts` | Server actions: `enrollCourse` e `completeLesson` con recálculo de progreso |
+
+**Flujo de progreso:**
+1. Usuario se inscribe → fila en `enrollments` (estado: `inscrito`).
+2. Al completar una lección → upsert en `lesson_progress`.
+3. Se recalcula `progress` (%) contando lecciones completadas / total.
+4. Al 100% → `enrollments.estado = 'completado'`.
+
+### Problemas encontrados y soluciones
+
+| Problema | Causa | Solución |
+|---|---|---|
+| `uuid_generate_v4() does not exist` | PostgreSQL 17 no incluye `uuid-ossp` por defecto | Reemplazar por `gen_random_uuid()`, eliminar extensión |
+| Tablas resuelven a `never` en TypeScript | `@supabase/ssr@0.4.1` incompatible con `supabase-js@2.103.0` | Actualizar `@supabase/ssr` a `^0.10.0` |
+| `folio` requerido en Insert pero lo genera el trigger | El tipo generado no sabe del trigger | Pasar `folio: ''`; el trigger lo sobrescribe antes del INSERT |
+| `form action` con función async en React 18 | DOM types de React 18 no aceptan funciones en `action` de `<form>` | Cambiar a `onClick` en `UserNav` |
+| `remark-gfm` no disponible en academy | No estaba en `package.json` de `apps/academy` | `pnpm add remark-gfm --filter @olaac/academy` |
+| Enum `enrollment_status` usa `'inscrito'/'en_curso'` no `'activo'` | Error en el valor insertado | Corregir a los valores reales del enum de la DB |
+
+### Verificación final
+
+```
+pnpm --filter @olaac/academy build
+# ✓ Compiled successfully — 7 rutas generadas, 0 errores
+pnpm --filter @olaac/academy type-check
+# ✓ 0 errores TypeScript
 ```
 
-### Módulos a implementar (por prioridad)
+### Commits realizados
 
-1. **Sistema de tickets** (`apps/web`)
-   - Página `/tickets/nuevo` — formulario react-hook-form + Zod
-   - Página `/tickets/[folio]` — detalle y seguimiento
-   - Tabla de tickets con TanStack Table + filtros por estado/prioridad
+| Hash | Mensaje |
+|---|---|
+| `be85ca0` | `docs: add BITACORA.md with session 1 development log` |
+| *(pendiente)* | Módulos auth, tickets, contenido estático y academia LMS |
 
-2. **Tablas de scores** (`apps/web`)
-   - Página `/diagnosticos` — tabla dinámica de auditorías Lighthouse
-   - Integración con `ScoreBadge` por columna
-   - Script CLI para actualizar scores desde terminal (`@lhci/cli`)
+---
 
-3. **Academia LMS** (`apps/academy`)
-   - Listado de cursos con progreso por usuario
-   - Reproductor de lecciones (video + MDX)
-   - Sistema de progreso persitido en Supabase
+## Próximos pasos (al cierre de sesión 2)
 
-4. **Autenticación** (ambas apps)
-   - Login con Supabase Auth (magic link o proveedor OAuth)
-   - Middleware Next.js para proteger rutas privadas
+### Pendiente inmediato
 
-5. **Pipeline CI/CD**
-   - GitHub Actions: `type-check → lint → lhci`
-   - Lighthouse CI como quality gate en PRs
+- [ ] Agregar URLs de callback en Supabase Dashboard → Authentication → URL Configuration:
+  - `http://localhost:3000/auth/callback`
+  - `http://localhost:3001/auth/callback`
+- [ ] Crear commit con todos los módulos de la sesión 2.
+
+### Módulos por implementar
+
+1. **Más cursos en la Academia** — Agregar cursos sobre ARIA, remediación, testing con lectores de pantalla.
+2. **Tablas de scores** — Página `/diagnosticos` con `ScoreBadge` por columna y script CLI de ingesta.
+3. **Pipeline CI/CD** — GitHub Actions: `type-check → lint → lhci` con Lighthouse como quality gate en PRs.
+4. **Emails transaccionales** — Personalizar plantillas de Magic Link en Supabase con branding OLAAC.
+5. **Panel de administración** — Gestión de tickets (asignar, cambiar estado, comentar) para el equipo OLAAC.

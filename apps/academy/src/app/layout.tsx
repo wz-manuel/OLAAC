@@ -2,6 +2,8 @@ import { SkipLink } from '@olaac/ui'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { SiteHeader } from '@/components/site-header'
+
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
 
 export const metadata: Metadata = {
@@ -14,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={inter.variable}>
       <body className="min-h-screen bg-white font-sans antialiased">
         <SkipLink href="#main-content" />
+        <SiteHeader />
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>

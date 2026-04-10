@@ -1,0 +1,337 @@
+{
+  "sitio": "OLAAC – Observatorio Latinoamericano de Accesibilidad",
+  "exportado": "2026-04-09",
+  "resumen": {
+    "total_paginas": 13,
+    "total_entradas": 8
+  },
+  "paginas_estaticas": [
+    {
+      "titulo": "Política de privacidad",
+      "slug": "politica-privacidad",
+      "fecha": "Wed, 27 May 2020 14:12:25 +0000",
+      "estado": "draft",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## Quiénes somos\n\nLa dirección de nuestra web es: http://olaac.org.\n\n## Qué datos personales recogemos y por qué los recogemos### Comentarios\n\nCuando los visitantes dejan comentarios en la web, recopilamos los datos que se muestran en el formulario de comentarios, así como la dirección IP del visitante y la cadena de agentes de usuario del navegador para ayudar a la detección de spam.\n\nUna cadena anónima creada a partir de tu dirección de correo electrónico (también llamada hash) puede ser proporcionada al servicio de Gravatar para ver si la estás usando. La política de privacidad del servicio Gravatar está disponible aquí: https://automattic.com/privacy/. Después de la aprobación de tu comentario, la imagen de tu perfil es visible para el público en el contexto de tu comentario.\n\n### Medios\n\nSi subes imágenes a la web, deberías evitar subir imágenes con datos de ubicación (GPS EXIF) incluidos. Los visitantes de la web pueden descargar y extraer cualquier dato de ubicación de las imágenes de la web.\n\n### Formularios de contacto### Cookies\n\nSi dejas un comentario en nuestro sitio puedes elegir guardar tu nombre, dirección de correo electrónico y web en cookies. Esto es para tu comodidad, para que no tengas que volver a rellenar tus datos cuando dejes otro comentario. Estas cookies tendrán una duración de un año.\n\nSi tienes una cuenta y te conectas a este sitio, instalaremos una cookie temporal para determinar si tu navegador acepta cookies. Esta cookie no contiene datos personales y se elimina al cerrar el navegador.\n\nCuando accedas, también instalaremos varias cookies para guardar tu información de acceso y tus opciones de visualización de pantalla. Las cookies de acceso duran dos días, y las cookies de opciones de pantalla duran un año. Si seleccionas «Recuérdarme», tu acceso perdurará durante dos semanas. Si sales de tu cuenta, las cookies de acceso se eliminarán.\n\nSi editas o publicas un artículo se guardará una cookie adicional en tu navegador. Esta cookie no incluye datos personales y simplemente indica el ID del artículo que acabas de editar. Caduca después de 1 día.\n\n### Contenido incrustado de otros sitios web\n\nLos artículos de este sitio pueden incluir contenido incrustado (por ejemplo, vídeos, imágenes, artículos, etc.). El contenido incrustado de otras webs se comporta exactamente de la misma manera que si el visitante hubiera visitado la otra web.\n\nEstas web pueden recopilar datos sobre ti, utilizar cookies, incrustar un seguimiento adicional de terceros, y supervisar tu interacción con ese contenido incrustado, incluido el seguimiento de tu interacción con el contenido incrustado si tienes una cuenta y estás conectado a esa web.\n\n### Analítica## Con quién compartimos tus datos## Cuánto tiempo conservamos tus datos\n\nSi dejas un comentario, el comentario y sus metadatos se conservan indefinidamente. Esto es para que podamos reconocer y aprobar comentarios sucesivos automáticamente, en lugar de mantenerlos en una cola de moderación.\n\nDe los usuarios que se registran en nuestra web (si los hay), también almacenamos la información personal que proporcionan en su perfil de usuario. Todos los usuarios pueden ver, editar o eliminar su información personal en cualquier momento (excepto que no pueden cambiar su nombre de usuario). Los administradores de la web también pueden ver y editar esa información.\n\n## Qué derechos tienes sobre tus datos\n\nSi tienes una cuenta o has dejado comentarios en esta web, puedes solicitar recibir un archivo de exportación de los datos personales que tenemos sobre ti, incluyendo cualquier dato que nos hayas proporcionado. También puedes solicitar que eliminemos cualquier dato personal que tengamos sobre ti. Esto no incluye ningún dato que estemos obligados a conservar con fines administrativos, legales o de seguridad.\n\n## Dónde enviamos tus datos\n\nLos comentarios de los visitantes puede que los revise un servicio de detección automática de spam.\n\n## Tu información de contacto## Información adicional### Cómo protegemos tus datos### Qué procedimientos utilizamos contra las brechas de datos### De qué terceros recibimos datos### Qué tipo de toma de decisiones automatizada y/o perfilado hacemos con los datos del usuario### Requerimientos regulatorios de revelación de información del sector"
+    },
+    {
+      "titulo": "Contacto",
+      "slug": "contacto",
+      "fecha": "Fri, 26 Jun 2020 19:51:36 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## Contacta con el observatorioUsa el siguiente formulario.\n\nQueremos leerte.\n\n[contact-form-7 id=\"8\" title=\"Contacta con OLAAC\"]"
+    },
+    {
+      "titulo": "Sobre el observatorio",
+      "slug": "sobre-el-observatorio",
+      "fecha": "Fri, 26 Jun 2020 19:58:09 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## Qué es OLAAC?\n\nEl Observatorio Latinoamericano de Accesibilidad (OLAAC) es un mecanismo de control social constituido por ciudadanos, que en colaboración con expertos, realizan diagnósticos y seguimiento técnico e independiente sobre accesibilidad en entornos, productos y servicios. Esto con la finalidad de impulsar, evaluar, monitorear y vigilar el cumplimiento de políticas públicas y buenas prácticas de accesibilidad. \n\nOLAAC ofrece respuesta a la falta de espacios para la participación e incidencia de la ciudadanía en aspectos relacionados con la accesibilidad a entornos, bienes y servicios, así como contribuir en el aseguramiento del goce efectivo de los derechos establecidos en la constitución, en las leyes, reglamentos y tratados internacionales. \n\n## Objetivos\n\nPromover la participación social y el diálogo ciudadano para acompañar y vigilar el cumplimiento de los principios en accesibilidad.\n\nVigilar y lograr el cumplimiento de la normatividad y de las políticas públicas referentes a la accesibilidad en el contexto internacional.\n\nDar seguimiento al desempeño del cumplimiento en accesibilidad para que la gestión pública sea mas eficiente y transparente.\n\nFortalecer las redes ciudadanas mediante la construcción de propuestas que aporten al cumplimiento de los principios en accesibilidad."
+    },
+    {
+      "titulo": "¿Qué es accesibilidad?",
+      "slug": "que-es-accesibilidad",
+      "fecha": "Fri, 26 Jun 2020 20:00:41 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## Accesibilidad accesibilidad es utilizado para definir el grado con el que las personas logran acceder a los entornos, a los productos y a los servicios; permitiendo a éstas relacionarse con sus tres formas básicas de actividad humana: movilidad, comunicación y comprensión. La accesibilidad proporciona flexibilidad al acomodarse a las necesidades de cada usuario y está dirigida a que el sistema esté elaborado al más amplio número de estos, indiferentemente de las limitaciones propias del individuo o de las derivadas del contexto de uso.\n\n## Dónde aplica la accesibilidad Existen diferentes espacios donde es posible medir la accesibilidad, como puede ser: \n\n- Accesibilidad en espacios y entornos - Accesibilidad en la educación- Accesibilidad laboral - Accesibilidad web y tecnológica- Accesibilidad a la información- Entre otras.\n\n## Accesibilidad universal Cuando se habla de accesibilidad universal, se refiere a aquella condición que deben cumplir los entornos, procesos, bienes, productos y servicios, así como los objetos o instrumentos, herramientas y dispositivos, para ser comprensibles, usables y practicables por todas las personas en condiciones de seguridad, comodidad y de la forma más autónoma y natural posible.\n\n## Alcances de la accesibilidad Actualmente, la accesibilidad ha dejado de ser sinónimo de supresión de barreras físicas para adoptar una dimensión preventiva y amplia, generalizable a todo tipo de espacios, productos y servicios. Por otra parte, se trata de una variable fundamental para garantizar el cumplimiento del principio de igualdad de oportunidades, convirtiéndose paulatinamente en un reconocimiento general, como mejora de la calidad de vida de todos los ciudadanos.\n\n## Por qué accesibilidadLa accesibilidad es un derecho de la persona y, como tal, debe ser tratado para conseguir la equiparación de oportunidades. Así mismo, la persona tiene derecho a la autonomía y a la movilidad personal, como correspondencia al logro de una vida plenamente independiente. Por último, un aspecto fundamental es la normativa, que desde hace unos años obliga a que todo bien, producto o entorno sea accesible para todas las personas."
+    },
+    {
+      "titulo": "Unirme al observatorio",
+      "slug": "unirme-al-observatorio",
+      "fecha": "Fri, 26 Jun 2020 20:07:30 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## El observatorio te buscaBuscamos personas voluntarias que gusten formar parte del equipo de OLAAC. \nDiseñadores, programadores, creadores de contenidos, escritores, testers, usuarios de software y hardware de asistencia; todos pueden participar en los análisis y evaluaciones que realiza el observatorio. Entre otras actividades. \n\n## Te esperamos\nEl Observatorio Latinoamericano de Accesibilidad se encuentra abierto a recibir personas voluntarias entusiastas del trabajo por la accesibilidad.\n\nEstamos agradecidos por tu interés en formar parte del observatorio.\n\n[Enviar solicitud ](https://forms.gle/9dqY99nwG6JvTUtq6)"
+    },
+    {
+      "titulo": "Inicio",
+      "slug": "inicio",
+      "fecha": "Fri, 26 Jun 2020 20:09:53 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## OLAAC en Latinoamérica\n\nTrabajamos por la accesibilidad.\n\n## Informa de algún problema de accesibilidad\n\nConoces servicios o productos con problemas de accesibilidad.\n\n[ Infórma aquí ](https://olaac.org/informaralobservatorio/)\n\n## Unirse al equipo\n\nForma parte de las actividades del observatorio.\n\n[ Unirse al equipo ](https://olaac.org/sobre-el-observatorio/unirme-al-observatorio/)\n\n## Recíbenos en tu correo\n\n[mc4wp_form id=\"144\"]"
+    },
+    {
+      "titulo": "Novedades",
+      "slug": "blog",
+      "fecha": "Fri, 26 Jun 2020 20:12:54 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": ""
+    },
+    {
+      "titulo": "Aviso Legal",
+      "slug": "aviso-legal",
+      "fecha": "Sat, 19 Sep 2020 01:35:34 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": ""
+    },
+    {
+      "titulo": "Política de Cookies",
+      "slug": "politica-de-cookies",
+      "fecha": "Sat, 19 Sep 2020 01:35:34 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": ""
+    },
+    {
+      "titulo": "Informar",
+      "slug": "informaralobservatorio",
+      "fecha": "Mon, 23 Nov 2020 21:02:18 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "## Informar al observatorio\n\nInforma de un sitio web, aplicasión o lugar con problemas de accesibilidad.\n\n## Invitación\n\nEl Observatorio Latinoamericano de Accesibilidad, en el objetivo de trabajar junto con las organizaciones; orientando en la forma de crear entornos disponibles para la mayor cantidad de usuarios. Te invita a que informes de algún sitio, aplicación o espacio físico el cual cuente con problemas de accesibilidad.\n\nSabemos que los países latinoamericanos se encuentran en una transición digital acelerada. Y en este proceso. Los responsables de dicha digitalización de servicios pasan por alto la accesibilidad.\n\nEl observatorio Latinoamericano de accesibilidad trabaja en herramientas y procesos que se lanzan al público, con múltiples incidencias de inaccesibilidad.\n\n## Conoces algún sitio web, aplicación o espacio físico que necesites usar de forma indispensable; y que no puedas hacer uso de ella por problemas de accesibilidad.\n\nTal vez sitios oficiales de gobierno, servicios médicos, pago de servicios como energía eléctrica, agua, proveedor de telefonía e internet, entornos para la educación y participación social, entre otros.\n\nPuedes usar el siguiente enlace para acceder al formulario e informar al observatorio.\n\n[ Ir al formulario\"](https://docs.google.com/forms/d/e/1FAIpQLSc9STO1mLpxCb9N4kladkia6P3CSqMl-gqeu7LuxOTcG0OvLg/viewform?usp=sf_link)\n\n## Qué necesito para participar?\n\nInformación de la organización que cuenta con problemas de accesibilidad. Tales como sitio web, país en el que opera y finalidad.\nConocer el problema de accesibilidad que presenta el sitio web, la aplicación o el entorno físico.\nAceptar la política de protección de datos personales. \n\n## ¿Quién puede participar?\n\nCualquier persona puede participar informando al observatorio de algún problema de accesibilidad.\n\n## ¿De qué sitios web, aplicaciones y lugares puedo informar?\n\nEl único requisito para informar al observatorio, es que el sitio web, aplicación o lugar se encuentre disponible para usuarios en Latinoamérica.\n\n## ¿Cómo participo?\n\nPara participar informando al observatorio, es necesario que completes el siguiente formulario.\n\n[ Ir al formulario ](https://docs.google.com/forms/d/e/1FAIpQLSc9STO1mLpxCb9N4kladkia6P3CSqMl-gqeu7LuxOTcG0OvLg/viewform?usp=sf_link)"
+    },
+    {
+      "titulo": "Proyectos",
+      "slug": "proyectos",
+      "fecha": "Wed, 09 Aug 2023 20:51:26 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "Proyectos del observatorio.\n\n## Embajadores de accesibilidad\n\nEmbajadores de accesibilidad es una comunidad de expertos y entusiastas en los temas de inclusión, accesibilidad, software y herramientas de asistencia; entre otros afines. A si como la discusión y análisis de alternativas de solución para los problemas de accesibilidad.\nPara incluirte en la comunidad, puedes usar el siguiente formulario.\n\n[Unirme al observatorio](https://olaac.org/sobre-el-observatorio/unirme-al-observatorio/)\n\n## GAAD evento anual\n\nEl Observatorio Latinoamericano de Accesibilidad cada año se suma al día mundial de la accesibilidad (GAAD) por sus siglas en inglés.\nPuedes conocer la temática de cada año y reproducir la transmisión.\n\n[eventos OLAAC](https://olaac.org/tag/eventos-olaac/)\n\n## Informar al observatorio\n\nAyuda al observatorio a observar. Cuando encuentras un entorno físico o contenido digital que no es accesible y consideras que el acceder a él es importante para ti y tu comunidad. Solicita apoyo al observatorio para realizar una auditoría que promueva iniciativas de cambio y mejora de la accesibilidad.\n\n[Informar](https://olaac.org/proyectos/informaralobservatorio/)\n\n## Campañas de Informes de Accesibilidad (CIA)\n\nLas Campañas de Informes de Accesibilidad (CIA) son las auditorías que llevan acabo los miembros activos en el observatorio y se comparten públicamente. Con el objetivo de informar a webmasters y líderes de proyectos de un plan de acciones para que su producto o servicio cumpla con la normativa y estándar de accesibilidad."
+    },
+    {
+      "titulo": "Herramientas y recursos",
+      "slug": "herramientas-y-recursos",
+      "fecha": "Thu, 10 Aug 2023 19:38:35 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": ""
+    },
+    {
+      "titulo": "Evaluadores de accesibilidad web",
+      "slug": "evaluadores-de-accesibilidad-web",
+      "fecha": "Thu, 10 Aug 2023 19:42:49 +0000",
+      "estado": "publish",
+      "categorias": [],
+      "tags": [],
+      "imagenes": [],
+      "contenido_markdown": "A continuación encontrarás una lista de evaluadores automáticos de accesibilidad web. Los cuales te pueden ser útiles para conocer el estado actual de accesibilidad en tu proyecto."
+    }
+  ],
+  "entradas_blog": [
+    {
+      "titulo": "Inicio del Observatorio Latinoamericano de Accesibilidad",
+      "slug": "iniciodeolaac",
+      "fecha": "Wed, 27 May 2020 20:12:25 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Eventos y actividades"
+      ],
+      "tags": [
+        "OLAAC"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "## Reproduce el evento de presentación del Observatorio\n\nhttps://www.youtube.com/watch?v=kB0j2huRhfc&feature=youtu.be\n\nEl evento en Youtube OLAAC\n\n## Sobre el evento de presentación de OLAAC\n\nEl 21 de mayo del 2020. Por medio de un evento virtual transmitido por Youtube\n\nSe hizo público el inicio del Observatorio Latinoamericano de Accesibilidad (OLAC).\n\nEvento organizado en conjunto con la Universidad Autónoma de Sinaloa (UAS) y la división Omnicanal de Coppel.\n\nEl objetivo principal del evento fue: Concientizar en la integración de accesibilidad en proyectos y mostrar las barreras derivadas por la brecha digital.\n\nSe eligió especialmente esta fecha para hacer público el Observatorio Latinoamericano de Accesibilidad. Ya que el 21 de mayo es un día dedicado internacionalmente a generar conciencia en el tema de la accesibilidad e inclusión en el mundo digital y tecnológico. Conocido en inglés como Global Accessibility Awareness Day (GAAD).\n\n[El evento fue registrado en la página oficial del GAAD](https://globalaccessibilityawarenessday.org)\n\nCon el nombre: \"Día internacional para generar conciencia sobre la accesibilidad, en empatía con el diseño universal\"\n\n## Agradecimientos\n\nDe manera especial el Observatorio Latinoamericano de Accesibilidad expresa su gratitud a la Universidad Autónoma de Sinaloa y Tiendas Coppel por hacer de este evento una realidad; pese a las circunstancias de la pandemia mundial del covid-19.\n\nAgradecemos a toda la comunidad de entusiastas en los temas de tecnología, inclusión y accesibilidad, gerentes, Desarrolladores, Diseñadores, Creadores de contenido, Líderes de opinión, Entre otros interesados en trabajar por un mundo digital y tecnológico accesible. Que apoyaron al evento y al Observatorio Latinoamericano de Accesibilidad con su valiosa asistencia.\n\n/Asistentes al evento\n\nEl evento de presentación contó con más de 120 espectadores en vivo. Debido a las diferencias horarias, la mayoría prefirió disfrutar de la reproducción del evento guardado en Youtube. El cual tiene más de 1300 vistas.\n\n## En el evento\n\nPosteriormente a la presentación del Observatorio Latinoamericano de Accesibilidad:\n\n* Jonathan Chacón, Desarrollador senior accesible.\n\n* Salvador Ángeles Riquelme Medina, Director en Ilumina IAP. México.\n\n* Monica Duhem, Directora en HearColors México.\n\n* Jesús Ibañez, FrontEnd engineer.\n\nParticiparon desarrollando 30 minutos de ponencia y sesión de preguntas y respuestas.\n\nFinalmente, gracias al patrocinio de Ilumina México se otorgaron 20 becas a un curso de desarrollo web accesible. Mismo que aprobecharon muy bien los asistentes al evento en vivo.\n\n## El trabajo de OLAAC\n\nEl Observatorio Latinoamericano de Accesibilidad busca dar seguimiento y unir esfuerzos en el trabajo de la accesibilidad en Latinoamérica, que en colaboración con expertos, plantean realizar diagnósticos y seguimiento técnico e independiente sobre accesibilidad en entornos, productos y servicios. Esto con la finalidad de impulsar, evaluar, monitorear y vigilar el cumplimiento de políticas públicas y buenas prácticas de accesibilidad.\n\nDe esta manera, OLAAC ofrece respuesta a la falta de espacios para la participación e incidencia de la ciudadanía en aspectos relacionados con la accesibilidad a entornos, bienes y servicios, así como contribuir en el aseguramiento del goce efectivo de los derechos establecidos en la constitución, en las leyes, reglamentos y tratados internacionales.\n\n## Buscamos voluntarios\n\nSi la accesibilidad es un tema que te apasiona igual que al equipo del Observatorio Latinoamericano de Accesibilidad.\n\n[Únete hoy al equipo de OLAAC](https://olaac.org/unirme-al-observatorio/)"
+    },
+    {
+      "titulo": "Día internacional por la accesibilidad",
+      "slug": "dia-internacional-por-la-accesibilidad",
+      "fecha": "Wed, 31 Mar 2021 01:47:15 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Eventos y actividades"
+      ],
+      "tags": [
+        "a11y21",
+        "GAAD21",
+        "GAADLATAM21",
+        "OLAAC21"
+      ],
+      "imagenes": [
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Wordpress_cover-1024x538.png",
+          "alt": ""
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Wordpress_contenido-1024x640.png",
+          "alt": ""
+        }
+      ],
+      "contenido_markdown": "## Día internacional para hacer conciencia en el acceso e inclusión digital\n\nSe aproxima el día. 20 de mayo del 2021\n\n![](https://olaac.org/wp-content/uploads/2021/05/Wordpress_cover-1024x538.png)\n\nBanner con información del evento\n\nEn todo el mundo existen mas de 1,000 millones de personas con discapacidad o impedimentos que no experimentan los servicios, el contenido y otros productos en internet con resultado satisfactorios.\n\n2021 - comercio en línia\n\n![](https://olaac.org/wp-content/uploads/2021/05/Wordpress_contenido-1024x640.png)\n\nInformación del evento\n\nEn este año, el evento tendrá un especial enfoque en el comercio en línea.\n\nEl mundo se encuentra en una digitalización acelerada. El nuevo estilo de vida hace permanecer más tiempo y casa y mantenernos constantemente conectados.ncabe\n\nEl acceso a los múltiples servicios y productos en línea es una tarea cotidiana. Y simples acciones como: hacer la compra de supermercado, reservar una sita médica y acceder al menú de un restaurante. Entre otras. Pueden ser imposibles para quienes viven con discapacidad.\n\n## Regístrate para obtener tu boleto\n\nPara recibir el enlace de la transmisión, regístrate en el siguiente evento. Es completamente gratis.\n\n[https://www.eventbrite.com.mx/e/accesibilidad-en-el-comercio-electronico-tickets-154633144899](https://www.eventbrite.com.mx/e/accesibilidad-en-el-comercio-electronico-tickets-154633144899)\n\nEl día internacional de la accesibilidad es una luz para los \n\nprogramadores, diseñadores, creadores de contenido y demás público interesado en crear productos digitales incluyentes para la sociedad.\n\nRecerba el día: Jueves 20 de mayo del 2021\n\nSe contará con ponencias de expertos, experiencias de usuarios con discapacidad e interesant\n\nes debates.\n\n## Encuentra el evento en Linkedin\n\n[Ver evento en Linkedin](https://www.linkedin.com/events/accesibilidadenelcomercioelectr6800201690764193792/)\n\nUna oportunidad para conocer la accesibilidad en el entorno del comercio en línia."
+    },
+    {
+      "titulo": "Introducción a las WCAG",
+      "slug": "introduccion-a-las-wcag",
+      "fecha": "Wed, 31 Mar 2021 14:09:00 +0000",
+      "estado": "publish",
+      "categorias": [
+        "WCAG"
+      ],
+      "tags": [
+        "WCAG"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "## Inicio de las WCAG\n\nLas Pautas de Accesibilidad para el Contenido Web (WCAG) se desarrollan a través del proceso del W3C en cooperación con personas y organizaciones de todo el mundo, con el fin de ofrecer un estándar único y compartido que satisfaga las necesidades de las personas, organizaciones y gobiernos a nivel internacional.\n\n## ¿Para qué son las WCAG?\n\nLos documentos WCAG explican cómo hacer el contenido web más accesible para las personas con discapacidad. Por “contenido” web se hace referencia, generalmente, a la información que se puede encontrar en una página o aplicación web, lo cual incluye:\n\ninformación natural como textos, imágenes y sonidos.\n\ncódigo o marcado que define la estructura, la presentación, etc.\n\n## WCAG 2.0 y 2.1\n\nWCAG 2.0 se publicó el 11 de diciembre del 2008. WCAG 2.1 se publicó el 5 de junio del 2018.\n\nTodos los requisitos (criterios de conformidad) de la versión 2.0 están incluidos en 2.1. Los criterios de conformidad 2.0 son exactamente iguales (literalmente) en 2.1.\n\nHay criterios de conformidad adicionales en 2.1 que no existen en 2.0. Se hace una presentación de ellos en los documentos que publican las novedades WCAG 2.1.\n\nEl contenido que es conforme con WCAG 2.1 también lo es con WCAG 2.0 (se suele decir que se da “retrocompatibilidad”). Un sitio web que cumpla con WCAG 2.1 cumpliría con los requisitos de las políticas que hacen referencia a WCAG 2.0.\n\nDicho de otra forma: si se desea cumplir tanto con WCAG 2.0 y 2.1, se pueden usar los recursos de 2.1 y no sería necesario consultar los relativos a 2.0.\n\nTanto WCAG 2.0 como 2.1 son estándares actuales. WCAG 2.1 no deja WCAG 2.0 obsoleto ni lo sustituye. Invitamos a usar la versión más reciente de WCAG al desarrollar o actualizar contenido o políticas de accesibilidad.\n\n## Destinatarios de WCAG\n\nWCAG se dirige principalmente a:\n\nDesarrolladores de contenido web (autores de páginas, diseñadores de sitios, etc.)\n\nDesarrolladores de programas y aplicaciones.\n\nDesarrolladores de herramientas para la evaluación de la accesibilidad web.\n\nOtros que quieran o necesiten un estándar para la accesibilidad web, incluyendo la accesibilidad móvil.\n\nLos recursos relacionados se dirigen a cubrir las necesidades de diferentes personas, entre ellas legisladores, directores, investigadores y otros.\n\n## WCAG es un estándar técnico, no una introducción a la accesibilidad\n\nSi busca iniciar con accesibilidad en su organización, consulte al observatorio Latinoamericano de Accesibilidad para iniciar un proceso de aprendizaje.\n\n[contact-form-7 id=\"8\" title=\"Contacta con OLAAC\"]\n\n## Contenido de los documentos de las WCAG 2\n\nWCAG 2.0 y WCAG 2.1 son estándares técnicos estables y de referencia. Contienen 12-13 pautas que se agrupan en cuatro principios: perceptible, operable, comprensible y robusto. Cada pauta incluye criterios de conformidad, que se pueden comprobar y que se clasifican en tres niveles: A, AA y AAA.\n\n## Los materiales de apoyo de las WCAG 2 comprenden:\n\nCómo cumplir con las WCAG 2: Una guía de referencia rápida y personalizable que incluye los requisitos (criterios de conformidad) y técnicas de las Pautas de Accesibilidad para el Contenido Web que es, en esencia, la lista de control de WCAG 2. La mayoría de las personas utilizan esta guía de referencia rápida como herramienta principal para trabajar con las WCAG.\n\n## Técnicas para las WCAG 2\n\n(Técnicas 2.1, Técnicas 2.0) proporcionan información específica para desarrollar contenido accesible, como por ejemplo fragmentos de código HTML. Las técnicas son “informativas”, lo cual quiere decir que no tiene por qué usarlas. La base para determinar el cumplimiento con WCAG 2 reside en los criterios que se cumplen con base al estándar WCAG 2  y no en las técnicas.\n\n## WCAG 2.0 es ISO/IEC 40500\n\nLas WCAG 2.0 están aprobadas como un estándar ISO: ISO/IEC 40500:2012. Éste es exactamente igual que las WCAG 2.0 originales, que se presentan arriba junto con los recursos de apoyo.\n\nEl contenido de ISO/IEC 40500 está disponible gratuitamente en www.w3.org/TR/WCAG20; también está disponible para ser comprado en el catálogo ISO .\n\n## Otras pautas\n\nLas WCAG forman parte de una serie de pautas de accesibilidad, que incluye a las Pautas de Accesibilidad para las Herramientas de Creación de Contenido (ATAG) y las Pautas de Accesibilidad para el Agente de Usuario (UAAG).\n\n## Quién desarrolla las WCAG\n\nLos documentos técnicos de las WCAG son desarrollados por el Grupo de Trabajo de las Pautas de Accesibilidad (AG WG) (anteriormente conocido como el Grupo de Trabajo de las Pautas de Accesibilidad para el Contenido Web), el cual forma parte de la Iniciativa por la Accesibilidad Web (WAI) del World Wide Web Consortium (W3C).\n\nLa WAI actualiza periódicamente Técnicas para las WCAG 2.\n\nInformación recuperada de: www.w3.org"
+    },
+    {
+      "titulo": "Resumen del evento, GAAD 2021 OLAAC \"Accesibilidad en el comercio en línea\"",
+      "slug": "resumen-del-evento-gaad-2021-olaac-accesibilidad-en-el-comercio-en-linea",
+      "fecha": "Sat, 29 May 2021 01:30:47 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Sin categoría"
+      ],
+      "tags": [],
+      "imagenes": [
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Vídeo-de-YouTube-–-1-1024x576.png",
+          "alt": "Banner oficial del evento"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Manuel-Valdez-_-Cofundador-del-OLAAC-1024x1024.png",
+          "alt": "Manuel Valdez, cofundador del observatorio"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/David-Gómez-_-UX-Lead-Santander-1024x1024.png",
+          "alt": "David Gomes, banner con su imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Jesús-Ibanez-_-Developer-Tacit-knowledge-1024x1024.png",
+          "alt": "Jesús Ibañez, baner con su imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Mélida-Escobosa-_-Coordinadora-Centro-de-Siscapacidad-Visual-1024x1024.png",
+          "alt": "Melida Escobosa, moderadora del debate"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/José-Miguel-Luna-_-CEO-JL99-1024x1024.png",
+          "alt": "José Miguel Luna, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Ángel-Rangel-_-Profesor-ITESO-1024x1024.png",
+          "alt": ""
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Marina-Sepúlveda-_-Profesora-1024x1024.png",
+          "alt": "Marina Sepúlveda, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Jocelyn-Esquivel-_-UX-research-Coppel-1024x1024.png",
+          "alt": "Jocelin Esquivvel, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Javier-Solís-_-Developer-Coppel-1024x1024.png",
+          "alt": "Javiel Solis, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Juan-Esteban-Arango-_-Ux-Manager-Rappipay-1024x1024.png",
+          "alt": "Juan Arango, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Nancy-Reyes-_-Fundadora-Accessibility-Lab-1024x1024.png",
+          "alt": "Nancy Reyes, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Heriberto-Rodríguez-_-UI-Developer-BBVA-1024x1024.png",
+          "alt": "Heriberto Rodriguez, imagen y semblanza"
+        },
+        {
+          "src": "https://olaac.org/wp-content/uploads/2021/05/Marly-Ortiz-_-Agencia-Nacional-Digital-1024x1024.png",
+          "alt": ""
+        }
+      ],
+      "contenido_markdown": "A continuación compartimos el evento organizado por el Observatorio Latinoamericano de Accesibilidad. Para que lo disfrutes cuando gustes y lo compartas con tu comunidad.\n\n## Uniendo a expertos\n\nCon el fin de generar conversación, en torno a la temática de accesibilidad. Y con el fin de unirse al GAAD 2021. El Observatorio Latinoamericano de Accesibilidad genera espacios para que profesionales compartan sus experiencias y conocimientos acerca de accesibilidad digital.\n\nSi te gustaría formar parte del equipo de organización para futuras actividades y eventos del observatorio, puedes ir al siguiente enlace:\n\nhttps://olaac.org/sobre-el-observatorio/unirme-al-observatorio/\n\nUnirme al observatorio\n\n## OLAAC agradece su participación\n\nEl observatorio nuevamente agradece a todas las personas involucradas en la logística y participación del evento. Gracias a cada una de las personas; que en este día tan especial colaboraron desde sus lugares transmitiendo, presentando, moderando, exponiendo, debatiendo, preguntando, asistiendo y dirigiendo el evento. \n\nGracias por ayudar a conmemorar una vez más el día mundial por la accesibilidad.\n\n## El GAAD OLAAC 2020\n\nQueremos que no te pierdas nada de lo que el Observatorio comparte. Aquí puedes ir al evento del año pasado y conocer lo que compartieron los excelentes ponentes del GAAD 2020.\n\nhttps://olaac.org/iniciodeolaac/\n\nIr al evento inicial de OLAAC\n\n## El GAAD OLAAC 2021\n\n![Banner oficial del evento](https://olaac.org/wp-content/uploads/2021/05/Vídeo-de-YouTube-–-1-1024x576.png)\n\nBanner del evento\n\nFelicitamos a los ponentes seleccionados para participar en el evento del observatorio 2021. Les damos las gracias por contar con su participación en dicho evento, además de una gran felicitación por su magnífica ponencia, que ayudó en la organización del evento y conocimiento de los asistentes.\n\nEn este año. El observatorio dedicó la temática del evento al comercio en línea. De igual forma agradecemos a quienes participaron en la convocatoria enviando sus propuestas.\n\nReconocemos que el trabajo realizado por el comité de organización fue muy duro; ya que se recibieron excelentes contribuciones, de personas referentes en la temática. Sin embargo, fueron seleccionadas las que se relacionaban con el comercio electrónico.\n\nInvitamos a mantenerte al tanto de las novedades y participar en las convocatorias del Observatorio Latinoamericano de Accesibilidad, para los próximos eventos.\n\n## Evento en Facebook\n\n[ Ir al evento transmitido en Facebook ](https://fb.watch/5JioEdzdfL/)\n\n## Evento en Youtube\n\n[Ir al evento transmitido en Youtube ](https://www.youtube.com/watch?v=QxtM0MfQL38)\n\n### Inicio del evento y palabras de bienvenida\n\n![Manuel Valdez, cofundador del observatorio](https://olaac.org/wp-content/uploads/2021/05/Manuel-Valdez-_-Cofundador-del-OLAAC-1024x1024.png)\n\nManuel Valdez, cofundador de OLAAC\n\nEn los primeros 10 segundos de la transmisión, fueron compartidas las palabras de bienvenida por parte del presentador del evento y mensaje de miembros fundadores del Observatorio Latinoamericano de Accesibilidad.\n\n[ Ir al inicio del mensaje del presentador ](https://youtu.be/QxtM0MfQL38?t=10)\n\n### David Gomes, \"Voice commerce. ¿Cómo será accesible?\"\n\nEn el minuto 18, inició la primera ponencia. Por parte de David Gomes.\n\nDavid compartió una amplia perspectiva de cómo será la accesibilidad con la interacción de las interfases no visuales y los asistentes de voz. Usa el siguiente enlace para\n\n[ Ir al inicio de la ponencia de David. ](https://youtu.be/QxtM0MfQL38?t=1109)\n\n#### Semblanza y forma de contactar a David Gomes\n\n![David Gomes, banner con su imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/David-Gómez-_-UX-Lead-Santander-1024x1024.png)\n\nDavid Gomes, banner con su imagen y semblanza\n\nDavid se define como diseñador de Ui Ux. Apasionado de la creación de productos e innovación. Compartir conocimiento y recursos en internet es una de las cosas que más le gustan.\n\nPuedes contactar a David en: [Medium.com/@davidgomez_63814](http://medium.com/@davidgomez_63814)\n\n### Miguel Barraza, \"como gestionar tu dinero online y pasarelas de pago accesibles.\"\n\nLa siguiente ponencia inicia en el minuto 40, y estuvo a cargo de Miguel Barraza.\n\nMiguel menciona en su ponencia  finos conceptos utilizados en el comercio en línea, las formas accesibles que existen para gestionar dinero en internet y las pasarelas de pago utilizadas. Puedes usar el siguiente enlace para\n\n[ Ir al inicio de la ponencia de miguel Barraza. ](https://youtu.be/QxtM0MfQL38?t=2441)\n\n#### Semblanza y forma de contactar a Miguel Barraza\n\nMiguel se define como técnico programador, coach ontológico y consultor en accesibilidad web. Es posible contactar a miguel visitando su sitio web: [www.miguelbarraza.com.ar](http://www.miguelbarraza.com.ar/)\n\n### Jesus Ibañez Perez, \"Accesibilidad práctica\"\n\nEn la primera hora del evento, tocó el turno para Jesús Ibañez.\n\nJesús mostró ejemplos prácticos de cómo dar los primeros pasos en la escritura de código accesible. A sí como la experiencia participando en proyectos internacionales.\n\nNo te pierdas la interesante ronda de preguntas y respuestas que se realizó con los tres ponentes, al término de la participación de Jesús Ibañez.\n\nUsa el siguiente enlace para\n\n[ Ir al inicio de la ponencia de Jesús Ibañez y ronda de preguntas. ](https://youtu.be/QxtM0MfQL38?t=3702)\n\n#### Semblanza y forma de contactar a Jesús Ibañez\n\n![Jesús Ibañez, baner con su imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Jesús-Ibanez-_-Developer-Tacit-knowledge-1024x1024.png)\n\nJesús Ivañez, Banner del evento con su imagen y semblanza\n\nIngeniero en sistemas enfocado en el FrontEnd development, orgullosamente sinaloense y con 8 años de experiencia en el desarrollo web habiendo trabajado en empresas como Coppel, Accenture, Luxoft, HCL y Tacit knowledge. A trabajado con clientes como Nike, Wilko, Mulberry, Expedia y Dairy Queen. Recientemente enfocándose en accesibilidad.\n\nUsa el siguiente enlace para [ Hacer contacto con Jesús Ibañez en Linkedin ](https://www.linkedin.com/in/jesus-ibanez-05a9507a/)\n\n## Debate, \"Experiencia de usuarios accesible en el Ecommerce\"\n\nEn la primera hora con 50 minutos del evento, se inició con un gran debate. Donde los participantes fueron personas con discapacidad, que compran regularmente en internet. Y expusieron sobre la experiencia y barreras que viven cuando compran en línea.\n\nUsa el siguiente enlace para \n\n[ Ir al inicio del debate con usuarios ](https://youtu.be/QxtM0MfQL38?t=6688)\n\n#### Participantes en el debate con usuarios\n\n![Melida Escobosa, moderadora del debate](https://olaac.org/wp-content/uploads/2021/05/Mélida-Escobosa-_-Coordinadora-Centro-de-Siscapacidad-Visual-1024x1024.png)\n\nMélida Escobosa, moderadora del debate\n\n![José Miguel Luna, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/José-Miguel-Luna-_-CEO-JL99-1024x1024.png)\n\nJosé Miguel Luna\n\nJosé Miguel Luna (usuario con discapacidad auditiva)\n\nExjugador de futbol americano, egresado de la PrepaTec Toluca y dos Carreras Ing. Industrial y de sistemas / Diseño Industrial del Tec de Monterrey campus Santa Fe.\n\nCon el tiempo, Luna se convirtió en el único jugador sordo en pertenecer a la Selección Mexicana de Futbol Americano y en 2007 fue prospecto de la NFL Europa.\n\n![](https://olaac.org/wp-content/uploads/2021/05/Ángel-Rangel-_-Profesor-ITESO-1024x1024.png)\n\nÁngel Rangel, Profesor universitario\n\nÁngel Rangel (usuario con discapacidad motriz)\n\n![Marina Sepúlveda, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Marina-Sepúlveda-_-Profesora-1024x1024.png)\n\nMarina Sepúlveda, Maestra de educación especial en el país de Chile\n\nMarina Andrea Sepúlveda (usuario con discapacidad visual)\n\n### Debate con expertos, \"Accesibilidad web en el Ecommerce\"\n\nEn la tercer hora de la transmisión en vivo, se dió inicio al debate con expertos en accesibilidad. Donde compartieron los retos más importantes a los que se enfrentan al momento de iniciar a trabajar la accesibilidad, las prácticas y estrategias recomendadas para resolverlas y los proyectos en los que se han involucrado.\n\nUsa el siguiente enlace para \n\n[ Ir al inicio del debate con expertos ](https://youtu.be/QxtM0MfQL38?t=10905)\n\n#### Participantes en el debate de expertos\n\n![Jocelin Esquivvel, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Jocelyn-Esquivel-_-UX-research-Coppel-1024x1024.png)\n\nJocelin Esquivel, UX reseach en Coppel\n\nSoy diseñadora de experiencias digitales, me gusta crear soluciones a problemas comunes que tienen las personas al interactuar con los servicios o productos, soy una apasionada por la tecnología, me gusta entender a las personas y hacer las cosas más sencillas para todos. Empecé diseñando chatbots, actualmente estoy en Retail. Me gusta apoyar a la comunidad y participar en eventos donde pueda compartir mis conocimientos y aprender de otros, generalmente como mentora, aunque también he participado dando charlas en UX Nights Culiacán.\n\n[Hacer contacto con Jocelin Esquivel en Linkedin ](https://www.linkedin.com/in/joyesquivel/)\n\n![Javiel Solis, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Javier-Solís-_-Developer-Coppel-1024x1024.png)\n\nJaviel Solis, desarrollador web en Coppel\n\nSoy desarrollador web, Licenciado en Sistemas Computacionales de profesión con maestría en Gestión de Tecnologías de la Información, trabajo para la empresa mexicana de Retail Coppel liderando un equipo especialista en Performance en el departamento de Ecommerce, tengo más de 4 años experiencia en UX y marketing digital y certificaciones en Google Analytics e Inbound Marketing.\n\nDesde 2017 soy parte del staff de la comunidad de UX Nights Culiacán y también soy coordinador de la comunidad Google Developer Group Culiacán.\n\n[Hacer contacto con Javier Solis en Linkedin ](https://www.linkedin.com/in/rjmartinezsolis/)\n\n![Juan Arango, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Juan-Esteban-Arango-_-Ux-Manager-Rappipay-1024x1024.png)\n\nJuan Arango, lider UX en Rapid pay Colombia\n\n[Hacer contacto con Juan Arango en Linkedin ](https://co.linkedin.com/in/juan-arango)\n\n![Nancy Reyes, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Nancy-Reyes-_-Fundadora-Accessibility-Lab-1024x1024.png)\n\nNancy Reyes, fundadora de accesibility lab\n\nNancy Reyes, Licenciada en Comercio Internacional por el Tec de Monterrey. Consultora en accesibilidad web, acreditada por la “International Association of Accessibility Professionals” como profesional certificado en “Accessibility Core Competencies”. \n\nEs fundadora de Accessibility Lab, empresa de desarrollo web accesible y proyectos de inclusión y empoderamiento de personas con discapacidad a través de la tecnología. \n\nSu papel ha sido fundamental para impulsar la creación de un ecosistema nuevo, el de un internet accesible. Ha apoyado al gobierno mexicano y empresas del sector privado en estrategias para la implementación de páginas web y aplicaciones accesibles.\n\nHacer contacto con Nancy Reyes en [www.a11ylab.com](http://www.a11ylab.com/)\n\n![Heriberto Rodriguez, imagen y semblanza](https://olaac.org/wp-content/uploads/2021/05/Heriberto-Rodríguez-_-UI-Developer-BBVA-1024x1024.png)\n\nHeriberto Rodriguez, desarrollador web en BBVA México\n\nHacer contacto con Heriberto Rodriguez\n\n[https://soybisonte.com](https://soybisonte.com)\n\n### Marly Ortiz \"Ávila, \"La accesibilidad digital como factor esencial en tu negocio\"\n\nEn el segundo bloque de ponencias, iniciamos la ronda en la cuarta hora con 13 minutos, con la ponencia de Marly Ortiz.\n\nQuien nos ilustró de una forma muy amena y entendible, la forma de justificar la accesibilidad para el negocio y para los gobiernos. A sí como el impacto que tiene para cada uno, y la experiencia que entrega a los usuarios que usan total o parcialmente las funciones de accesibilidad.\n\nUsa el siguiente enlace para \n\n[Ir al inicio de la ponencia de Marly Ortiz ](https://youtu.be/QxtM0MfQL38?t=15228)\n\n![](https://olaac.org/wp-content/uploads/2021/05/Marly-Ortiz-_-Agencia-Nacional-Digital-1024x1024.png)\n\nMarly Ortiz, baner del evento con su imagen y semblanza\n\n## Semblanza y forma de contactar con Marly Ortiz\n\nColombiana apasionada por el desarrollo frontend, defensora de las buenas prácticas en accesibilidad Web para crear e implementar soluciones para todos. Con más de 5 años de experiencia en este mundo de la accesibilidad, diseño inclusivo, uso de tecnología de asistencia , liderazgo en procesos de alfabetización digital para personas ciegas, consultora y desarrolladora en accesibilidad Web para entidades públicas en Colombia.\n\n[ Hacer contacto con Marly Ortiz en Linkedin ](https://www.linkedin.com/in/marly-ortiz/)\n\n### Camilo Salazar Paris \"Los \"10\" de accesibilidad para una Landing de conversión\"\n\nPasadas las 4 horas con 50 minutos, Camilo Salazar muestra 10 importantes elementos a considerar para construir una página accesible y que genere conversiones en la mayor cantidad de usuarios que lleguen a ella. Al final de la ponencia. Camilo incluye un elemento extra. Averígualo ahora.\n\nUsa el siguiente enlace para \n\n[Ir al inicio de la ponencia de Camilo Salazar ](https://youtu.be/QxtM0MfQL38?t=17406)\n\n#### Semblanza y forma de contactar con Camilo Salazar\n\n[Hacer contacto con Camilo Salazar en Linkedin ](https://www.linkedin.com/in/salazarparis/)\n\n### Mensaje final y clausura del evento\n\nEl mensaje final y la clausura del evento comenzó a las 5 horas con 43 minutos de la transmisión, las palabras estuvieron a cargo de Emir Barajas y Manuel Valdez. Ambos miembros fundadores del Observatorio Latinoamericano de Accesibilidad.\n\n[ Usa el siguiente enlace para ir al inicio del mensaje final y clausura ](https://youtu.be/QxtM0MfQL38?t=20620)\n\n## Entérate de las siguientes novedades\n\nSuscríbete en el formulario a continuación, para recibir en tu correo las novedades de OLAAC.\n\n[mc4wp_form id=\"144\"]"
+    },
+    {
+      "titulo": "GAAD 2022 \"Análisis de la accesibilidad\"",
+      "slug": "gaad-2022-analisis-de-accesibilidad",
+      "fecha": "Wed, 16 Mar 2022 04:27:00 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Eventos y actividades",
+        "Sin categoría"
+      ],
+      "tags": [
+        "a11y",
+        "a11y22",
+        "eventos OLAAC",
+        "GAAD22"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "El Día Mundial de la Concienciación sobre la Accesibilidad (Global Accessibility Awareness Day) o por sus siglas en inglés “GAAD”, es un evento internacional cuyo propósito consiste en promover las iniciativas, diálogos y reflexiones en torno al tema de la accesibilidad digital y la inclusión, los cuales engloban a más de un billón de personas con alguna discapacidad.  \n\nCada usuario merece una experiencia digital de primer nivel al navegar por la web; una persona que vive en condición de discapacidad debe ser capaz de experimentar los servicios basados en la red, sus contenidos y otros productos digitales con los mismos resultados satisfactorios que aquellos sin discapacidad. Esta concienciación y compromiso hacia la inclusión es la meta del GAAD, centrar la atención en el acceso digital y la inclusión de personas con discapacidad.\n\n## GAAD 2022\n\nEste día es una oportunidad increíble para conectar a líderes, profesionales, estudiantes y personas interesadas en un mismo objetivo: Impulsar el conocimiento sobre la accesibilidad. \n\nLa edición 2022 de este evento se llevará a cabo el día jueves 19 de mayo, en formato online via Youtube.\n\n## Temática 2022: “Análisis de la accesibilidad”\n\nAnalizar la accesibilidad de un proyecto es un punto de crucial importancia para asegurar su éxito, ya que tener los resultados de una evaluación que determina el nivel de cumplimiento en dicho aspecto permite que los equipos de trabajo identifiquen los problemas por solucionar y así lograr que los usuarios vivan una experiencia accesible. Es por ello, que deben realizarse preguntas importantes:\n\n¿Cómo analizar la accesibilidad?\n\n¿Cuáles son los retos a los que se enfrentan quienes buscan solución a las problemáticas actuales de accesibilidad?\n\n¿Qué herramientas son de utilidad para evaluar la accesibilidad de un proyecto?\n\nPor lo tanto, en esta edición 2022 del Global Accessibility Awareness Day es necesario hacer evidentes los pasos para diseñar un producto o servicio con la accesibilidad en mente, a través de ideas que den lugar a más y mejores soluciones que impacten positivamente en la vida de las personas.\n\n## Registro al evento\n\nAsegura tu lugar y recibe todas las novedades relacionadas a las actividades y presentaciones que conformarán la edición 2022 del Global Accessibility Awareness Day, visitando el siguiente enlace:\n\n[Registro al evento](https://www.eventbrite.com.mx/e/analisis-de-la-accesibilidad-registration-332333918697)\n\n## Participa en el GAAD 2022\n\nConoce la información clave para formar parte del Global Accessibility Awareness Day 2022, a través de las diversas modalidades en las que podrás registrar una participación:\n\n- Ponencia con temática relacionada a la accesibilidad digital o inclusión de personas con discapacidad. - Presentación de casos de éxito y buenas prácticas en materia de accesibilidad. - Demo de herramienta para la evaluación de la accesibilidad.\n\nTemáticas para participación en el GAAD 2022\n\n- Reflexiones enriquecedoras sobre la práctica del análisis de accesibilidad.- Técnicas y estrategias para resolver problemas de accesibilidad.- Retos enfrentados ante la implementación de la accesibilidad como parte del proceso de diseño de un producto. - Principales barreras para realizar pruebas con usuarios dependientes de software de asistencia. - Complejidades encontradas en el entorno de acción.- Diferencias entre los productos accesibles y aquellos que no lo son.\n\nEnviar una participación\n\nPara enviar tu participación, haz uso del siguiente formulario. La fecha límite es el domingo 24 de abril de 2022 a las 11:59 pm.\n\n[Enviar participación al GAAD 2022](https://forms.gle/8sLbjdiStxXBK7Uy5)"
+    },
+    {
+      "titulo": "Accesibilidad: Abriendo Caminos para Todos",
+      "slug": "accesibilidad-abriendo-caminos-para-todos",
+      "fecha": "Wed, 09 Aug 2023 20:19:45 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Generalidades sobre accesibilidad"
+      ],
+      "tags": [
+        "a11y",
+        "a11ylatam",
+        "accesibilidad"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "La accesibilidad es un concepto fundamental que busca garantizar que todas las personas, independientemente de sus capacidades o características, puedan acceder y participar plenamente en todos los aspectos de la vida. Es un principio inclusivo que se extiende tanto a los entornos físicos como a los digitales, asegurando que nadie quede excluido debido a limitaciones de movilidad, visión, audición o cualquier otra condición.\n\n## **Accesibilidad en definición por múltiples **autores\n\n## **Accesibilidad Digital y Accesibilidad en Entornos Físicos**\n\nLa **accesibilidad digital** se centra en hacer que la tecnología y los contenidos en línea sean utilizables para todas las personas, incluyendo aquellas con discapacidades. Esto abarca desde sitios web y aplicaciones móviles hasta documentos electrónicos. Se busca garantizar que la información sea presentada de manera comprensible y que las interacciones digitales sean fluidas para todos, independientemente de sus capacidades.\n\nPor otro lado, la **accesibilidad en entornos físicos** se refiere a crear espacios y estructuras que sean fácilmente utilizables por todas las personas. Esto puede incluir rampas y ascensores para personas con movilidad reducida, señalización clara para personas con discapacidad visual, y espacios adecuados para personas con diferentes necesidades.\n\n## **Normas y Estándares para Auditar la Accesibilidad**\n\nExisten diversas normas y estándares que establecen pautas para evaluar y mejorar la accesibilidad. Algunos de los más reconocidos son:\n\n- **WCAG (Web Content Accessibility Guidelines):** Establecidos por el World Wide Web Consortium (W3C), estos lineamientos se enfocan en hacer que el contenido web sea accesible. Se dividen en niveles (A, AA y AAA) y abordan aspectos como el contraste de colores, la navegación por teclado y la adaptabilidad.\n\n- **ADA (Americans with Disabilities Act):** Esta ley en los Estados Unidos prohíbe la discriminación por discapacidad y establece estándares de accesibilidad en diversas áreas, incluyendo el diseño de espacios públicos y servicios.\n\n- **ISO 21542:2011:** Esta norma internacional ofrece directrices sobre la accesibilidad y la usabilidad de los entornos construidos, proporcionando recomendaciones detalladas para hacer que los edificios y espacios sean accesibles para todas las personas.\n\n## Resumen\n\nEn resumen, la accesibilidad es un principio esencial para promover la igualdad de oportunidades y la participación de todas las personas en la sociedad. Tanto en el mundo digital como en los entornos físicos, la accesibilidad busca eliminar barreras y facilitar la interacción para todos. Cumplir con normas y estándares de accesibilidad contribuye a crear un mundo más inclusivo y equitativo."
+    },
+    {
+      "titulo": "Metodología de Evaluación de Accesibilidad WCAG, un enfoque para la web inclusiva",
+      "slug": "metodologia-de-evaluacion-de-accesibilidad-wcag-un-enfoque-para-la-web-inclusiva",
+      "fecha": "Mon, 04 Sep 2023 01:06:51 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Análisis de accesibilidad",
+        "Generalidades sobre accesibilidad",
+        "WCAG"
+      ],
+      "tags": [
+        "a11y",
+        "accesibilidad",
+        "metodolog{ia de evaluaci{on de accesibilidad",
+        "WCAG",
+        "WCAGM"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "La accesibilidad web es un componente esencial para garantizar que todos los usuarios, independientemente de sus capacidades, puedan acceder y utilizar de manera efectiva los sitios web y las aplicaciones en línea. La Web Content Accessibility Guidelines (WCAG), o Pautas de Accesibilidad al Contenido en la Web, proporciona un conjunto de estándares internacionalmente reconocidos para evaluar y mejorar la accesibilidad en entornos digitales.\n\nEn este artículo, exploraremos la metodología de evaluación de accesibilidad WCAG y cómo contribuye a la creación de una web más inclusiva.\n\n## Fundamentos de WCAG\n\nLas WCAG, desarrolladas por el World Wide Web Consortium (W3C), establecen cuatro principios fundamentales que cualquier contenido digital debe cumplir para ser considerado accesible: Perceptible, Operable, Comprensible y Robusto (POUR). Cada uno de estos principios se divide en pautas y criterios de éxito que proporcionan una guía detallada sobre cómo lograr la accesibilidad en diferentes aspectos, desde el diseño visual hasta la interacción y la estructura de contenido.\n\n## Metodología de Evaluación\n\nLa evaluación de accesibilidad según las WCAG implica un proceso riguroso para identificar barreras y optimizar la usabilidad para usuarios con discapacidades. La siguiente es una descripción general de dicha metodología:\n\n- Identificación de Criterios de Éxito Relevantes:\nBasándose en el contenido y los objetivos del sitio web o la aplicación, se determinan los criterios de éxito WCAG que son aplicables. Estos criterios proporcionan directrices específicas para asegurar la accesibilidad en áreas como texto alternativo para imágenes, contraste de colores, navegación por teclado y más.\n\n- Herramientas de Evaluación Automática:\nSe utilizan herramientas de evaluación automática, como evaluadores de accesibilidad en línea, para identificar problemas iniciales de accesibilidad. Estas herramientas escanean el contenido en busca de problemas comunes y proporcionan informes preliminares.\n\n- Evaluación Manual:\nLos evaluadores humanos, que pueden incluir expertos en accesibilidad y usuarios con discapacidades, realizan pruebas manuales para identificar problemas más complejos que no pueden ser detectados automáticamente. Esto implica simular experiencias de navegación utilizando tecnologías asistivas como lectores de pantalla.\n\n- Análisis de Resultados:\nLos resultados de las pruebas automáticas y manuales se analizan para identificar los problemas de accesibilidad que deben abordarse. Se determina la gravedad de cada problema y se prioriza la corrección.\n\n- Desarrollo de Soluciones:\nSe implementan las soluciones recomendadas para abordar los problemas de accesibilidad. Esto puede implicar ajustar el código, modificar el diseño, agregar texto alternativo y realizar cambios en la estructura del contenido.\n\n- Pruebas de Validación:\nSe realizan pruebas de validación para asegurarse de que las soluciones implementadas hayan resuelto los problemas de accesibilidad de manera efectiva. Esto incluye verificar la funcionalidad en diferentes dispositivos y navegadores.\n\n- Documentación y Mantenimiento:\nSe documentan los pasos tomados para abordar la accesibilidad y se establece un proceso de mantenimiento continuo para garantizar que el contenido siga siendo accesible a medida que se realicen actualizaciones.\n\n## Beneficios de la Metodología WCAG\n\nLa metodología de evaluación de accesibilidad WCAG no solo ayuda a cumplir con los requisitos legales y éticos de la accesibilidad web, sino que también brinda una experiencia mejorada para todos los usuarios. Una web accesible es más usable, más amigable y más inclusiva, lo que beneficia a personas con y sin discapacidades. Además, sigue siendo una inversión estratégica para las organizaciones, ya que amplía la audiencia potencial y promueve la igualdad de oportunidades en línea.\n\nEn última instancia, la metodología de evaluación de accesibilidad WCAG es un enfoque integral que impulsa el diseño y desarrollo de una web inclusiva y accesible. Al seguir estos principios y pautas, creamos un entorno digital que se adapta a las diversas necesidades de los usuarios y refleja un compromiso con la equidad en línea."
+    },
+    {
+      "titulo": "Evaluadores automáticos de accesibilidad",
+      "slug": "evaluadores-automaticos-de-accesibilidad",
+      "fecha": "Wed, 06 Sep 2023 01:55:00 +0000",
+      "estado": "publish",
+      "categorias": [
+        "Análisis de accesibilidad",
+        "Sin categoría"
+      ],
+      "tags": [
+        "a11y",
+        "a11ylatam",
+        "evaluación automática",
+        "WCAG"
+      ],
+      "imagenes": [],
+      "contenido_markdown": "## ¿Qué son?\n\nUn evaluador automático de accesibilidad es una herramienta de software diseñada para analizar y evaluar de manera automatizada la accesibilidad de sitios web y aplicaciones en línea. Utilizando algoritmos y reglas predefinidas basadas en estándares de accesibilidad como las pautas WCAG, estas herramientas escanean el contenido digital en busca de posibles barreras que puedan dificultar el acceso y uso por parte de personas con discapacidades. Aunque ofrecen una rápida revisión de posibles problemas, es importante recordar que estas herramientas no reemplazan la evaluación humana y la experiencia personal de usuarios con discapacidad, ya que no siempre pueden capturar todas las complejidades de la accesibilidad web.\n\nSi te gustaría conocer a profundidad una metodología estandarizada para auditar un sitio web y construir un informe. Puedes en el siguiente artículo. [Conocer más sobre la WCAGM.](https://olaac.org/metodologia-de-evaluacion-de-accesibilidad-wcag-un-enfoque-para-la-web-inclusiva/)\n\nEn el Observatorio Latinoamericano de Accesibilidad, recomendamos emplear las siguientes herramientas de evaluación automática, ya que aun utilizando la versión gratuita, es posible obtener información suficiente para dar los primeros pasos en la remediación de problemas de accesibilidad.\n\nAdemás, Axe, WAVE y Lighthouse son extensiones que se ejecutan en consola del navegador, con cualquier URL cargada. Esto permite evaluar sitios que requieren el inicio de sesión, páginas que forman parte de un proceso o incluso que aún no se encuentran publicadas en el sitio oficial.\n\nAñadimos una cuarta herramienta “Rocket Validator”, la cual en su uso básico permite evaluar y monitorear un sitio web ya publicado, lo cual facilita el proceso de mantener la revisión de un listado de URLS.\n\n## Axe DevTools\n\nLa extensión gratuita axe DevTools es ideal para desarrolladores y evaluadores individuales para encontrar y solucionar problemas comunes de accesibilidad en sus aplicaciones web.\n\nEs liviano, fácil de usar, no requiere conocimientos avanzados de accesibilidad y no le hará perder el tiempo con falsos positivos.\n\nDisponible para tu navegador favorito: Chrome, Firefox o Edge. Solo agrega el complemento e inicia una evaluación automática.\n\n### Descargar Axe DevTools\n\n[Descargar Axe DevTools para Google Chrome](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?utm_source=deque.com&utm_medium=referral&utm_campaign=axe-devtools-chrome-browser-extensions_hero)\n\n[Descargar Axe DevTools para Firefox](https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/)\n\n[Descargar Axe DevTools para Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/axe-web-accessibility-t/kcenlimkmjjkdfcaleembgmldmnnlfkn)\n\n## WAVE\n\nEl complemento de WAVE le permite evaluar el contenido web en busca de problemas de accesibilidad directamente desde su navegador. Debido a que la extensión se ejecuta completamente dentro de su navegador web, no se envía información al servidor WAVE. Esto garantiza informes de accesibilidad 100 % privados y seguros. La extensión puede comprobar intranet, páginas web protegidas con contraseña, generadas dinámicamente o sensibles. Además, debido a que la extensión WAVE evalúa la versión renderizada de su página, se pueden evaluar los estilos mostrados localmente\n\n  y el contenido generado dinámicamente desde scripts o AJAX.\n\n### Descargar WAVE\n\n[Descargar WAVE para Google Chrome](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)\n\n[Descargar WAVE para Firefox](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)\n\n[Descargar WAVE para Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/wave-evaluation-tool/khapceneeednkiopkkbgkibbdoajpkoj)\n\n## Lighthouse\n\n es una herramienta automatizada de código abierto para mejorar la calidad de las páginas web. Puede ejecutarlo contra cualquier página web, pública o que requiera autenticación. Lighthouse a diferencia de Axe y WAVE. Puede evaluar la página en temas de SEO, rendimiento, entre otras. Lo cual puede ser útil para encontrar hallazgos, si estamos trabajando junto a un equipo multidisciplinario en el diseño de experiencias de usuario.\n\n### Descargar Lighthouse\n\nLighthouse se encuentra disponible solo para el navegador Google Chrome.\n\n[Descargar Lighthouse para Google Chrome](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)\n\n## Rocketvalidator\n\nRocket Validator escanea su sitio y valida automáticamente hasta 5000 páginas\n\nweb, verificando cada página encontrada con Axe-Core y W3C HTML Validator al mismo tiempo.\n\nSimplemente se ingresa una URL de inicio y el motor de Rocket hace el trabajo duro por usted.\n\nEl motor de Rocket rastreará el sitio y comprobará la accesibilidad y la conformidad con HTML5 en hasta 5000 páginas, con un solo clic.\n\nEsto evita evaluar de URL en URL, cuando se busca auditar una muestra representativa de un sitio web.\n\nPuedes registrarte y probar la herramienta de Rocket Validator en el siguiente enlace:\n\n[Ir a RocketValidator.](https://rocketvalidator.com/registration/new)\n\nhttps://rocketvalidator.com/registration/new"
+    }
+  ]
+}

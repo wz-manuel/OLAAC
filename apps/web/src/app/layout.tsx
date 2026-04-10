@@ -2,6 +2,7 @@ import { SkipLink } from '@olaac/ui'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { SiteHeader } from '@/components/site-header'
 import './globals.css'
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* WCAG 2.4.1 — Evitar bloques: enlace de salto obligatorio */}
         <SkipLink href="#main-content" />
+        <SiteHeader />
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
