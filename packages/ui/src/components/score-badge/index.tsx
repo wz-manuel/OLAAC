@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { getScoreColor, getScoreLabel } from '../../tokens'
 import { cn } from '../../lib/utils'
+import { getScoreColor, getScoreLabel } from '../../tokens'
 
 interface ScoreBadgeProps {
   score: number

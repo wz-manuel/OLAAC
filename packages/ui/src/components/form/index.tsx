@@ -1,4 +1,5 @@
 'use client'
-// Wrappers de react-hook-form + accesibilidad.
-// Implementación completa en la siguiente iteración.
-export { FormProvider as Form } from 'react-hook-form'
+// Stub — wrappers de react-hook-form se implementan en apps/web y apps/academy
+// donde react-hook-form es dependencia directa. El UI package no depende de él.
+export {}
+

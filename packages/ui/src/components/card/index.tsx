@@ -22,7 +22,8 @@ CardHeader.displayName = 'CardHeader'
 
 const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
-    // Semántica: usar h2/h3 desde el contexto; CardTitle es presentacional
+    // Semántica: el contenido viene de props.children — ESLint no puede inferirlo
+    // eslint-disable-next-line jsx-a11y/heading-has-content
     <h3
       ref={ref}
       className={cn('text-xl font-semibold leading-none tracking-tight', className)}

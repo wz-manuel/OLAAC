@@ -1,7 +1,6 @@
+import { SkipLink } from '@olaac/ui'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-
-import { SkipLink } from '@olaac/ui'
 
 import './globals.css'
 
