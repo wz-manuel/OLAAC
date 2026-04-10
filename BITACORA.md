@@ -256,7 +256,7 @@ pnpm turbo run lint
 
 ### Infraestructura y base de datos
 
-- Proyecto Supabase creado y enlazado (`supabase link --project-ref swcpyxdyidwyugyzenaz`).
+- Proyecto Supabase creado y enlazado (`supabase link --project-ref <project-ref>`).
 - `supabase/config.toml` actualizado: `major_version = 17` (PostgreSQL 17 en el remoto).
 - Migración `001_initial_schema.sql` corregida: eliminado `uuid-ossp`, reemplazado `uuid_generate_v4()` por `gen_random_uuid()`.
 - `supabase db push` aplicado correctamente al proyecto remoto.

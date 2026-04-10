@@ -1,4 +1,4 @@
-// Auto-generado: npx supabase gen types typescript --project-id swcpyxdyidwyugyzenaz
+// Auto-generado: npx supabase gen types typescript --project-id <tu-project-ref>
 // Re-ejecutar tras cada migración de base de datos.
 
 export type Json =
