@@ -14,6 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_submissions: {
+        Row: {
+          auditor_id: string
+          hallazgos: Json
+          id: string
+          recomendaciones: string | null
+          resumen: string
+          submitted_at: string
+          ticket_id: string
+        }
+        Insert: {
+          auditor_id: string
+          hallazgos?: Json
+          id?: string
+          recomendaciones?: string | null
+          resumen: string
+          submitted_at?: string
+          ticket_id: string
+        }
+        Update: {
+          auditor_id?: string
+          hallazgos?: Json
+          id?: string
+          recomendaciones?: string | null
+          resumen?: string
+          submitted_at?: string
+          ticket_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_submissions_auditor_id_fkey"
+            columns: ["auditor_id"]
+            isOneToOne: false
+            referencedRelation: "auditor_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_submissions_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      auditor_learning_path: {
+        Row: {
+          course_id: string
+          created_at: string
+          id: string
+          obligatorio: boolean
+          orden: number
+        }
+        Insert: {
+          course_id: string
+          created_at?: string
+          id?: string
+          obligatorio?: boolean
+          orden?: number
+        }
+        Update: {
+          course_id?: string
+          created_at?: string
+          id?: string
+          obligatorio?: boolean
+          orden?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "auditor_learning_path_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: true
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      auditor_profiles: {
+        Row: {
+          certified_at: string | null
+          created_at: string
+          estado: Database["public"]["Enums"]["auditor_status"]
+          id: string
+          nombre_completo: string
+          pais: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          certified_at?: string | null
+          created_at?: string
+          estado?: Database["public"]["Enums"]["auditor_status"]
+          id?: string
+          nombre_completo: string
+          pais: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          certified_at?: string | null
+          created_at?: string
+          estado?: Database["public"]["Enums"]["auditor_status"]
+          id?: string
+          nombre_completo?: string
+          pais?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       accessibility_scores: {
         Row: {
           id: string
@@ -286,6 +396,45 @@ export type Database = {
         }
         Relationships: []
       }
+      volunteer_applications: {
+        Row: {
+          created_at: string
+          estado: Database["public"]["Enums"]["application_status"]
+          experiencia_previa: string | null
+          id: string
+          motivacion: string
+          nombre_completo: string
+          pais: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          estado?: Database["public"]["Enums"]["application_status"]
+          experiencia_previa?: string | null
+          id?: string
+          motivacion: string
+          nombre_completo: string
+          pais: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          estado?: Database["public"]["Enums"]["application_status"]
+          experiencia_previa?: string | null
+          id?: string
+          motivacion?: string
+          nombre_completo?: string
+          pais?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       ticket_events: {
         Row: {
           created_at: string
@@ -386,6 +535,13 @@ export type Database = {
       show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
+      application_status: "pendiente" | "aprobado" | "rechazado"
+      auditor_status:
+        | "en_formacion"
+        | "certificado"
+        | "activo"
+        | "inactivo"
+        | "suspendido"
       enrollment_status: "inscrito" | "en_curso" | "completado" | "abandonado"
       lesson_type: "video" | "lectura" | "ejercicio" | "evaluacion"
       ticket_category: "digital" | "fisico" | "comunicacion" | "servicio"
@@ -523,6 +679,14 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      application_status: ["pendiente", "aprobado", "rechazado"],
+      auditor_status: [
+        "en_formacion",
+        "certificado",
+        "activo",
+        "inactivo",
+        "suspendido",
+      ],
       enrollment_status: ["inscrito", "en_curso", "completado", "abandonado"],
       lesson_type: ["video", "lectura", "ejercicio", "evaluacion"],
       ticket_category: ["digital", "fisico", "comunicacion", "servicio"],

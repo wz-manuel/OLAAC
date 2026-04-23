@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
-import { StatusBadge } from '@/components/tickets/status-badge'
 import { PriorityBadge } from '@/components/tickets/priority-badge'
+import { StatusBadge } from '@/components/tickets/status-badge'
+import { AuditResultForm } from '@/components/voluntarios/audit-result-form'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata = { title: 'Detalle de ticket' }
 
@@ -28,6 +29,34 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
   ])
 
   if (!ticket) notFound()
+
+  // Verificar si el usuario es un auditor certificado asignado a este ticket
+  const isAssignedAuditor = ticket.assigned_to === user.id
+  let auditorProfile = null
+  let existingSubmission = null
+
+  if (isAssignedAuditor) {
+    const [profileResult, submissionResult] = await Promise.all([
+      supabase
+        .from('auditor_profiles')
+        .select('id, estado')
+        .eq('user_id', user.id)
+        .maybeSingle(),
+      supabase
+        .from('audit_submissions')
+        .select('id, resumen, hallazgos, recomendaciones, submitted_at')
+        .eq('ticket_id', id)
+        .maybeSingle(),
+    ])
+    auditorProfile = profileResult.data
+    existingSubmission = submissionResult.data
+  }
+
+  const canSubmitAudit =
+    isAssignedAuditor &&
+    auditorProfile &&
+    (auditorProfile.estado === 'certificado' || auditorProfile.estado === 'activo') &&
+    !existingSubmission
 
   const CATEGORIA_LABELS: Record<string, string> = {
     digital: 'Digital', fisico: 'Físico', comunicacion: 'Comunicación', servicio: 'Servicio',
@@ -57,13 +86,11 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
           </div>
         </div>
 
-        {/* Descripción */}
         <div className="mt-5">
           <h2 className="text-xs font-medium uppercase tracking-wide text-gray-400">Descripción</h2>
           <p className="mt-2 whitespace-pre-wrap text-sm text-gray-700">{ticket.descripcion}</p>
         </div>
 
-        {/* Metadata */}
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-gray-100 pt-5 sm:grid-cols-3 text-sm">
           <div>
             <dt className="text-xs font-medium text-gray-400">Categoría</dt>
@@ -87,7 +114,7 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
                   href={ticket.url_afectada}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                  className="text-[#005fcc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                 >
                   {ticket.url_afectada}
                 </a>
@@ -96,6 +123,58 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
           )}
         </dl>
       </div>
+
+      {/* Resultados de auditoría ya enviados */}
+      {existingSubmission && (
+        <section aria-labelledby="resultados-heading" className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-6">
+          <h2 id="resultados-heading" className="mb-4 text-sm font-semibold text-blue-900">
+            Resultados de auditoría enviados
+          </h2>
+          <dl className="space-y-4 text-sm">
+            <div>
+              <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Resumen ejecutivo</dt>
+              <dd className="mt-1 text-blue-900 whitespace-pre-wrap">{existingSubmission.resumen}</dd>
+            </div>
+            {Array.isArray(existingSubmission.hallazgos) && (existingSubmission.hallazgos as Array<{ descripcion: string }>).length > 0 && (
+              <div>
+                <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Hallazgos</dt>
+                <dd className="mt-1">
+                  <ul className="list-disc pl-5 space-y-1 text-blue-900">
+                    {(existingSubmission.hallazgos as Array<{ descripcion: string }>).map((h, i) => (
+                      <li key={i}>{h.descripcion}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            )}
+            {existingSubmission.recomendaciones && (
+              <div>
+                <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Recomendaciones</dt>
+                <dd className="mt-1 text-blue-900 whitespace-pre-wrap">{existingSubmission.recomendaciones}</dd>
+              </div>
+            )}
+            <div>
+              <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Enviado</dt>
+              <dd className="mt-0.5 text-blue-800">
+                {new Date(existingSubmission.submitted_at).toLocaleDateString('es-MX', { dateStyle: 'long' })}
+              </dd>
+            </div>
+          </dl>
+        </section>
+      )}
+
+      {/* Formulario de resultados de auditoría para auditores asignados */}
+      {canSubmitAudit && (
+        <section aria-labelledby="auditoria-heading" className="mt-6 rounded-lg border border-gray-200 bg-white p-6">
+          <h2 id="auditoria-heading" className="mb-1 text-base font-semibold text-gray-900">
+            Enviar resultados de auditoría
+          </h2>
+          <p className="mb-5 text-sm text-gray-600">
+            Estás asignado como auditor de este ticket. Completa el formulario con tus hallazgos.
+          </p>
+          <AuditResultForm ticketId={ticket.id} ticketFolio={ticket.folio} />
+        </section>
+      )}
 
       {/* Timeline de eventos */}
       {events && events.length > 0 && (
