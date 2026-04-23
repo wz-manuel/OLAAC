@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 
 // Rutas que requieren autenticación
-const PROTECTED_ROUTES = ['/tickets']
+const PROTECTED_ROUTES = ['/tickets', '/admin', '/voluntarios/inscribirse', '/voluntarios/mi-panel']
 
 export async function middleware(request: NextRequest) {
   const { supabaseResponse, user } = await updateSession(request)

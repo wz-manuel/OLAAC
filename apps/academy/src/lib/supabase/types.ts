@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       audit_submissions: {
         Row: {
           auditor_id: string
@@ -482,6 +497,7 @@ export type Database = {
       volunteer_applications: {
         Row: {
           created_at: string
+          email_contacto: string | null
           estado: Database["public"]["Enums"]["application_status"]
           experiencia_previa: string | null
           id: string
@@ -494,6 +510,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          email_contacto?: string | null
           estado?: Database["public"]["Enums"]["application_status"]
           experiencia_previa?: string | null
           id?: string
@@ -506,6 +523,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          email_contacto?: string | null
           estado?: Database["public"]["Enums"]["application_status"]
           experiencia_previa?: string | null
           id?: string

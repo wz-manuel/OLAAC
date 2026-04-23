@@ -55,7 +55,7 @@ export async function submitApplication(
 
   const { error } = await supabase
     .from('volunteer_applications')
-    .insert({ user_id: user.id, nombre_completo, pais, motivacion, experiencia_previa })
+    .insert({ user_id: user.id, email_contacto: user.email ?? null, nombre_completo, pais, motivacion, experiencia_previa })
 
   if (error) {
     if (error.code === '23505') {
