@@ -536,6 +536,295 @@ export type Database = {
         }
         Relationships: []
       }
+      criterios_distintivo: {
+        Row: {
+          beneficios: string[]
+          created_at: string
+          descripcion: string | null
+          id: string
+          min_experiencias_accesibles: number
+          min_flujos_accesibles: number
+          min_porcentaje_accesibilidad: number
+          min_tareas_accesibles: number
+          nivel: Database["public"]["Enums"]["badge_nivel"]
+          vigencia_meses: number
+        }
+        Insert: {
+          beneficios?: string[]
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          min_experiencias_accesibles: number
+          min_flujos_accesibles: number
+          min_porcentaje_accesibilidad: number
+          min_tareas_accesibles: number
+          nivel: Database["public"]["Enums"]["badge_nivel"]
+          vigencia_meses?: number
+        }
+        Update: {
+          beneficios?: string[]
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          min_experiencias_accesibles?: number
+          min_flujos_accesibles?: number
+          min_porcentaje_accesibilidad?: number
+          min_tareas_accesibles?: number
+          nivel?: Database["public"]["Enums"]["badge_nivel"]
+          vigencia_meses?: number
+        }
+        Relationships: []
+      }
+      distintivos_emitidos: {
+        Row: {
+          badge_pdf_url: string | null
+          badge_svg_url: string | null
+          created_at: string
+          embed_html: string | null
+          fecha_emision: string
+          fecha_revocacion: string | null
+          fecha_vencimiento: string
+          folio: string
+          id: string
+          motivo_revocacion: string | null
+          nivel: Database["public"]["Enums"]["badge_nivel"]
+          organizacion_id: string
+          solicitud_id: string
+          vigente: boolean
+        }
+        Insert: {
+          badge_pdf_url?: string | null
+          badge_svg_url?: string | null
+          created_at?: string
+          embed_html?: string | null
+          fecha_emision?: string
+          fecha_revocacion?: string | null
+          fecha_vencimiento: string
+          folio?: string
+          id?: string
+          motivo_revocacion?: string | null
+          nivel: Database["public"]["Enums"]["badge_nivel"]
+          organizacion_id: string
+          solicitud_id: string
+          vigente?: boolean
+        }
+        Update: {
+          badge_pdf_url?: string | null
+          badge_svg_url?: string | null
+          created_at?: string
+          embed_html?: string | null
+          fecha_emision?: string
+          fecha_revocacion?: string | null
+          fecha_vencimiento?: string
+          folio?: string
+          id?: string
+          motivo_revocacion?: string | null
+          nivel?: Database["public"]["Enums"]["badge_nivel"]
+          organizacion_id?: string
+          solicitud_id?: string
+          vigente?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distintivos_emitidos_organizacion_id_fkey"
+            columns: ["organizacion_id"]
+            isOneToOne: false
+            referencedRelation: "organizaciones_distintivo"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distintivos_emitidos_solicitud_id_fkey"
+            columns: ["solicitud_id"]
+            isOneToOne: true
+            referencedRelation: "solicitudes_distintivo"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      etapas_progreso: {
+        Row: {
+          archivos_evidencia: string[]
+          created_at: string
+          curso_id: string | null
+          enrollment_completado: boolean
+          estado: Database["public"]["Enums"]["etapa_estado"]
+          etapa: Database["public"]["Enums"]["etapa_programa"]
+          fecha_completada: string | null
+          fecha_inicio: string | null
+          id: string
+          notas: string | null
+          solicitud_id: string
+          ticket_id: string | null
+        }
+        Insert: {
+          archivos_evidencia?: string[]
+          created_at?: string
+          curso_id?: string | null
+          enrollment_completado?: boolean
+          estado?: Database["public"]["Enums"]["etapa_estado"]
+          etapa: Database["public"]["Enums"]["etapa_programa"]
+          fecha_completada?: string | null
+          fecha_inicio?: string | null
+          id?: string
+          notas?: string | null
+          solicitud_id: string
+          ticket_id?: string | null
+        }
+        Update: {
+          archivos_evidencia?: string[]
+          created_at?: string
+          curso_id?: string | null
+          enrollment_completado?: boolean
+          estado?: Database["public"]["Enums"]["etapa_estado"]
+          etapa?: Database["public"]["Enums"]["etapa_programa"]
+          fecha_completada?: string | null
+          fecha_inicio?: string | null
+          id?: string
+          notas?: string | null
+          solicitud_id?: string
+          ticket_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "etapas_progreso_solicitud_id_fkey"
+            columns: ["solicitud_id"]
+            isOneToOne: false
+            referencedRelation: "solicitudes_distintivo"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organizaciones_distintivo: {
+        Row: {
+          contacto_email: string
+          contacto_nombre: string
+          contacto_telefono: string | null
+          created_at: string
+          descripcion: string | null
+          id: string
+          logo_url: string | null
+          nombre_organizacion: string
+          pais: string
+          sitio_web: string
+          tipo: Database["public"]["Enums"]["tipo_organizacion"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          contacto_email: string
+          contacto_nombre: string
+          contacto_telefono?: string | null
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          logo_url?: string | null
+          nombre_organizacion: string
+          pais?: string
+          sitio_web: string
+          tipo: Database["public"]["Enums"]["tipo_organizacion"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          contacto_email?: string
+          contacto_nombre?: string
+          contacto_telefono?: string | null
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          logo_url?: string | null
+          nombre_organizacion?: string
+          pais?: string
+          sitio_web?: string
+          tipo?: Database["public"]["Enums"]["tipo_organizacion"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      solicitudes_distintivo: {
+        Row: {
+          auditor_id: string | null
+          created_at: string
+          estado: Database["public"]["Enums"]["solicitud_distintivo_status"]
+          etapa_actual: Database["public"]["Enums"]["etapa_programa"] | null
+          experiencias_accesibles: number
+          fecha_auditoria: string | null
+          fecha_emision: string | null
+          fecha_inicio_programa: string | null
+          fecha_solicitud: string
+          flujos_accesibles: number
+          folio: string
+          id: string
+          nivel_otorgado: Database["public"]["Enums"]["badge_nivel"] | null
+          nivel_solicitado: Database["public"]["Enums"]["badge_nivel"]
+          notas_admin: string | null
+          organizacion_id: string
+          tareas_accesibles: number
+          ticket_id: string | null
+          total_experiencias: number
+          total_flujos: number
+          total_tareas: number
+          updated_at: string
+        }
+        Insert: {
+          auditor_id?: string | null
+          created_at?: string
+          estado?: Database["public"]["Enums"]["solicitud_distintivo_status"]
+          etapa_actual?: Database["public"]["Enums"]["etapa_programa"] | null
+          experiencias_accesibles?: number
+          fecha_auditoria?: string | null
+          fecha_emision?: string | null
+          fecha_inicio_programa?: string | null
+          fecha_solicitud?: string
+          flujos_accesibles?: number
+          folio?: string
+          id?: string
+          nivel_otorgado?: Database["public"]["Enums"]["badge_nivel"] | null
+          nivel_solicitado: Database["public"]["Enums"]["badge_nivel"]
+          notas_admin?: string | null
+          organizacion_id: string
+          tareas_accesibles?: number
+          ticket_id?: string | null
+          total_experiencias?: number
+          total_flujos?: number
+          total_tareas?: number
+          updated_at?: string
+        }
+        Update: {
+          auditor_id?: string | null
+          created_at?: string
+          estado?: Database["public"]["Enums"]["solicitud_distintivo_status"]
+          etapa_actual?: Database["public"]["Enums"]["etapa_programa"] | null
+          experiencias_accesibles?: number
+          fecha_auditoria?: string | null
+          fecha_emision?: string | null
+          fecha_inicio_programa?: string | null
+          fecha_solicitud?: string
+          flujos_accesibles?: number
+          folio?: string
+          id?: string
+          nivel_otorgado?: Database["public"]["Enums"]["badge_nivel"] | null
+          nivel_solicitado?: Database["public"]["Enums"]["badge_nivel"]
+          notas_admin?: string | null
+          organizacion_id?: string
+          tareas_accesibles?: number
+          ticket_id?: string | null
+          total_experiencias?: number
+          total_flujos?: number
+          total_tareas?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "solicitudes_distintivo_organizacion_id_fkey"
+            columns: ["organizacion_id"]
+            isOneToOne: false
+            referencedRelation: "organizaciones_distintivo"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       v_a11y_ranking_by_pais: {
@@ -554,6 +843,28 @@ export type Database = {
     }
     Enums: {
       application_status: "pendiente" | "aprobado" | "rechazado"
+      badge_nivel: "oro" | "platino" | "diamante"
+      etapa_estado: "pendiente" | "en_curso" | "completada" | "omitida"
+      etapa_programa:
+        | "concientizacion"
+        | "capacitacion"
+        | "auditoria"
+        | "remediacion"
+        | "design_ops"
+        | "politicas"
+        | "declaratoria"
+      solicitud_distintivo_status:
+        | "borrador"
+        | "enviada"
+        | "en_revision"
+        | "aprobada_para_programa"
+        | "en_programa"
+        | "auditada"
+        | "distintivo_emitido"
+        | "rechazada"
+        | "suspendida"
+        | "revocada"
+      tipo_organizacion: "publica" | "privada" | "mixta" | "ong"
       auditor_status:
         | "en_formacion"
         | "certificado"
@@ -698,6 +1009,30 @@ export const Constants = {
   public: {
     Enums: {
       application_status: ["pendiente", "aprobado", "rechazado"],
+      badge_nivel: ["oro", "platino", "diamante"],
+      etapa_estado: ["pendiente", "en_curso", "completada", "omitida"],
+      etapa_programa: [
+        "concientizacion",
+        "capacitacion",
+        "auditoria",
+        "remediacion",
+        "design_ops",
+        "politicas",
+        "declaratoria",
+      ],
+      solicitud_distintivo_status: [
+        "borrador",
+        "enviada",
+        "en_revision",
+        "aprobada_para_programa",
+        "en_programa",
+        "auditada",
+        "distintivo_emitido",
+        "rechazada",
+        "suspendida",
+        "revocada",
+      ],
+      tipo_organizacion: ["publica", "privada", "mixta", "ong"],
       auditor_status: [
         "en_formacion",
         "certificado",

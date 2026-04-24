@@ -43,6 +43,14 @@ export async function SiteHeader() {
                   Tickets
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/distintivo"
+                  className="text-sm text-gray-600 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                >
+                  Distintivo
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
