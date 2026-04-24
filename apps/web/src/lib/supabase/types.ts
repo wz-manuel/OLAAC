@@ -825,6 +825,78 @@ export type Database = {
           },
         ]
       }
+      notification_log: {
+        Row: {
+          id: string
+          user_id: string | null
+          email: string
+          type: string
+          subject: string
+          status: 'sent' | 'failed' | 'skipped'
+          error: string | null
+          metadata: Record<string, unknown> | null
+          sent_at: string
+        }
+        Insert: {
+          id?: string
+          user_id?: string | null
+          email: string
+          type: string
+          subject: string
+          status: 'sent' | 'failed' | 'skipped'
+          error?: string | null
+          metadata?: Record<string, unknown> | null
+          sent_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string | null
+          email?: string
+          type?: string
+          subject?: string
+          status?: 'sent' | 'failed' | 'skipped'
+          error?: string | null
+          metadata?: Record<string, unknown> | null
+          sent_at?: string
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          nombre_completo: string
+          onboarding_complete: boolean
+          pais: string | null
+          roles: Database['public']['Enums']['rol_usuario'][]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          nombre_completo: string
+          onboarding_complete?: boolean
+          pais?: string | null
+          roles?: Database['public']['Enums']['rol_usuario'][]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          nombre_completo?: string
+          onboarding_complete?: boolean
+          pais?: string | null
+          roles?: Database['public']['Enums']['rol_usuario'][]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       v_a11y_ranking_by_pais: {
@@ -844,6 +916,7 @@ export type Database = {
     Enums: {
       application_status: "pendiente" | "aprobado" | "rechazado"
       badge_nivel: "oro" | "platino" | "diamante"
+      rol_usuario: "general" | "voluntario" | "auditor" | "estudiante"
       etapa_estado: "pendiente" | "en_curso" | "completada" | "omitida"
       etapa_programa:
         | "concientizacion"

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { UserNav } from '@olaac/ui'
+import { OlaacLogo, UserNav } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 
 export async function SiteHeader() {
@@ -16,21 +16,22 @@ export async function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
+    <header className="sticky top-0 z-40 border-b border-brand-100 bg-white">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-6">
           <Link
             href="/"
-            className="text-sm font-semibold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 rounded"
+            aria-label="OLAAC — Inicio"
           >
-            OLAAC
+            <OlaacLogo width={120} height={34} />
           </Link>
           <nav aria-label="Navegación principal">
             <ul className="flex items-center gap-4" role="list">
               <li>
                 <Link
                   href="/scores"
-                  className="text-sm text-gray-600 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                 >
                   Scores
                 </Link>
@@ -38,7 +39,7 @@ export async function SiteHeader() {
               <li>
                 <Link
                   href="/tickets"
-                  className="text-sm text-gray-600 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                 >
                   Tickets
                 </Link>
@@ -46,7 +47,7 @@ export async function SiteHeader() {
               <li>
                 <Link
                   href="/distintivo"
-                  className="text-sm text-gray-600 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                 >
                   Distintivo
                 </Link>

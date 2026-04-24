@@ -3,6 +3,11 @@
 import { revalidatePath } from 'next/cache'
 
 import { getAdminUser } from '@/lib/admin'
+import {
+  notifyTicketAsignadoAdmin,
+  notifyVoluntarioAprobado,
+  notifyVoluntarioRechazado,
+} from '@/lib/email'
 import { createClient } from '@/lib/supabase/server'
 import type { Enums } from '@/lib/supabase/types'
 
@@ -68,6 +73,20 @@ export async function approveApplication(
 
     if (updateError) return { error: `Error al actualizar solicitud: ${updateError.message}` }
 
+    const { data: userProfile } = await supabase
+      .from('user_profiles')
+      .select('email, nombre_completo')
+      .eq('user_id', application.user_id)
+      .maybeSingle()
+
+    if (userProfile) {
+      await notifyVoluntarioAprobado({
+        to: userProfile.email,
+        nombre: userProfile.nombre_completo,
+        userId: application.user_id,
+      })
+    }
+
     revalidatePath('/admin/voluntarios')
     revalidatePath(`/admin/voluntarios/${application.user_id}`)
     return { error: null, success: true }
@@ -84,6 +103,12 @@ export async function rejectApplication(
   try {
     const { supabase, admin } = await requireAdmin()
 
+    const { data: application } = await supabase
+      .from('volunteer_applications')
+      .select('user_id')
+      .eq('id', applicationId)
+      .maybeSingle()
+
     const { error } = await supabase
       .from('volunteer_applications')
       .update({
@@ -95,6 +120,22 @@ export async function rejectApplication(
       .eq('estado', 'pendiente')
 
     if (error) return { error: error.message }
+
+    if (application) {
+      const { data: userProfile } = await supabase
+        .from('user_profiles')
+        .select('email, nombre_completo')
+        .eq('user_id', application.user_id)
+        .maybeSingle()
+
+      if (userProfile) {
+        await notifyVoluntarioRechazado({
+          to: userProfile.email,
+          nombre: userProfile.nombre_completo,
+          userId: application.user_id,
+        })
+      }
+    }
 
     revalidatePath('/admin/voluntarios')
     return { error: null, success: true }
@@ -216,6 +257,22 @@ export async function assignTicket(
       evento:    'Ticket asignado a auditor',
       payload:   { auditor_user_id: auditorUserId },
     })
+
+    const [{ data: ticket }, { data: auditorProfile }] = await Promise.all([
+      supabase.from('tickets').select('folio, titulo, prioridad').eq('id', ticketId).maybeSingle(),
+      supabase.from('user_profiles').select('email, nombre_completo').eq('user_id', auditorUserId).maybeSingle(),
+    ])
+
+    if (ticket && auditorProfile) {
+      await notifyTicketAsignadoAdmin({
+        to:          auditorProfile.email,
+        userId:      auditorUserId,
+        nombreAdmin: auditorProfile.nombre_completo,
+        folio:       ticket.folio,
+        titulo:      ticket.titulo,
+        prioridad:   ticket.prioridad,
+      })
+    }
 
     revalidatePath('/admin/tickets')
     revalidatePath(`/tickets/${ticketId}`)

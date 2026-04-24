@@ -36,7 +36,7 @@ export function KpiCards({ avgA11y, totalSites, lastMeasuredAt, criticalCount }:
       label: 'Sitios monitoreados',
       value: totalSites.toString(),
       sub: totalSites === 1 ? 'URL auditada' : 'URLs auditadas',
-      accent: '#3240e7',
+      accent: '#252858',
       description: `${totalSites} ${totalSites === 1 ? 'sitio monitoredo' : 'sitios monitoreados'} en total`,
     },
     {

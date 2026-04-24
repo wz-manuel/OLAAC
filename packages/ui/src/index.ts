@@ -10,6 +10,7 @@ export * from './tokens'
 export * from './lib/utils'
 
 // --- Componentes propios (sin conflictos de nombres) ---
+export * from './components/logo'
 export * from './components/a11y-data-table'
 export * from './components/auth-form'
 export * from './components/user-nav'

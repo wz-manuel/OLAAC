@@ -37,7 +37,7 @@ const NIVEL_CONFIG: Record<BadgeNivel, {
   diamante: {
     label: 'Diamante',
     color: 'text-[#005fcc]',
-    ring: 'ring-[#4660f3]',
+    ring: 'ring-[#30BCEE]',
     bg: 'bg-gradient-to-br from-blue-50 to-indigo-100',
     icon: '◈',
     ariaLabel: 'Nivel Diamante',

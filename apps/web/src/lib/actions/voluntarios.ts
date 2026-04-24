@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 
 import { createClient } from '@/lib/supabase/server'
+import { notifyAuditorCertificado, notifyVoluntarioRecibido } from '@/lib/email'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -63,6 +64,8 @@ export async function submitApplication(
     }
     return { error: `Error al enviar la solicitud: ${error.message}` }
   }
+
+  await notifyVoluntarioRecibido({ to: user.email ?? '', nombre: nombre_completo, userId: user.id })
 
   revalidatePath('/voluntarios/mi-panel')
   return { error: null, success: true }
@@ -129,6 +132,16 @@ export async function checkCertification(
     .eq('id', profile.id)
 
   if (updateError) return { error: `Error al actualizar tu perfil: ${updateError.message}` }
+
+  const { data: userProfile } = await supabase
+    .from('user_profiles')
+    .select('email, nombre_completo')
+    .eq('user_id', user.id)
+    .maybeSingle()
+
+  if (userProfile) {
+    await notifyAuditorCertificado({ to: userProfile.email, nombre: userProfile.nombre_completo, userId: user.id })
+  }
 
   revalidatePath('/voluntarios/mi-panel')
   return { error: null, certified: true }

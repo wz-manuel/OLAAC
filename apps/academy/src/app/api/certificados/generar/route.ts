@@ -179,7 +179,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       errorCorrectionLevel: 'M',
       margin: 1,
       width: 200,
-      color: { dark: '#252c83', light: '#ffffff' },
+      color: { dark: '#252858', light: '#ffffff' },
     })
   } catch (err) {
     console.error('[certificados/generar] QR generation error:', err)

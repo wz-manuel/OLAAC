@@ -74,7 +74,7 @@ export function DownloadCertificateButton({
             ? 'Generando certificado, por favor espera…'
             : `Descargar certificado del curso ${courseTitle}`
         }
-        className="inline-flex items-center gap-2 rounded-lg bg-[#252c83] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#3240e7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center gap-2 rounded-lg bg-[#252858] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#2d3476] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state === 'loading' ? (
           <>

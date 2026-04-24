@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
+import { notifyTicketCreado } from '@/lib/email'
 import { createClient } from '@/lib/supabase/server'
 import type { Enums } from '@/lib/supabase/types'
 
@@ -48,10 +49,28 @@ export async function createTicket(
       created_by: user.id,
       folio: '', // el trigger BEFORE INSERT lo sobreescribe con OLAAC-YYYY-XXXX
     })
-    .select('id')
+    .select('id, folio')
     .single()
 
   if (error) return { error: error.message }
+
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('email, nombre_completo')
+    .eq('user_id', user.id)
+    .maybeSingle()
+
+  if (profile && data.folio) {
+    await notifyTicketCreado({
+      to:        profile.email,
+      userId:    user.id,
+      nombre:    profile.nombre_completo,
+      folio:     data.folio,
+      titulo,
+      categoria,
+      prioridad,
+    })
+  }
 
   revalidatePath('/tickets')
   revalidatePath('/tickets/mis-reportes')

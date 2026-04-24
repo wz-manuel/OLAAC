@@ -123,7 +123,7 @@ async function main(): Promise<void> {
     errorCorrectionLevel: 'M',
     margin: 1,
     width: 200,
-    color: { dark: '#252c83', light: '#ffffff' },
+    color: { dark: '#252858', light: '#ffffff' },
   })
   console.log(' ✓')
 

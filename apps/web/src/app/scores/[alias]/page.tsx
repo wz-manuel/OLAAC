@@ -185,17 +185,17 @@ export default async function ScoreDetailPage({ params }: Props) {
         >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-semibold text-[#252b83]">
+              <p className="font-semibold text-[#252858]">
                 ¿No sabes cómo corregir estas violaciones?
               </p>
-              <p className="mt-1 text-sm text-[#3240e7]">
+              <p className="mt-1 text-sm text-[#252858]">
                 Aprende en la <strong>Academia OLAAC</strong> — cursos gratuitos sobre WCAG 2.1,
                 axe-core y técnicas de desarrollo accesible.
               </p>
             </div>
             <a
               href="http://localhost:3001"
-              className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#3240e7] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#2832cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 transition-colors"
+              className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#252858] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#2d3476] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 transition-colors"
             >
               Ir a la Academia OLAAC
               <svg className="ml-2 h-4 w-4" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">

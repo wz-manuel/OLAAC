@@ -50,9 +50,11 @@ export interface CertificateData {
 // (valores equivalentes a los tokens de @olaac/ui, adaptados a hexadecimal)
 // ──────────────────────────────────────────────────────────────────────────────
 const C = {
-  brand:      '#252c83',   // brand-950
-  brandMid:   '#3240e7',   // brand-600
-  accent:     '#005fcc',   // a11y-focus
+  brand:      '#252858',   // Azul Observatorio — color primario del logo
+  brandMid:   '#2d3476',   // brand-700
+  accent:     '#30BCEE',   // Azul Acceso — cian de la lupa
+  accentDark: '#0284b0',   // accent-600 (texto sobre fondos claros)
+  ice:        '#C9EAF2',   // Azul Hielo
   white:      '#ffffff',
   gray50:     '#f9fafb',
   gray200:    '#e5e7eb',

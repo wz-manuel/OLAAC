@@ -12,18 +12,13 @@
     --a11y-focus: 211 100% 40%;   /* #005fcc — contraste 7.4:1 (AAA) */
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
-
-  /* WCAG 2.4.7 — Foco visible: nunca eliminar outline sin reemplazo */
+  /* WCAG 2.4.7 — Foco visible */
   *:focus-visible {
     outline: 2px solid hsl(var(--a11y-focus));
     outline-offset: 2px;
   }
 
-  /* WCAG 1.4.12 — Espaciado de texto: respetar sobreescrituras del usuario */
+  /* WCAG 1.4.12 — Espaciado de texto */
   * {
     letter-spacing: inherit;
     word-spacing: inherit;
@@ -44,7 +39,6 @@
 }
 
 @layer utilities {
-  /* Clase sr-only WCAG — oculto visualmente, accesible para AT */
   .sr-only {
     position: absolute;
     width: 1px;

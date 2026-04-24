@@ -62,7 +62,7 @@ export default async function HomePage() {
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
         aria-labelledby="hero-heading"
-        className="bg-[#252c83] px-4 py-20 text-white sm:px-6"
+        className="bg-[#252858] px-4 py-20 text-white sm:px-6"
       >
         <div className="mx-auto max-w-4xl text-center">
           <h1 id="hero-heading" className="text-4xl font-bold tracking-tight sm:text-5xl">
@@ -78,14 +78,14 @@ export default async function HomePage() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#252c83]"
+              className="border-white text-white hover:bg-white hover:text-[#252858]"
             >
               <Link href="/tickets/nuevo">Reportar un problema</Link>
             </Button>
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#252c83] hover:bg-blue-50"
+              className="bg-white text-[#252858] hover:bg-blue-50"
             >
               <Link href="/sobre-el-observatorio/unirme-al-observatorio">Unirme al equipo</Link>
             </Button>
@@ -204,7 +204,7 @@ export default async function HomePage() {
           <div className="grid sm:grid-cols-2">
             {/* Texto */}
             <div className="p-8 sm:p-10">
-              <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#252c83]">
+              <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#252858]">
                 Academia OLAAC
               </span>
               <h2 id="academia-heading" className="mt-4 text-2xl font-bold text-gray-900">
@@ -243,7 +243,7 @@ export default async function HomePage() {
 
             {/* Stat decorativa */}
             <div
-              className="flex flex-col items-center justify-center gap-6 bg-[#252c83] p-8 text-white sm:p-10"
+              className="flex flex-col items-center justify-center gap-6 bg-[#252858] p-8 text-white sm:p-10"
               aria-hidden="true"
             >
               <div className="text-center">
