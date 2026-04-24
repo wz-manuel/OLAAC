@@ -53,3 +53,8 @@ coverage
 # Certificados generados localmente (pruebas)
 certificado-CERT-*.pdf
 apps/academy/certificado-*.pdf
+
+# Archivos de diseño binarios (Illustrator, EPS, PDF de marca)
+identidad/*.ai
+identidad/*.eps
+identidad/*.pdf
