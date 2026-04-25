@@ -304,18 +304,21 @@ async function auditSite(
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Supabase: upsert de resultados
+// Supabase: escritura de resultados
 // ──────────────────────────────────────────────────────────────────────────────
+
+function createSupabaseClient(supabaseUrl: string, serviceRoleKey: string) {
+  return createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false },
+  })
+}
 
 async function upsertMetrics(
   supabaseUrl: string,
   serviceRoleKey: string,
   rows: AuditResult[]
 ): Promise<void> {
-  // Usamos el service role key: bypassa RLS para escritura masiva
-  const supabase = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false },
-  })
+  const supabase = createSupabaseClient(supabaseUrl, serviceRoleKey)
 
   const { error } = await supabase
     .from('lighthouse_metrics')
@@ -325,6 +328,27 @@ async function upsertMetrics(
     })
 
   if (error) throw new Error(`Supabase upsert falló: ${error.message}`)
+}
+
+async function insertSnapshots(
+  supabaseUrl: string,
+  serviceRoleKey: string,
+  rows: AuditResult[]
+): Promise<void> {
+  const supabase = createSupabaseClient(supabaseUrl, serviceRoleKey)
+
+  // Insertamos en lighthouse_snapshots — sin onConflict, cada auditoría
+  // genera una fila nueva para preservar el historial completo.
+  const { error } = await supabase
+    .from('lighthouse_snapshots')
+    .insert(
+      rows.map(({ alias, url, nombre_sitio, pais, categoria, subcategoria, accessibility_score, critical_issues, measured_at }) => ({
+        alias, url, nombre_sitio, pais, categoria, subcategoria,
+        accessibility_score, critical_issues, measured_at,
+      }))
+    )
+
+  if (error) throw new Error(`Supabase insert snapshots falló: ${error.message}`)
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -436,23 +460,32 @@ async function main(): Promise<void> {
     log.info('Chrome cerrado.')
   }
 
-  // ── Upsert en Supabase ───────────────────────────────────────────────────
+  // ── Escritura en Supabase ────────────────────────────────────────────────
   if (results.length > 0) {
     if (isDryRun) {
-      log.group(`DRY RUN — ${results.length} filas que se escribirían en lighthouse_metrics`)
+      log.group(`DRY RUN — ${results.length} filas que se escribirían en Supabase`)
       results.forEach((r) =>
         log.info(`${r.alias}: score=${r.accessibility_score} issues=${r.critical_issues.length}`)
       )
       log.endGroup()
     } else {
-      log.group(`Upsert en Supabase — ${results.length} filas`)
+      log.group(`Escribiendo ${results.length} filas en Supabase`)
       try {
         await upsertMetrics(supabaseUrl!, serviceRoleKey!, results)
-        log.success('Upsert completado.')
+        log.success('lighthouse_metrics — upsert completado.')
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err)
         log.error(msg)
         summary.failed.push('supabase-upsert')
+      }
+      try {
+        await insertSnapshots(supabaseUrl!, serviceRoleKey!, results)
+        log.success('lighthouse_snapshots — insert completado.')
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err)
+        log.error(`Snapshot insert no crítico: ${msg}`)
+        // No añadimos a summary.failed — un fallo en snapshots no debe
+        // marcar el job como fallido porque lighthouse_metrics ya se guardó.
       }
       log.endGroup()
     }

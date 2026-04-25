@@ -411,6 +411,45 @@ export type Database = {
         }
         Relationships: []
       }
+      lighthouse_snapshots: {
+        Row: {
+          accessibility_score: number | null
+          alias: string
+          categoria: string
+          critical_issues: Json
+          id: string
+          measured_at: string
+          nombre_sitio: string
+          pais: string
+          subcategoria: string | null
+          url: string
+        }
+        Insert: {
+          accessibility_score?: number | null
+          alias: string
+          categoria: string
+          critical_issues?: Json
+          id?: string
+          measured_at?: string
+          nombre_sitio: string
+          pais: string
+          subcategoria?: string | null
+          url: string
+        }
+        Update: {
+          accessibility_score?: number | null
+          alias?: string
+          categoria?: string
+          critical_issues?: Json
+          id?: string
+          measured_at?: string
+          nombre_sitio?: string
+          pais?: string
+          subcategoria?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       volunteer_applications: {
         Row: {
           created_at: string

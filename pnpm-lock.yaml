@@ -120,6 +120,9 @@ importers:
       '@olaac/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@react-pdf/renderer':
+        specifier: ^3.4.4
+        version: 3.4.5(react@18.3.1)
       '@supabase/ssr':
         specifier: ^0.10.2
         version: 0.10.2(@supabase/supabase-js@2.103.0)

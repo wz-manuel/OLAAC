@@ -52,6 +52,22 @@ export async function SiteHeader() {
                   Distintivo
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/reportes"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                >
+                  Reportes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/datos-abiertos"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                >
+                  API
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { ScoreBadge, getScoreLabel } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 import { CriticalIssuesAccordion, type CriticalIssue } from '@/components/scores/critical-issues-accordion'
+import { ScoreTrendChart } from '@/components/scores/score-trend-chart'
 import type { Tables } from '@/lib/supabase/types'
 
 type LighthouseMetric = Tables<'lighthouse_metrics'> & {
@@ -42,11 +43,19 @@ export async function generateMetadata({ params }: Props) {
 export default async function ScoreDetailPage({ params }: Props) {
   const supabase = await createClient()
 
-  const { data } = await supabase
-    .from('lighthouse_metrics')
-    .select('*')
-    .eq('alias', params.alias)
-    .single()
+  const [{ data }, { data: snapshots }] = await Promise.all([
+    supabase
+      .from('lighthouse_metrics')
+      .select('*')
+      .eq('alias', params.alias)
+      .single(),
+    supabase
+      .from('lighthouse_snapshots')
+      .select('measured_at, accessibility_score')
+      .eq('alias', params.alias)
+      .order('measured_at', { ascending: true })
+      .limit(52),
+  ])
 
   if (!data) notFound()
 
@@ -155,6 +164,17 @@ export default async function ScoreDetailPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* ── Tendencia histórica ──────────────────────────────────────────────── */}
+      {snapshots && snapshots.length > 0 && (
+        <section aria-labelledby="trend-heading" className="mb-8">
+          <h2 id="trend-heading" className="sr-only">Tendencia histórica de accesibilidad</h2>
+          <ScoreTrendChart
+            snapshots={snapshots}
+            siteName={metric.nombre_sitio}
+          />
+        </section>
+      )}
 
       {/* ── Hallazgos: Critical Issues ───────────────────────────────────────── */}
       <section aria-labelledby="issues-heading" className="mb-8">
