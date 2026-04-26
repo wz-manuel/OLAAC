@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/admin/ruta-de-formacion', label: 'Ruta de formación' },
   { href: '/admin/tickets',           label: 'Tickets' },
   { href: '/admin/distintivos',       label: 'Distintivos' },
+  { href: '/admin/marco-legal',       label: 'Marco legal' },
 ]
 
 export function AdminNav() {

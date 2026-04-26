@@ -368,6 +368,50 @@ pnpm --filter @olaac/academy type-check
 
 ---
 
+## Sesión 8 — 2026-04-25
+
+### Brecha 4: Marco legal de accesibilidad por país
+
+**Objetivo:** Conectar las auditorías del observatorio con las obligaciones legales vigentes en cada país latinoamericano.
+
+### Lo que se construyó
+
+#### Base de datos
+- **Migración `011_legislacion_pais.sql`**: tabla `legislacion_pais` con campos `pais`, `iso_code`, `ley_nombre`, `ley_descripcion`, `url_referencia`, `obliga_sector[]`, `nivel_sancion`, `ambito`, `vigente`.
+- **Seed inicial**: 6 países — México (NMX-I-270-NYCE-2022), Argentina (Ley 26653), Colombia (Resolución 1519), Brasil (Lei 13.146/2015), Chile (Ley 20422), Perú (Ley 29973).
+- **RLS**: lectura pública; insert/update/delete solo para admin_users.
+- **Vista `v_cobertura_legal`**: join con `lighthouse_metrics` para ver sitios auditados, avg_score y sitios críticos por país con obligación legal.
+- **Trigger `set_updated_at`** en `legislacion_pais`.
+
+#### UI pública
+- **`/marco-legal`**: página pública con mapa de legislación, KPIs (países, sanción alta/media), cards por país con bandera, ley, sectores, nivel de sanción, enlace al texto oficial. Nota metodológica y CTA a `/scores`.
+- **`LegalBadge` (`compact` y detallado)**: componente que muestra el indicador de obligación legal, con colores por nivel de sanción (rojo/ámbar/azul), enlace a `/marco-legal`.
+- **Navegación principal**: enlace "Marco legal" añadido en `site-header.tsx`.
+
+#### Dashboard de scores
+- **`/scores`**: nueva columna "Marco legal" (visible en `xl:`) con `LegalBadge compact` por fila si el país tiene legislación registrada. Query paralela a `legislacion_pais` con índice en memoria por país.
+- **`/scores/[alias]`**: sección "Obligación legal de accesibilidad" con `LegalBadge` detallado si el país del sitio tiene ley vigente.
+
+#### Panel admin
+- **`/admin/marco-legal`**: tabla de administración con flag de país, ley, sectores obligados, nivel de sanción (color-coded), estado vigente/inactiva, fecha de actualización. Enlace a página pública. Nota sobre edición directa en Supabase.
+- **AdminNav**: enlace "Marco legal" añadido.
+
+### Archivos modificados / creados
+
+| Archivo | Acción |
+|---------|--------|
+| `supabase/migrations/011_legislacion_pais.sql` | Nuevo |
+| `apps/web/src/lib/supabase/types.ts` | Actualizado — tipo `legislacion_pais` |
+| `apps/web/src/components/scores/legal-badge.tsx` | Nuevo |
+| `apps/web/src/app/marco-legal/page.tsx` | Nuevo |
+| `apps/web/src/app/scores/page.tsx` | Actualizado — columna legal |
+| `apps/web/src/app/scores/[alias]/page.tsx` | Actualizado — sección legal |
+| `apps/web/src/app/admin/marco-legal/page.tsx` | Nuevo |
+| `apps/web/src/components/admin/admin-nav.tsx` | Actualizado — enlace Marco legal |
+| `apps/web/src/components/site-header.tsx` | Actualizado — enlace Marco legal |
+
+---
+
 ## Próximos pasos (al cierre de sesión 2)
 
 ### Pendiente inmediato

@@ -4,6 +4,7 @@ import { ScoreBadge, getScoreLabel } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 import { CriticalIssuesAccordion, type CriticalIssue } from '@/components/scores/critical-issues-accordion'
 import { ScoreTrendChart } from '@/components/scores/score-trend-chart'
+import { LegalBadge } from '@/components/scores/legal-badge'
 import type { Tables } from '@/lib/supabase/types'
 
 type LighthouseMetric = Tables<'lighthouse_metrics'> & {
@@ -58,6 +59,14 @@ export default async function ScoreDetailPage({ params }: Props) {
   ])
 
   if (!data) notFound()
+
+  // Marco legal del país del sitio
+  const { data: legislacion } = await supabase
+    .from('legislacion_pais')
+    .select('pais, iso_code, ley_nombre, nivel_sancion, obliga_sector')
+    .eq('pais', (data as Tables<'lighthouse_metrics'>).pais)
+    .eq('vigente', true)
+    .maybeSingle()
 
   const metric = data as LighthouseMetric
 
@@ -196,6 +205,16 @@ export default async function ScoreDetailPage({ params }: Props) {
         </div>
         <CriticalIssuesAccordion issues={metric.critical_issues} />
       </section>
+
+      {/* ── Marco legal ──────────────────────────────────────────────────────── */}
+      {legislacion && (
+        <section aria-labelledby="marco-legal-heading" className="mb-8">
+          <h2 id="marco-legal-heading" className="mb-3 text-base font-semibold text-gray-900">
+            Obligación legal de accesibilidad
+          </h2>
+          <LegalBadge legislacion={legislacion} />
+        </section>
+      )}
 
       {/* ── CTA: Academia OLAAC ──────────────────────────────────────────────── */}
       {(criticalCount + seriousCount) > 0 && (

@@ -62,6 +62,14 @@ export async function SiteHeader() {
               </li>
               <li>
                 <Link
+                  href="/marco-legal"
+                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+                >
+                  Marco legal
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/datos-abiertos"
                   className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                 >

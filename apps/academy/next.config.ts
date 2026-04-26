@@ -11,8 +11,6 @@ const SECURITY_HEADERS = [
     value: 'max-age=31536000; includeSubDomains; preload',
   },
   {
-    // CSP permisivo para Next.js + Supabase + fuentes inline de Tailwind
-    // 'unsafe-inline' en script-src es necesario para el runtime de Next.js App Router
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
@@ -29,12 +27,6 @@ const SECURITY_HEADERS = [
 ]
 
 const config: NextConfig = {
-  // @react-pdf/renderer usa APIs nativas de Node.js (Canvas, streams)
-  // que no son compatibles con el bundler de webpack. Al marcarlo como
-  // externo, Next.js lo carga directamente desde node_modules en el
-  // runtime de Node (nunca en Edge).
-  serverExternalPackages: ['@react-pdf/renderer'],
-
   async headers() {
     return [
       {

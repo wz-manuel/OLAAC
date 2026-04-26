@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button, ScoreBadge, getScoreLabel } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 import { KpiCards } from '@/components/scores/kpi-cards'
+import { LegalBadge } from '@/components/scores/legal-badge'
 import type { Tables } from '@/lib/supabase/types'
 
 export const metadata = { title: 'Scores de accesibilidad' }
@@ -14,15 +15,32 @@ type LighthouseMetricRow = Pick<
   'id' | 'alias' | 'url' | 'nombre_sitio' | 'pais' | 'categoria' | 'subcategoria' | 'accessibility_score' | 'measured_at'
 >
 
+type LegislacionRow = Pick<
+  Tables<'legislacion_pais'>,
+  'pais' | 'iso_code' | 'ley_nombre' | 'nivel_sancion' | 'obliga_sector'
+>
+
 export default async function ScoresDashboardPage() {
   const supabase = await createClient()
 
   // Lectura pública — RLS permite select a todos (scores_select_all policy)
-  const { data, error } = await supabase
-    .from('lighthouse_metrics')
-    .select('id, alias, url, nombre_sitio, pais, categoria, subcategoria, accessibility_score, measured_at')
-    .order('measured_at', { ascending: false })
-    .limit(100)
+  const [{ data, error }, { data: leyes }] = await Promise.all([
+    supabase
+      .from('lighthouse_metrics')
+      .select('id, alias, url, nombre_sitio, pais, categoria, subcategoria, accessibility_score, measured_at')
+      .order('measured_at', { ascending: false })
+      .limit(100),
+    supabase
+      .from('legislacion_pais')
+      .select('pais, iso_code, ley_nombre, nivel_sancion, obliga_sector')
+      .eq('vigente', true),
+  ])
+
+  // Índice por país para lookup O(1) en la tabla
+  const legislacionByPais = new Map<string, LegislacionRow>()
+  for (const ley of (leyes ?? []) as LegislacionRow[]) {
+    legislacionByPais.set(ley.pais, ley)
+  }
 
   const rows = (data ?? []) as unknown as LighthouseMetricRow[]
 
@@ -106,6 +124,9 @@ export default async function ScoresDashboardPage() {
                   <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden sm:table-cell">
                     País
                   </th>
+                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden xl:table-cell">
+                    Marco legal
+                  </th>
                   <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden md:table-cell">
                     Categoría
                   </th>
@@ -140,6 +161,16 @@ export default async function ScoresDashboardPage() {
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-600 hidden sm:table-cell">
                       {row.pais}
+                    </td>
+                    <td className="px-4 py-3 hidden xl:table-cell">
+                      {(() => {
+                        const ley = legislacionByPais.get(row.pais)
+                        return ley ? (
+                          <LegalBadge legislacion={ley} compact />
+                        ) : (
+                          <span className="text-xs text-gray-300">—</span>
+                        )
+                      })()}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-600 hidden md:table-cell">
                       <span>{row.categoria}</span>

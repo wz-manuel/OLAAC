@@ -369,6 +369,51 @@ export type Database = {
           },
         ]
       }
+      legislacion_pais: {
+        Row: {
+          id: string
+          pais: string
+          iso_code: string
+          ley_nombre: string
+          ley_descripcion: string
+          url_referencia: string | null
+          obliga_sector: string[]
+          nivel_sancion: 'alto' | 'medio' | 'bajo' | 'ninguno'
+          ambito: 'web' | 'edificios' | 'transporte' | 'general'
+          vigente: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          pais: string
+          iso_code: string
+          ley_nombre: string
+          ley_descripcion: string
+          url_referencia?: string | null
+          obliga_sector?: string[]
+          nivel_sancion: 'alto' | 'medio' | 'bajo' | 'ninguno'
+          ambito?: 'web' | 'edificios' | 'transporte' | 'general'
+          vigente?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          pais?: string
+          iso_code?: string
+          ley_nombre?: string
+          ley_descripcion?: string
+          url_referencia?: string | null
+          obliga_sector?: string[]
+          nivel_sancion?: 'alto' | 'medio' | 'bajo' | 'ninguno'
+          ambito?: 'web' | 'edificios' | 'transporte' | 'general'
+          vigente?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       lighthouse_metrics: {
         Row: {
           accessibility_score: number | null
