@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
 import { ApplicationForm } from '@/components/distintivo/application-form'
 import { SolicitudNivelForm } from '@/components/distintivo/solicitud-nivel-form'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'Solicitar Distintivo de Accesibilidad — OLAAC',

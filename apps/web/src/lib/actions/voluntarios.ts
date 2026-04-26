@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { createClient } from '@/lib/supabase/server'
 import { notifyAuditorCertificado, notifyVoluntarioRecibido } from '@/lib/email'
+import { createClient } from '@/lib/supabase/server'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

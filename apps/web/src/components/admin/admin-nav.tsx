@@ -22,7 +22,7 @@ export function AdminNav() {
       className="border-b border-gray-200 bg-white"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <ul className="flex gap-1 overflow-x-auto" role="list">
+        <ul className="flex gap-1 overflow-x-auto" >
           {NAV_ITEMS.map(item => {
             const isActive =
               item.href === '/admin'

@@ -4,8 +4,9 @@
  * de respuesta consistentes.
  */
 
-import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { NextResponse } from 'next/server'
+
 import type { Database } from '@/lib/supabase/types'
 
 // ── Cliente público (anon key — lectura pública via RLS) ──────────────────────

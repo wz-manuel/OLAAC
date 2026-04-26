@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+
 import { SolicitarUrlForm } from '@/components/scores/solicitar-url-form'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata = { title: 'Solicitar auditoría de URL' }
 

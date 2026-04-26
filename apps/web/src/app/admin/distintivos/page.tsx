@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { createClient } from '@/lib/supabase/server'
-import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
 import { DistintivoChip } from '@/components/distintivo/distintivo-badge'
+import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = { title: 'Distintivos — Admin OLAAC' }
 

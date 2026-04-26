@@ -1,6 +1,6 @@
 import { sendEmail } from './ses'
-import { templateBienvenida } from './templates/auth'
 import { templateCertificadoEmitido } from './templates/academia'
+import { templateBienvenida } from './templates/auth'
 import {
   templateDistintivoEmitido,
   templateDistintivoEtapaCompletada,

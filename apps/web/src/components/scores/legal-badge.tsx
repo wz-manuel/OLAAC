@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import type { Tables } from '@/lib/supabase/types'
 
 type LegislacionRow = Pick<

@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
-import { getPageBySlug } from '@/lib/content'
 import { ContentPage } from '@/components/content-page'
+import { getPageBySlug } from '@/lib/content'
 
 const page = getPageBySlug('herramientas-y-recursos')
 

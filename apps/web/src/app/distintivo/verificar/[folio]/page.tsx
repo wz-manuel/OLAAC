@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
 import { DistintivoBadge } from '@/components/distintivo/distintivo-badge'
+import { createClient } from '@/lib/supabase/server'
 
 interface Props {
   params: Promise<{ folio: string }>

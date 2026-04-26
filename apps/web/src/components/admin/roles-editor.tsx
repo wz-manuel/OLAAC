@@ -122,6 +122,7 @@ export function RolesEditor({ userId, nombre, currentRoles }: RolesEditorProps) 
                         onChange={() => toggle(role.value)}
                         disabled={isLastSelected}
                         className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#005fcc] focus:ring-[#005fcc]"
+                        aria-label={role.label}
                         aria-describedby={`role-desc-${role.value}`}
                       />
                       <div>

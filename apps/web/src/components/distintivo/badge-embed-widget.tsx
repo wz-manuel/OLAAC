@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+
 import { DistintivoBadge } from './distintivo-badge'
 
 type BadgeNivel = 'oro' | 'platino' | 'diamante'

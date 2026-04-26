@@ -1,8 +1,9 @@
+import { Button, ScoreBadge } from '@olaac/ui'
 import Link from 'next/link'
-import { Button, ScoreBadge, getScoreLabel } from '@olaac/ui'
-import { createClient } from '@/lib/supabase/server'
+
 import { KpiCards } from '@/components/scores/kpi-cards'
 import { LegalBadge } from '@/components/scores/legal-badge'
+import { createClient } from '@/lib/supabase/server'
 import type { Tables } from '@/lib/supabase/types'
 
 export const metadata = { title: 'Scores de accesibilidad' }

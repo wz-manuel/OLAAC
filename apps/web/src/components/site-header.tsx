@@ -1,7 +1,7 @@
+import { OlaacLogo, UserNav } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { OlaacLogo, UserNav } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 
 export async function SiteHeader() {
@@ -27,7 +27,7 @@ export async function SiteHeader() {
             <OlaacLogo width={120} height={34} />
           </Link>
           <nav aria-label="Navegación principal">
-            <ul className="flex items-center gap-4" role="list">
+            <ul className="flex items-center gap-4">
               <li>
                 <Link
                   href="/scores"

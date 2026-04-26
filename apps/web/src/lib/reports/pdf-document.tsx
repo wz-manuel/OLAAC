@@ -7,6 +7,7 @@
 import {
   Document, Page, Text, View, StyleSheet,
 } from '@react-pdf/renderer'
+
 import type { ReportData } from './data'
 import { scoreColor, scoreLabel, formatDateLong } from './data'
 
@@ -437,9 +438,7 @@ function MethodologyPage({ data }: { data: ReportData }) {
         Violaciones registradas
       </Text>
       <Text style={s.bodyText}>
-        Solo se registran violaciones de impacto "critical" y "serious" según la taxonomía
-        de axe-core, que corresponden a barreras que impiden o dificultan severamente el
-        acceso. Violaciones de impacto "moderate" y "minor" no se incluyen en el score.
+        {`Solo se registran violaciones de impacto "critical" y "serious" según la taxonomía de axe-core, que corresponden a barreras que impiden o dificultan severamente el acceso. Violaciones de impacto "moderate" y "minor" no se incluyen en el score.`}
       </Text>
 
       <Text style={[s.bodyText, { fontFamily: 'Helvetica-Bold', color: C.gray900, marginTop: 12 }]}>

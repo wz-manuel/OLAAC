@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, divider, highlightBox, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, highlightBox, sectionHeading } from '../base'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
 

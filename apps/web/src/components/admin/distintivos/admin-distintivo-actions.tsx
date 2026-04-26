@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useTransition } from 'react'
 import { Button } from '@olaac/ui'
+import { useState, useTransition } from 'react'
 
 import {
   aprobarSolicitud,
@@ -36,8 +36,8 @@ export function AdminDistintivoActions({
   solicitudId,
   estado,
   nivelSolicitado,
-  auditores,
-  tickets,
+  auditores: _auditores,
+  tickets: _tickets,
 }: AdminDistintivoActionsProps) {
   const [isPending, startTransition] = useTransition()
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)

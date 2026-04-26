@@ -1,4 +1,5 @@
 import { Badge } from '@olaac/ui'
+
 import type { Enums } from '@/lib/supabase/types'
 
 const STATUS_MAP: Record<Enums<'ticket_status'>, { label: string; variant: 'default' | 'secondary' | 'outline' | 'success' | 'destructive' }> = {

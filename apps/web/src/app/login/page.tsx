@@ -1,7 +1,7 @@
+import { AuthForm, OlaacLogo } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { AuthForm, OlaacLogo } from '@olaac/ui'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata = { title: 'Iniciar sesión — OLAAC' }

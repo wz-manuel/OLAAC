@@ -1,7 +1,7 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
 import { notifyBienvenida } from '@/lib/email'
+import { createClient } from '@/lib/supabase/server'
 
 export interface EnviarOtpData {
   email: string

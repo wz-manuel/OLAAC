@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import { cn } from '@olaac/ui'
+import * as React from 'react'
 
 // Estructura generada por toolchain/lighthouse-audit/sync-scores.ts
 // y almacenada en lighthouse_metrics.critical_issues (JSONB)
@@ -41,7 +41,7 @@ const IMPACT_LABEL: Record<string, string> = {
  * - 1.3.1: impacto comunicado con texto, no solo color
  * - 1.4.3: contraste mínimo AA en todos los badges
  * - 2.1.1: navegación completa por teclado (elementos HTML nativos)
- * - 4.1.2: role="list" en <ul> para comunicar estructura a AT
+ * - 4.1.2:  en <ul> para comunicar estructura a AT
  */
 export function CriticalIssuesAccordion({ issues, className }: CriticalIssuesAccordionProps) {
   const items = parseIssues(issues)
@@ -85,7 +85,7 @@ export function CriticalIssuesAccordion({ issues, className }: CriticalIssuesAcc
         )}
       </p>
 
-      <ul className="space-y-2" role="list">
+      <ul className="space-y-2" >
         {items.map((issue, idx) => (
           <li key={`${issue.auditId}-${idx}`}>
             <details className="group rounded-lg border border-gray-200 bg-white">
@@ -149,7 +149,7 @@ export function CriticalIssuesAccordion({ issues, className }: CriticalIssuesAcc
                     <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
                       Elementos afectados ({Math.min(issue.nodes.length, 5)} de {issue.affectedCount})
                     </p>
-                    <ul className="space-y-2" role="list">
+                    <ul className="space-y-2" >
                       {issue.nodes.slice(0, 5).map((node, nIdx) => (
                         <li key={nIdx} className="rounded-md bg-gray-50 p-3 text-xs">
                           {/* Snippet HTML — preformateado, sin ejecutar */}

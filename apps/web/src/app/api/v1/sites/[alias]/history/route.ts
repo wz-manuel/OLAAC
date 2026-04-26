@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server'
+
 import { publicDb, apiOk, apiError, apiOptions } from '@/lib/api/v1'
 
 export function OPTIONS() {

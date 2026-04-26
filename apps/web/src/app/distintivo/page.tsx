@@ -2,9 +2,9 @@ import { Button } from '@olaac/ui'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { createClient } from '@/lib/supabase/server'
 import { BadgeLevelCard } from '@/components/distintivo/badge-level-card'
 import { ProgramStages } from '@/components/distintivo/program-stages'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'Distintivo de Accesibilidad — OLAAC',

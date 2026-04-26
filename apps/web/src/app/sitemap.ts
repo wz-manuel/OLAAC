@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+
 import { getAllPages, getAllPosts } from '@/lib/content'
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'

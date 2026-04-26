@@ -1,9 +1,10 @@
-import Link from 'next/link'
-import type { Metadata } from 'next'
-
 import { Button } from '@olaac/ui'
-import { createClient } from '@/lib/supabase/server'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+
+
 import { getAllPosts, excerptFromMarkdown } from '@/lib/content'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'OLAAC — Observatorio Latinoamericano de Accesibilidad',

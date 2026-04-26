@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+
 import { fetchReportData, scoreColor, scoreLabel, formatDateLong } from '@/lib/reports/data'
 
 export const metadata: Metadata = {

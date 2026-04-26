@@ -5,12 +5,6 @@ import { getUsersWithProfiles } from '@/lib/actions/admin-roles'
 
 export const metadata: Metadata = { title: 'Usuarios — Admin OLAAC' }
 
-const ROL_COLORS: Record<string, string> = {
-  general:    'bg-gray-100 text-gray-600',
-  estudiante: 'bg-accent-50 text-accent-700',
-  voluntario: 'bg-yellow-50 text-yellow-700',
-  auditor:    'bg-green-50 text-green-700',
-}
 
 interface PageProps {
   searchParams: Promise<{ q?: string; page?: string }>

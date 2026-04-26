@@ -1,9 +1,9 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { Metadata } from 'next'
 
-import { getAllPosts, getPostBySlug, excerptFromMarkdown } from '@/lib/content'
 import { MarkdownRenderer } from '@/components/markdown-renderer'
+import { getAllPosts, getPostBySlug, excerptFromMarkdown } from '@/lib/content'
 
 interface Props {
   params: Promise<{ slug: string }>

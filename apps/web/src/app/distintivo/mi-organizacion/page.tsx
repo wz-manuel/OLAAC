@@ -1,13 +1,13 @@
+import { Button } from '@olaac/ui'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { Button } from '@olaac/ui'
 
-import { createClient } from '@/lib/supabase/server'
-import { DistintivoBadge } from '@/components/distintivo/distintivo-badge'
-import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
 import { BadgeEmbedWidget } from '@/components/distintivo/badge-embed-widget'
+import { DistintivoBadge } from '@/components/distintivo/distintivo-badge'
 import { ProgramStages } from '@/components/distintivo/program-stages'
+import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'Mi Organización — Distintivo OLAAC',

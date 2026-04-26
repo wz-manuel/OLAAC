@@ -1,10 +1,10 @@
+import { A11yDataTable } from '@olaac/ui'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { A11yDataTable } from '@olaac/ui'
-import { createClient } from '@/lib/supabase/server'
-import { getPageBySlug, getPostBySlug, excerptFromMarkdown } from '@/lib/content'
 import { MarkdownRenderer } from '@/components/markdown-renderer'
+import { getPageBySlug, getPostBySlug, excerptFromMarkdown } from '@/lib/content'
+import { createClient } from '@/lib/supabase/server'
 
 const staticPage = getPageBySlug('evaluadores-de-accesibilidad-web')
 const blogPost   = getPostBySlug('evaluadores-automaticos-de-accesibilidad')

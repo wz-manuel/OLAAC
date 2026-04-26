@@ -123,7 +123,7 @@ export async function enviarSolicitud(
     return { error: 'Ya tienes una solicitud activa. Consulta su estado en tu panel.' }
   }
 
-  const { data: solicitud, error: insertError } = await supabase
+  const { error: insertError } = await supabase
     .from('solicitudes_distintivo')
     .insert({
       organizacion_id: org.id,

@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
 import { CreateTicketForm } from '@/components/tickets/create-ticket-form'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata = { title: 'Nuevo reporte de accesibilidad' }
 

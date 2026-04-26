@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
-import { DistintivoBadge } from '@/components/distintivo/distintivo-badge'
-import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
-import { ProgramStages } from '@/components/distintivo/program-stages'
 import { AdminDistintivoActions } from '@/components/admin/distintivos/admin-distintivo-actions'
+import { DistintivoBadge } from '@/components/distintivo/distintivo-badge'
+import { ProgramStages } from '@/components/distintivo/program-stages'
+import { SolicitudStatusBadge } from '@/components/distintivo/solicitud-status-badge'
+import { createClient } from '@/lib/supabase/server'
 
 interface Props {
   params: Promise<{ id: string }>

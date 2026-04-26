@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import { cn } from '@olaac/ui'
+import * as React from 'react'
 
 interface AxeViolation {
   id: string
@@ -55,7 +55,7 @@ export function ViolationsAccordion({ violations, className }: ViolationsAccordi
       <p className="text-sm text-gray-500" aria-live="polite">
         {items.length} {items.length === 1 ? 'violación encontrada' : 'violaciones encontradas'}
       </p>
-      <ul className="space-y-2" role="list">
+      <ul className="space-y-2">
         {items.map((v, i) => (
           <li key={v.id ?? i}>
             <details className="group rounded-lg border border-gray-200 bg-white">

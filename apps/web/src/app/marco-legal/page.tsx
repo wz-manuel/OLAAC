@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import { createClient } from '@/lib/supabase/server'
 import type { Tables } from '@/lib/supabase/types'
 
@@ -69,7 +70,7 @@ export default async function MarcoLegalPage() {
 
       {/* KPI resumen */}
       <section aria-label="Resumen de cobertura legal" className="mb-10">
-        <ul className="grid gap-4 sm:grid-cols-3" role="list">
+        <ul className="grid gap-4 sm:grid-cols-3" >
           <li className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
             <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Países con legislación</p>
             <p className="mt-2 text-3xl font-bold text-[#252858]">{leyes.length}</p>

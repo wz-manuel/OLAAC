@@ -1,10 +1,10 @@
+import { Button } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { Button } from '@olaac/ui'
-import { createClient } from '@/lib/supabase/server'
-import { StatusBadge } from '@/components/tickets/status-badge'
 import { PriorityBadge } from '@/components/tickets/priority-badge'
+import { StatusBadge } from '@/components/tickets/status-badge'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata = { title: 'Mis reportes' }
 

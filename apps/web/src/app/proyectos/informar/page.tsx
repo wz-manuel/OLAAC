@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { getPageBySlug, excerptFromMarkdown } from '@/lib/content'
 import { CreateTicketForm } from '@/components/tickets/create-ticket-form'
+import { getPageBySlug, excerptFromMarkdown } from '@/lib/content'
 
 const page = getPageBySlug('informaralobservatorio')
 

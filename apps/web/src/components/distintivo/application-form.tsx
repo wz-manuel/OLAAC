@@ -1,7 +1,7 @@
 'use client'
 
-import { useActionState } from 'react'
 import { Button } from '@olaac/ui'
+import { useActionState } from 'react'
 
 import { registrarOrganizacion, type OrgRegistroState } from '@/lib/actions/distintivo'
 

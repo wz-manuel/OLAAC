@@ -1,8 +1,8 @@
-import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
-import { getPageBySlug, excerptFromMarkdown } from '@/lib/content'
 import { ContentPage } from '@/components/content-page'
+import { getPageBySlug, excerptFromMarkdown } from '@/lib/content'
 
 const page = getPageBySlug('sobre-el-observatorio')
 

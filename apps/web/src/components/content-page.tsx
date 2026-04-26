@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import { MarkdownRenderer } from './markdown-renderer'
 
 interface Breadcrumb {

@@ -54,7 +54,7 @@ const SIZE_CLASSES = {
 export function DistintivoBadge({
   nivel,
   nombreOrganizacion,
-  folio,
+  folio: _folio,
   size = 'md',
   className,
 }: DistintivoBadgeProps) {

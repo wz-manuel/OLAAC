@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { ProgressBar } from '@/components/courses/progress-bar'
 import { DownloadCertificateButton } from '@/components/courses/download-certificate-button'
+import { ProgressBar } from '@/components/courses/progress-bar'
 import { enrollCourse } from '@/lib/actions/courses'
 import { createClient } from '@/lib/supabase/server'
 

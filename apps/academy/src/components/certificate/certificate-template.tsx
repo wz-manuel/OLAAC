@@ -349,6 +349,7 @@ export function CertificateTemplate({
 
           {/* QR Code de verificación */}
           <View style={s.qrSection}>
+            {/* eslint-disable-next-line jsx-a11y/alt-text -- @react-pdf/renderer Image no acepta prop alt */}
             <Image
               src={qrCodeDataUrl}
               style={s.qrCode}

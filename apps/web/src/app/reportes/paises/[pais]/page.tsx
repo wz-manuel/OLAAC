@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+
 import { fetchReportData, scoreColor, scoreLabel, formatDateLong } from '@/lib/reports/data'
 
 interface Props { params: { pais: string } }

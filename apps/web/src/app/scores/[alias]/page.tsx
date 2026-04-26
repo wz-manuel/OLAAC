@@ -1,10 +1,11 @@
+import { ScoreBadge, getScoreLabel } from '@olaac/ui'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ScoreBadge, getScoreLabel } from '@olaac/ui'
-import { createClient } from '@/lib/supabase/server'
+
 import { CriticalIssuesAccordion, type CriticalIssue } from '@/components/scores/critical-issues-accordion'
-import { ScoreTrendChart } from '@/components/scores/score-trend-chart'
 import { LegalBadge } from '@/components/scores/legal-badge'
+import { ScoreTrendChart } from '@/components/scores/score-trend-chart'
+import { createClient } from '@/lib/supabase/server'
 import type { Tables } from '@/lib/supabase/types'
 
 type LighthouseMetric = Tables<'lighthouse_metrics'> & {

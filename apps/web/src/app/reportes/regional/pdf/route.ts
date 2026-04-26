@@ -1,6 +1,7 @@
-import React from 'react'
 import { renderToBuffer, type DocumentProps } from '@react-pdf/renderer'
+import React from 'react'
 import type { ReactElement } from 'react'
+
 import { fetchReportData } from '@/lib/reports/data'
 import { ReportDocument } from '@/lib/reports/pdf-document'
 

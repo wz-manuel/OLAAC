@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { updateSession } from '@/lib/supabase/middleware'
 import { checkRateLimit } from '@/lib/rate-limit'
+import { updateSession } from '@/lib/supabase/middleware'
 
 // Rutas que requieren autenticación
 const PROTECTED_ROUTES = [

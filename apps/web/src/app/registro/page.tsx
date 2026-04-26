@@ -1,7 +1,7 @@
+import { OlaacLogo } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { OlaacLogo } from '@olaac/ui'
 import { RegisterForm } from '@/components/registro/register-form'
 import { enviarOtpRegistro, verificarOtpYRegistrar } from '@/lib/actions/registro'
 import { createClient } from '@/lib/supabase/server'

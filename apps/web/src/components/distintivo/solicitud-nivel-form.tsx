@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useActionState } from 'react'
 import { Button } from '@olaac/ui'
+import { useState, useActionState } from 'react'
 
 import { enviarSolicitud, type SolicitudState } from '@/lib/actions/distintivo'
+
 import { BadgeLevelCard } from './badge-level-card'
 
 type BadgeNivel = 'oro' | 'platino' | 'diamante'

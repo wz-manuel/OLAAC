@@ -16,12 +16,13 @@
  *  8. Retornar el PDF como respuesta application/pdf
  */
 
-import { type NextRequest, NextResponse } from 'next/server'
 import { renderToBuffer } from '@react-pdf/renderer'
-import QRCode from 'qrcode'
-import { createClient as createServerClient } from '@/lib/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
+import { type NextRequest, NextResponse } from 'next/server'
+import QRCode from 'qrcode'
+
 import { CertificateTemplate } from '@/components/certificate/certificate-template'
+import { createClient as createServerClient } from '@/lib/supabase/server'
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Helpers
