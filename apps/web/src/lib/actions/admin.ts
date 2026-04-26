@@ -214,7 +214,7 @@ export async function updatePathCourse(
     const obligatorio = formData.get('obligatorio') === 'on'
     const orden = ordenRaw ? parseInt(ordenRaw, 10) : undefined
 
-    const updates: Record<string, unknown> = { obligatorio }
+    const updates: { obligatorio: boolean; orden?: number } = { obligatorio }
     if (orden !== undefined && !isNaN(orden)) updates.orden = orden
 
     const { error } = await supabase
@@ -323,7 +323,7 @@ export async function updateTicketStatus(
     const estado = formData.get('estado')?.toString() as Enums<'ticket_status'> | undefined
     if (!estado) return { error: 'Selecciona un estado' }
 
-    const updates: Record<string, unknown> = { estado }
+    const updates: { estado: Enums<'ticket_status'>; resolved_at?: string } = { estado }
     if (estado === 'resuelto') updates.resolved_at = new Date().toISOString()
 
     const { error } = await supabase
