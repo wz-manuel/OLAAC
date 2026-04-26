@@ -49,7 +49,14 @@ export default async function AdminDistintivosPage({
     query = query.eq('estado', estado as SolicitudStatus)
   }
 
-  const { data: solicitudes } = await query
+  const [{ data: solicitudes }, { data: regresiones }] = await Promise.all([
+    query,
+    supabase
+      .from('distintivos_emitidos')
+      .select('folio, ultimo_score, organizaciones_distintivo ( nombre_organizacion, sitio_web )')
+      .eq('vigente', true)
+      .eq('alerta_regresion', true),
+  ])
 
   const FILTROS = [
     { label: 'Todas',         value: undefined },
@@ -76,6 +83,30 @@ export default async function AdminDistintivosPage({
 
   return (
     <div>
+      {!!regresiones?.length && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4"
+        >
+          <p className="mb-2 font-semibold text-red-800">
+            ⚠ {regresiones.length} distintivo{regresiones.length > 1 ? 's' : ''} con regresión de accesibilidad detectada
+          </p>
+          <ul className="space-y-1 text-sm text-red-700">
+            {regresiones.map(r => {
+              const org = r.organizaciones_distintivo as { nombre_organizacion: string; sitio_web: string } | null
+              return (
+                <li key={r.folio}>
+                  <span className="font-mono">{r.folio}</span>
+                  {org ? ` — ${org.nombre_organizacion}` : ''}
+                  {r.ultimo_score !== null ? ` (score: ${r.ultimo_score})` : ''}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
+
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <h2 className="text-xl font-semibold text-gray-900">Distintivos</h2>
         <p className="text-sm text-gray-500">{solicitudes?.length ?? 0} solicitudes</p>

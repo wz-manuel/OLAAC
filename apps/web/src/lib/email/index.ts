@@ -6,6 +6,8 @@ import {
   templateDistintivoEtapaCompletada,
   templateDistintivoRechazado,
   templateDistintivoSolicitado,
+  templateRegresionDetectada,
+  templateRenovacionProxima,
 } from './templates/distintivo'
 import {
   templateTicketAsignadoAdmin,
@@ -106,6 +108,24 @@ export async function notifyDistintivoRechazado(opts: {
 }) {
   const t = templateDistintivoRechazado(opts)
   await sendEmail({ to: opts.to, ...t, type: 'distintivo_rechazado', userId: opts.userId, metadata: { folio: opts.folio } })
+}
+
+export async function notifyRegresionDetectada(opts: {
+  to: string
+  nombreContacto: string; nombreOrganizacion: string; folio: string; nivel: string
+  scoreActual: number; scoreMinimo: number; urlVerificada: string
+}) {
+  const t = templateRegresionDetectada(opts)
+  await sendEmail({ to: opts.to, ...t, type: 'distintivo_regresion', metadata: { folio: opts.folio } })
+}
+
+export async function notifyRenovacionProxima(opts: {
+  to: string
+  nombreContacto: string; nombreOrganizacion: string; folio: string; nivel: string
+  diasRestantes: number; fechaVencimiento: string
+}) {
+  const t = templateRenovacionProxima(opts)
+  await sendEmail({ to: opts.to, ...t, type: 'distintivo_renovacion', metadata: { folio: opts.folio } })
 }
 
 // ── Academia ──────────────────────────────────────────────────────────────────

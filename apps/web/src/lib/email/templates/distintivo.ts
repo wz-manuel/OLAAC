@@ -130,3 +130,69 @@ Nueva solicitud: ${APP_URL}/distintivo/mi-organizacion`
 
   return { subject, html, text }
 }
+
+export function templateRegresionDetectada(opts: {
+  nombreContacto: string
+  nombreOrganizacion: string
+  folio: string
+  nivel: string
+  scoreActual: number
+  scoreMinimo: number
+  urlVerificada: string
+}): { subject: string; html: string; text: string } {
+  const subject = `Alerta: Score de accesibilidad bajo el umbral — ${opts.folio}`
+  const nv = NIVEL_LABEL[opts.nivel] ?? opts.nivel
+
+  const html = baseTemplate(`
+    ${sectionHeading('Alerta de regresión en accesibilidad')}
+    ${bodyText(`Hola ${opts.nombreContacto}, detectamos que el sitio de <strong>${opts.nombreOrganizacion}</strong> tiene un score de accesibilidad por debajo del umbral mínimo requerido para el Distintivo ${nv}.`)}
+    ${highlightBox('Folio del Distintivo', opts.folio)}
+    ${bodyText(`<strong>Score actual:</strong> ${opts.scoreActual.toFixed(1)}<br><strong>Score mínimo requerido:</strong> ${opts.scoreMinimo.toFixed(1)}<br><strong>URL verificada:</strong> ${opts.urlVerificada}`)}
+    ${divider}
+    ${bodyText('Si no se corrige antes de la próxima auditoría, el Distintivo podría ser suspendido. Te recomendamos revisar los criterios WCAG que están fallando y corregirlos.')}
+    ${ctaButton('Ver scores en OLAAC', `${APP_URL}/scores`)}
+    ${bodyText('Si tienes dudas, responde a este correo o contáctanos a través del formulario de contacto.')}
+  `)
+
+  const text = `Alerta de regresión — Distintivo ${opts.folio}
+
+Organización: ${opts.nombreOrganizacion}
+Score actual: ${opts.scoreActual.toFixed(1)}
+Score mínimo requerido: ${opts.scoreMinimo.toFixed(1)}
+URL verificada: ${opts.urlVerificada}
+
+Ver scores: ${APP_URL}/scores`
+
+  return { subject, html, text }
+}
+
+export function templateRenovacionProxima(opts: {
+  nombreContacto: string
+  nombreOrganizacion: string
+  folio: string
+  nivel: string
+  diasRestantes: number
+  fechaVencimiento: string
+}): { subject: string; html: string; text: string } {
+  const subject = `Tu Distintivo OLAAC vence en ${opts.diasRestantes} días — ${opts.folio}`
+  const nv = NIVEL_LABEL[opts.nivel] ?? opts.nivel
+
+  const html = baseTemplate(`
+    ${sectionHeading(`Renovación de Distintivo ${nv}`)}
+    ${bodyText(`Hola ${opts.nombreContacto}, el Distintivo de Accesibilidad OLAAC de <strong>${opts.nombreOrganizacion}</strong> vencerá en <strong>${opts.diasRestantes} días</strong> (${opts.fechaVencimiento}).`)}
+    ${highlightBox('Folio del Distintivo', opts.folio)}
+    ${bodyText('Para mantener el Distintivo vigente, solicita la renovación a través de tu panel de organización. El proceso de renovación incluye una nueva verificación del score de accesibilidad de tu sitio.')}
+    ${ctaButton('Solicitar renovación', `${APP_URL}/distintivo/mi-organizacion`)}
+    ${bodyText('Si tu sitio mantiene los estándares de accesibilidad requeridos, la renovación es expedita. Si necesitas apoyo, el equipo OLAAC está disponible para orientarte.')}
+  `)
+
+  const text = `Renovación de Distintivo — ${opts.folio}
+
+Organización: ${opts.nombreOrganizacion}
+Nivel: ${nv}
+Vence en: ${opts.diasRestantes} días (${opts.fechaVencimiento})
+
+Solicitar renovación: ${APP_URL}/distintivo/mi-organizacion`
+
+  return { subject, html, text }
+}

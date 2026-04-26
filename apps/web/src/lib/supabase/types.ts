@@ -761,8 +761,57 @@ export type Database = {
         }
         Relationships: []
       }
+      distintivo_reauditorias: {
+        Row: {
+          id: string
+          distintivo_id: string
+          tipo: 'ok' | 'regresion' | 'renovacion' | 'sin_datos'
+          url_verificada: string | null
+          score_encontrado: number | null
+          score_minimo: number
+          cumple_score: boolean | null
+          alerta_enviada: boolean
+          notas: string | null
+          checked_at: string
+        }
+        Insert: {
+          id?: string
+          distintivo_id: string
+          tipo: 'ok' | 'regresion' | 'renovacion' | 'sin_datos'
+          url_verificada?: string | null
+          score_encontrado?: number | null
+          score_minimo: number
+          cumple_score?: boolean | null
+          alerta_enviada?: boolean
+          notas?: string | null
+          checked_at?: string
+        }
+        Update: {
+          id?: string
+          distintivo_id?: string
+          tipo?: 'ok' | 'regresion' | 'renovacion' | 'sin_datos'
+          url_verificada?: string | null
+          score_encontrado?: number | null
+          score_minimo?: number
+          cumple_score?: boolean | null
+          alerta_enviada?: boolean
+          notas?: string | null
+          checked_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distintivo_reauditorias_distintivo_id_fkey"
+            columns: ["distintivo_id"]
+            isOneToOne: false
+            referencedRelation: "distintivos_emitidos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       distintivos_emitidos: {
         Row: {
+          alerta_regresion: boolean
+          alerta_vencimiento_enviada: boolean
           badge_pdf_url: string | null
           badge_svg_url: string | null
           created_at: string
@@ -776,9 +825,13 @@ export type Database = {
           nivel: Database["public"]["Enums"]["badge_nivel"]
           organizacion_id: string
           solicitud_id: string
+          ultimo_check_at: string | null
+          ultimo_score: number | null
           vigente: boolean
         }
         Insert: {
+          alerta_regresion?: boolean
+          alerta_vencimiento_enviada?: boolean
           badge_pdf_url?: string | null
           badge_svg_url?: string | null
           created_at?: string
@@ -792,9 +845,13 @@ export type Database = {
           nivel: Database["public"]["Enums"]["badge_nivel"]
           organizacion_id: string
           solicitud_id: string
+          ultimo_check_at?: string | null
+          ultimo_score?: number | null
           vigente?: boolean
         }
         Update: {
+          alerta_regresion?: boolean
+          alerta_vencimiento_enviada?: boolean
           badge_pdf_url?: string | null
           badge_svg_url?: string | null
           created_at?: string
@@ -808,6 +865,8 @@ export type Database = {
           nivel?: Database["public"]["Enums"]["badge_nivel"]
           organizacion_id?: string
           solicitud_id?: string
+          ultimo_check_at?: string | null
+          ultimo_score?: number | null
           vigente?: boolean
         }
         Relationships: [
