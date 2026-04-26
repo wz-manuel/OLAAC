@@ -34,6 +34,7 @@ export type Database = {
           auditor_id: string
           hallazgos: Json
           id: string
+          puntaje_wcag: number | null
           recomendaciones: string | null
           resumen: string
           submitted_at: string
@@ -43,6 +44,7 @@ export type Database = {
           auditor_id: string
           hallazgos?: Json
           id?: string
+          puntaje_wcag?: number | null
           recomendaciones?: string | null
           resumen: string
           submitted_at?: string
@@ -52,6 +54,7 @@ export type Database = {
           auditor_id?: string
           hallazgos?: Json
           id?: string
+          puntaje_wcag?: number | null
           recomendaciones?: string | null
           resumen?: string
           submitted_at?: string
@@ -73,6 +76,75 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      audit_wcag_results: {
+        Row: {
+          audit_submission_id: string
+          created_at: string
+          criterio_codigo: string
+          id: string
+          notas: string | null
+          resultado: Database["public"]["Enums"]["wcag_result_enum"]
+        }
+        Insert: {
+          audit_submission_id: string
+          created_at?: string
+          criterio_codigo: string
+          id?: string
+          notas?: string | null
+          resultado?: Database["public"]["Enums"]["wcag_result_enum"]
+        }
+        Update: {
+          audit_submission_id?: string
+          created_at?: string
+          criterio_codigo?: string
+          id?: string
+          notas?: string | null
+          resultado?: Database["public"]["Enums"]["wcag_result_enum"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_wcag_results_audit_submission_id_fkey"
+            columns: ["audit_submission_id"]
+            isOneToOne: false
+            referencedRelation: "audit_submissions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_wcag_results_criterio_codigo_fkey"
+            columns: ["criterio_codigo"]
+            isOneToOne: false
+            referencedRelation: "wcag_criterios"
+            referencedColumns: ["codigo"]
+          },
+        ]
+      }
+      wcag_criterios: {
+        Row: {
+          codigo: string
+          directriz: string
+          es_21: boolean
+          nivel: string
+          nombre: string
+          principio: string
+        }
+        Insert: {
+          codigo: string
+          directriz: string
+          es_21?: boolean
+          nivel: string
+          nombre: string
+          principio: string
+        }
+        Update: {
+          codigo?: string
+          directriz?: string
+          es_21?: boolean
+          nivel?: string
+          nombre?: string
+          principio?: string
+        }
+        Relationships: []
       }
       auditor_learning_path: {
         Row: {
@@ -1038,6 +1110,7 @@ export type Database = {
         | "en_progreso"
         | "resuelto"
         | "cerrado"
+      wcag_result_enum: "cumple" | "no_cumple" | "no_aplica" | "no_evaluado"
     }
     CompositeTypes: {
       [_ in never]: never

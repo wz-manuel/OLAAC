@@ -5,6 +5,77 @@ import { PriorityBadge } from '@/components/tickets/priority-badge'
 import { StatusBadge } from '@/components/tickets/status-badge'
 import { AuditResultForm } from '@/components/voluntarios/audit-result-form'
 import { createClient } from '@/lib/supabase/server'
+import { WCAG_CRITERIOS, PRINCIPIOS, PRINCIPIO_META } from '@/lib/wcag/criterios'
+
+// ─── Resumen de resultados WCAG (Server Component) ───────────────────────────
+
+interface WcagResultRow {
+  criterio_codigo: string
+  resultado: string
+  notas: string | null
+}
+
+function WcagResultsSummary({ results }: { results: WcagResultRow[] }) {
+  const byCode = new Map(results.map(r => [r.criterio_codigo, r]))
+
+  const COLORES: Record<string, string> = {
+    cumple:    'bg-green-100 text-green-800',
+    no_cumple: 'bg-red-100 text-red-800',
+    no_aplica: 'bg-gray-100 text-gray-600',
+  }
+  const ETIQUETAS: Record<string, string> = {
+    cumple: 'Cumple', no_cumple: 'No cumple', no_aplica: 'N/A',
+  }
+
+  return (
+    <div className="space-y-3">
+      {PRINCIPIOS.map(principio => {
+        const criterios = WCAG_CRITERIOS.filter(c => c.principio === principio)
+        const evaluados = criterios.filter(c => byCode.has(c.codigo))
+        if (evaluados.length === 0) return null
+
+        const meta = PRINCIPIO_META[principio]
+        const cumplen   = evaluados.filter(c => byCode.get(c.codigo)?.resultado === 'cumple').length
+        const noCumplen = evaluados.filter(c => byCode.get(c.codigo)?.resultado === 'no_cumple').length
+
+        return (
+          <details key={principio} className="rounded border border-blue-100">
+            <summary className={`flex cursor-pointer list-none items-center justify-between gap-2 rounded px-3 py-2 text-xs font-semibold ${meta.color} ${meta.bg}`}>
+              <span>{principio}</span>
+              <span className="font-normal text-gray-500">
+                {cumplen > 0 && <span className="text-green-700 font-medium">{cumplen}✓ </span>}
+                {noCumplen > 0 && <span className="text-red-600 font-medium">{noCumplen}✗ </span>}
+                {evaluados.length}/{criterios.length}
+              </span>
+            </summary>
+            <ul className="divide-y divide-blue-50">
+              {evaluados.map(c => {
+                const r = byCode.get(c.codigo)!
+                return (
+                  <li key={c.codigo} className="flex flex-col gap-0.5 px-3 py-2 text-xs">
+                    <div className="flex items-center justify-between gap-2">
+                      <span>
+                        <span className="font-mono text-gray-400">{c.codigo}</span>
+                        {' '}
+                        <span className="text-gray-800">{c.nombre}</span>
+                      </span>
+                      <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${COLORES[r.resultado] ?? 'bg-gray-100 text-gray-600'}`}>
+                        {ETIQUETAS[r.resultado] ?? r.resultado}
+                      </span>
+                    </div>
+                    {r.notas && (
+                      <p className="text-gray-500 pl-12">{r.notas}</p>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </details>
+        )
+      })}
+    </div>
+  )
+}
 
 export const metadata = { title: 'Detalle de ticket' }
 
@@ -44,7 +115,7 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
         .maybeSingle(),
       supabase
         .from('audit_submissions')
-        .select('id, resumen, hallazgos, recomendaciones, submitted_at')
+        .select('id, resumen, recomendaciones, submitted_at, puntaje_wcag, audit_wcag_results(criterio_codigo, resultado, notas)')
         .eq('ticket_id', id)
         .maybeSingle(),
     ])
@@ -127,30 +198,48 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
       {/* Resultados de auditoría ya enviados */}
       {existingSubmission && (
         <section aria-labelledby="resultados-heading" className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-6">
-          <h2 id="resultados-heading" className="mb-4 text-sm font-semibold text-blue-900">
-            Resultados de auditoría enviados
-          </h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h2 id="resultados-heading" className="text-sm font-semibold text-blue-900">
+              Resultados de auditoría enviados
+            </h2>
+            {existingSubmission.puntaje_wcag != null && (
+              <span className={`rounded-full px-3 py-0.5 text-sm font-semibold ${
+                existingSubmission.puntaje_wcag >= 0.9
+                  ? 'bg-green-100 text-green-800'
+                  : existingSubmission.puntaje_wcag >= 0.7
+                    ? 'bg-amber-100 text-amber-800'
+                    : 'bg-red-100 text-red-800'
+              }`}>
+                {Math.round((existingSubmission.puntaje_wcag as number) * 100)}% de conformidad WCAG
+              </span>
+            )}
+          </div>
+
           <dl className="space-y-4 text-sm">
             <div>
               <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Resumen ejecutivo</dt>
-              <dd className="mt-1 text-blue-900 whitespace-pre-wrap">{existingSubmission.resumen}</dd>
+              <dd className="mt-1 whitespace-pre-wrap text-blue-900">{existingSubmission.resumen}</dd>
             </div>
-            {Array.isArray(existingSubmission.hallazgos) && (existingSubmission.hallazgos as Array<{ descripcion: string }>).length > 0 && (
+
+            {/* Resultados WCAG estructurados */}
+            {Array.isArray(existingSubmission.audit_wcag_results) &&
+              (existingSubmission.audit_wcag_results as Array<{ criterio_codigo: string; resultado: string; notas: string | null }>).length > 0 && (
               <div>
-                <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Hallazgos</dt>
-                <dd className="mt-1">
-                  <ul className="list-disc pl-5 space-y-1 text-blue-900">
-                    {(existingSubmission.hallazgos as Array<{ descripcion: string }>).map((h, i) => (
-                      <li key={i}>{h.descripcion}</li>
-                    ))}
-                  </ul>
+                <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">
+                  Criterios WCAG evaluados
+                </dt>
+                <dd className="mt-2">
+                  <WcagResultsSummary
+                    results={existingSubmission.audit_wcag_results as Array<{ criterio_codigo: string; resultado: string; notas: string | null }>}
+                  />
                 </dd>
               </div>
             )}
+
             {existingSubmission.recomendaciones && (
               <div>
                 <dt className="text-xs font-medium text-blue-700 uppercase tracking-wide">Recomendaciones</dt>
-                <dd className="mt-1 text-blue-900 whitespace-pre-wrap">{existingSubmission.recomendaciones}</dd>
+                <dd className="mt-1 whitespace-pre-wrap text-blue-900">{existingSubmission.recomendaciones}</dd>
               </div>
             )}
             <div>

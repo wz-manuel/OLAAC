@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 
 import { notifyAuditorCertificado, notifyVoluntarioRecibido } from '@/lib/email'
 import { createClient } from '@/lib/supabase/server'
+import { calcularPuntajeWcag, type WcagResultado, type WcagResultadoEntry } from '@/lib/wcag/criterios'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -155,7 +156,6 @@ export async function submitAuditResult(
   formData: FormData
 ): Promise<AuditResultState> {
   const resumen         = formData.get('resumen')?.toString().trim() ?? ''
-  const hallazgosRaw    = formData.get('hallazgos')?.toString().trim() ?? ''
   const recomendaciones = formData.get('recomendaciones')?.toString().trim() || null
 
   const fieldErrors: AuditResultState['fieldErrors'] = {}
@@ -195,16 +195,33 @@ export async function submitAuditResult(
     return { error: 'Este ticket no está asignado a ti' }
   }
 
-  // Parsear hallazgos: una línea por hallazgo → array de { descripcion }
-  const hallazgos = hallazgosRaw
-    .split('\n')
-    .map(line => line.trim())
-    .filter(Boolean)
-    .map(descripcion => ({ descripcion }))
+  // Parsear resultados WCAG estructurados desde el hidden input
+  const wcagRaw    = formData.get('wcag_results')?.toString() ?? '{}'
+  let wcagParsed: Record<string, { resultado: WcagResultado; notas: string }> = {}
+  try {
+    wcagParsed = JSON.parse(wcagRaw)
+  } catch {
+    // Si el JSON falla, continuar sin resultados WCAG
+  }
 
-  const { error: insertError } = await supabase
+  const wcagMap = new Map<string, WcagResultadoEntry>(
+    Object.entries(wcagParsed).map(([k, v]) => [k, v as WcagResultadoEntry])
+  )
+  const puntaje_wcag = calcularPuntajeWcag(wcagMap)
+
+  // Insertar la auditoría principal (hallazgos vacío — reemplazado por audit_wcag_results)
+  const { data: submission, error: insertError } = await supabase
     .from('audit_submissions')
-    .insert({ ticket_id: ticketId, auditor_id: profile.id, resumen, hallazgos, recomendaciones })
+    .insert({
+      ticket_id: ticketId,
+      auditor_id: profile.id,
+      resumen,
+      hallazgos: [],
+      recomendaciones,
+      puntaje_wcag,
+    })
+    .select('id')
+    .single()
 
   if (insertError) {
     if (insertError.code === '23505') {
@@ -213,11 +230,30 @@ export async function submitAuditResult(
     return { error: `Error al guardar los resultados: ${insertError.message}` }
   }
 
+  // Insertar resultados WCAG estructurados (solo los evaluados)
+  const wcagRows = [...wcagMap.entries()]
+    .filter(([, e]) => e.resultado !== 'no_evaluado')
+    .map(([criterio_codigo, e]) => ({
+      audit_submission_id: submission.id,
+      criterio_codigo,
+      resultado: e.resultado,
+      notas: e.notas || null,
+    }))
+
+  if (wcagRows.length > 0) {
+    await supabase.from('audit_wcag_results').insert(wcagRows)
+  }
+
   await supabase.from('ticket_events').insert({
     ticket_id: ticketId,
     user_id: user.id,
     evento: 'Resultados de auditoría enviados',
-    payload: { auditor_id: profile.id, resumen_preview: resumen.slice(0, 120) },
+    payload: {
+      auditor_id: profile.id,
+      resumen_preview: resumen.slice(0, 120),
+      criterios_evaluados: wcagRows.length,
+      puntaje_wcag,
+    },
   })
 
   // El ticket pasa a en_revision para que el equipo OLAAC revise los resultados

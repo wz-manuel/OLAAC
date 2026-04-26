@@ -6,6 +6,8 @@ import { useFormState, useFormStatus } from 'react-dom'
 
 import { submitAuditResult, type AuditResultState } from '@/lib/actions/voluntarios'
 
+import { WcagCriteriaPanel } from './wcag-criteria-panel'
+
 interface AuditResultFormProps {
   ticketId: string
   ticketFolio: string
@@ -78,7 +80,7 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
     <form
       action={action}
       noValidate
-      className="space-y-5"
+      className="space-y-6"
       aria-label={`Formulario de resultados de auditoría para el ticket ${ticketFolio}`}
     >
       {state.error && (
@@ -105,7 +107,7 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
           aria-invalid={!!state.fieldErrors?.resumen}
           aria-describedby={state.fieldErrors?.resumen ? 'error-resumen' : 'hint-resumen'}
           rows={4}
-          placeholder="Describe el estado general de accesibilidad del sitio auditado: qué encontraste, qué impacto tiene para los usuarios y cuál es la gravedad global de los problemas."
+          placeholder="Describe el estado general de accesibilidad del sitio: qué encontraste, qué impacto tiene para los usuarios y cuál es la gravedad global."
           className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 aria-[invalid=true]:border-red-600"
         />
         {state.fieldErrors?.resumen ? (
@@ -119,25 +121,6 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
         )}
       </div>
 
-      {/* Hallazgos */}
-      <div className="space-y-1.5">
-        <Label htmlFor="hallazgos">
-          Hallazgos{' '}
-          <span className="text-xs font-normal text-gray-500">(uno por línea)</span>
-        </Label>
-        <textarea
-          id="hallazgos"
-          name="hallazgos"
-          rows={6}
-          aria-describedby="hint-hallazgos"
-          placeholder={`Imágenes decorativas sin alt="" correctamente aplicado\nFormulario de contacto sin etiquetas asociadas a sus campos\nContraste de color insuficiente en el menú de navegación principal`}
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 font-mono"
-        />
-        <p id="hint-hallazgos" className="text-xs text-gray-500">
-          Cada línea se guardará como un hallazgo individual. Referencia el criterio WCAG si es posible (ej: 1.1.1).
-        </p>
-      </div>
-
       {/* Recomendaciones */}
       <div className="space-y-1.5">
         <Label htmlFor="recomendaciones">
@@ -147,13 +130,22 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
         <textarea
           id="recomendaciones"
           name="recomendaciones"
-          rows={4}
+          rows={3}
           aria-describedby="hint-recomendaciones"
-          placeholder="¿Qué acciones concretas debería tomar el equipo responsable del sitio para mejorar su accesibilidad?"
+          placeholder="Pasos accionables, priorizados por impacto. Se compartirán con el equipo OLAAC."
           className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
         />
         <p id="hint-recomendaciones" className="text-xs text-gray-500">
-          Pasos accionables, priorizados por impacto. Se compartirán con el equipo OLAAC.
+          ¿Qué acciones concretas debería tomar el equipo responsable del sitio?
+        </p>
+      </div>
+
+      {/* Panel de criterios WCAG estructurados */}
+      <div className="border-t border-gray-100 pt-5">
+        <WcagCriteriaPanel />
+        <p className="mt-2 text-xs text-gray-500">
+          Evalúa los criterios que apliquen al sitio. Los criterios de medios (audio/vídeo) puedes marcarlos como
+          N/A si el sitio no tiene ese tipo de contenido.
         </p>
       </div>
 
