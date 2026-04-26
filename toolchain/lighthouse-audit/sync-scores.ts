@@ -283,6 +283,7 @@ async function auditSite(
       screenEmulation: { disabled: true },
       throttlingMethod: 'provided',      // sin throttling artificial — más rápido
       disableStorageReset: false,
+      locale: 'es-419',                  // español latinoamericano para titles y explanations
     }),
     new Promise<never>((_, reject) =>
       setTimeout(() => reject(new Error(`Timeout después de ${timeoutMs / 1000}s`)), timeoutMs)
