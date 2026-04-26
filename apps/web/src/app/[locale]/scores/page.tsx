@@ -207,6 +207,19 @@ export default async function ScoresDashboardPage() {
           </div>
         )}
       </section>
+
+      {/* Enlace a cobertura geográfica */}
+      <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-sm text-gray-600">
+        <span className="font-medium text-gray-900">¿Qué tan representativos son estos datos? </span>
+        Consulta los{' '}
+        <Link
+          href="/cobertura"
+          className="font-medium text-[#005fcc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+        >
+          criterios de cobertura geográfica
+        </Link>
+        {' '}para ver cuántos sitios auditamos por país y sector.
+      </div>
     </div>
   )
 }

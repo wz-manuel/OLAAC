@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: '/admin/tickets',           label: 'Tickets' },
   { href: '/admin/distintivos',       label: 'Distintivos' },
   { href: '/admin/marco-legal',       label: 'Marco legal' },
+  { href: '/admin/cobertura',         label: 'Cobertura' },
 ]
 
 export function AdminNav() {

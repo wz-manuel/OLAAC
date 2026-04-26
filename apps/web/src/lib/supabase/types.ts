@@ -77,6 +77,36 @@ export type Database = {
           },
         ]
       }
+      cobertura_config: {
+        Row: {
+          categoria: string
+          created_at: string
+          id: string
+          iso_code: string
+          pais: string
+          umbral_minimo: number
+          updated_at: string
+        }
+        Insert: {
+          categoria: string
+          created_at?: string
+          id?: string
+          iso_code: string
+          pais: string
+          umbral_minimo?: number
+          updated_at?: string
+        }
+        Update: {
+          categoria?: string
+          created_at?: string
+          id?: string
+          iso_code?: string
+          pais?: string
+          umbral_minimo?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       audit_wcag_results: {
         Row: {
           audit_submission_id: string
@@ -1061,6 +1091,30 @@ export type Database = {
           criticos: number | null
           pais: string | null
           total_sitios: number | null
+        }
+        Relationships: []
+      }
+      v_cobertura_pais: {
+        Row: {
+          categoria: string | null
+          cumple_umbral: boolean | null
+          iso_code: string | null
+          pais: string | null
+          porcentaje: number | null
+          sitios_auditados: number | null
+          umbral_minimo: number | null
+        }
+        Relationships: []
+      }
+      v_cobertura_resumen: {
+        Row: {
+          auditados_total: number | null
+          categorias_completas: number | null
+          categorias_total: number | null
+          iso_code: string | null
+          meta_total: number | null
+          pais: string | null
+          porcentaje_global: number | null
         }
         Relationships: []
       }
