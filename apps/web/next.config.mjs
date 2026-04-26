@@ -1,4 +1,4 @@
-import type { NextConfig } from 'next'
+/** @type {import('next').NextConfig} */
 
 const SECURITY_HEADERS = [
   { key: 'X-Content-Type-Options',  value: 'nosniff' },
@@ -26,7 +26,9 @@ const SECURITY_HEADERS = [
   },
 ]
 
-const config: NextConfig = {
+const config = {
+  serverExternalPackages: ['@react-pdf/renderer'],
+
   async headers() {
     return [
       {
