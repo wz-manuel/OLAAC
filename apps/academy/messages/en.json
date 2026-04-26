@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "homeAriaLabel": "OLAAC Academy — Home",
+    "academiaBadge": "Academy"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Select language",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português"
+  },
+  "home": {
+    "title": "OLAAC Academy",
+    "subtitle": "Specialized training in digital and physical accessibility for professionals across Latin America.",
+    "verCursos": "View all courses",
+    "misCursos": "My courses"
+  },
+  "courses": {
+    "title": "Available courses",
+    "inscribirse": "Enroll",
+    "continuar": "Continue",
+    "completado": "Completed",
+    "lecciones": "{count} lessons",
+    "progreso": "Progress: {value}%",
+    "sinCursos": "No courses available at the moment.",
+    "certificado": "View certificate"
+  },
+  "lesson": {
+    "leccion": "Lesson {number}",
+    "marcarCompleta": "Mark as complete",
+    "completada": "Completed",
+    "siguiente": "Next lesson",
+    "anterior": "Previous lesson",
+    "volverAlCurso": "Back to course"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Access OLAAC Academy",
+    "email": "Email address",
+    "continuar": "Continue with email"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "An error occurred. Please try again.",
+    "volver": "Back",
+    "cerrar": "Close"
+  }
+}

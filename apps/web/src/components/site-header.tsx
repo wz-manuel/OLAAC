@@ -1,7 +1,9 @@
 import { OlaacLogo, UserNav } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
+import { LanguageSwitcher } from '@/components/language-switcher'
 import { createClient } from '@/lib/supabase/server'
 
 export async function SiteHeader() {
@@ -26,64 +28,47 @@ export async function SiteHeader() {
           >
             <OlaacLogo width={120} height={34} />
           </Link>
-          <nav aria-label="Navegación principal">
-            <ul className="flex items-center gap-4">
-              <li>
-                <Link
-                  href="/scores"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  Scores
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tickets"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  Tickets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/distintivo"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  Distintivo
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/reportes"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  Reportes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/marco-legal"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  Marco legal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/datos-abiertos"
-                  className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                >
-                  API
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <SiteNav />
         </div>
 
-        {user?.email && (
-          <UserNav email={user.email} onSignOut={signOut} />
-        )}
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+          {user?.email && (
+            <UserNav email={user.email} onSignOut={signOut} />
+          )}
+        </div>
       </div>
     </header>
+  )
+}
+
+function SiteNav() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const t = useTranslations('nav')
+
+  const links = [
+    { href: '/scores',       label: t('scores') },
+    { href: '/tickets',      label: t('tickets') },
+    { href: '/distintivo',   label: t('distintivo') },
+    { href: '/reportes',     label: t('reportes') },
+    { href: '/marco-legal',  label: t('marcoLegal') },
+    { href: '/datos-abiertos', label: t('api') },
+  ]
+
+  return (
+    <nav aria-label={t('ariaLabel')}>
+      <ul className="flex items-center gap-4">
+        {links.map(({ href, label }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className="text-sm text-brand-600 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }

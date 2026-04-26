@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "scores": "Scores",
+    "tickets": "Tickets",
+    "distintivo": "Distintivo",
+    "reportes": "Reportes",
+    "marcoLegal": "Marco legal",
+    "api": "API",
+    "ariaLabel": "Navegación principal",
+    "homeAriaLabel": "OLAAC — Inicio"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Seleccionar idioma",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português"
+  },
+  "home": {
+    "meta": {
+      "title": "OLAAC — Observatorio Latinoamericano de Accesibilidad",
+      "description": "Mecanismo de control social que realiza diagnósticos y seguimiento técnico e independiente sobre accesibilidad en entornos, productos y servicios digitales y físicos."
+    },
+    "hero": {
+      "title": "Trabajamos por la accesibilidad en Latinoamérica",
+      "description": "El Observatorio Latinoamericano de Accesibilidad (OLAAC) es un mecanismo de control social que diagnostica y da seguimiento al cumplimiento de la accesibilidad en entornos digitales y físicos.",
+      "reportar": "Reportar un problema",
+      "unirme": "Unirme al equipo"
+    },
+    "whatIs": {
+      "title": "¿Qué es OLAAC?",
+      "diagnosticamos": "Diagnosticamos",
+      "diagnosticamosDesc": "Realizamos auditorías técnicas independientes de accesibilidad en sitios web, aplicaciones y espacios físicos.",
+      "informamos": "Informamos",
+      "informamosDesc": "Publicamos informes públicos de Campañas de Informes de Accesibilidad (CIA) para orientar equipos de trabajo.",
+      "vigilamos": "Vigilamos",
+      "vigilamosDesc": "Monitoreamos el cumplimiento de normativas y políticas públicas en materia de accesibilidad a nivel regional."
+    },
+    "scoresSection": {
+      "title": "Dashboard de Accesibilidad",
+      "subtitle": "Ranking en tiempo real de sitios latinoamericanos auditados con Lighthouse",
+      "verRanking": "Ver ranking completo →",
+      "sinDatos": "Los datos del ranking se actualizan cada domingo de forma automática.",
+      "ariaLabel": "Top 5 sitios por score de accesibilidad",
+      "solicitarAuditoria": "Solicitar auditoría de tu sitio"
+    },
+    "academia": {
+      "badge": "Academia OLAAC",
+      "title": "Fórmate en accesibilidad digital",
+      "description": "Cursos diseñados por expertos en accesibilidad. Aprende las WCAG, herramientas de evaluación y cómo construir productos digitales inclusivos. Al completar cada curso recibes un certificado verificable.",
+      "cursoDestacado": "Curso destacado",
+      "verCursos": "Ver cursos disponibles",
+      "certificadosVerificables": "Certificados verificables"
+    },
+    "tickets": {
+      "title": "¿Encontraste una barrera de accesibilidad?",
+      "description": "Informa al observatorio. Con tu reporte ayudamos a que organizaciones responsables conozcan las barreras y puedan corregirlas. Todos los reportes son públicos y reciben seguimiento técnico.",
+      "abrirReporte": "Abrir nuevo reporte",
+      "estadoSistema": "Estado del sistema",
+      "reportesAbiertos": "Reportes abiertos",
+      "sitiosMonitoreados": "Sitios monitoreados",
+      "paisesCubiertos": "Países cubiertos",
+      "verMisReportes": "Ver mis reportes →"
+    },
+    "blog": {
+      "title": "Novedades",
+      "verTodas": "Ver todas →",
+      "ariaLabel": "Últimas entradas del blog"
+    }
+  },
+  "scores": {
+    "title": "Scores de Accesibilidad",
+    "description": "Monitoreo independiente de accesibilidad digital en sitios gubernamentales y de servicios públicos de América Latina.",
+    "verDetalles": "Ver detalles",
+    "solicitarAuditoria": "Solicitar auditoría",
+    "sitio": "Sitio",
+    "pais": "País",
+    "score": "Score",
+    "marcoLegal": "Marco legal",
+    "categoria": "Categoría",
+    "ultimaAuditoria": "Última auditoría",
+    "sinResultados": "No hay datos de scores disponibles aún.",
+    "violaciones": {
+      "title": "Violaciones de alto impacto",
+      "sinViolaciones": "No se detectaron violaciones críticas o graves en la última auditoría.",
+      "impacto": "Impacto",
+      "critical": "Crítico",
+      "serious": "Grave",
+      "elementosAfectados": "{count} elementos afectados",
+      "verDocumentacion": "Ver documentación de la regla"
+    }
+  },
+  "tickets": {
+    "title": "Reportes de Accesibilidad",
+    "nuevo": "Nuevo reporte",
+    "misReportes": "Mis reportes",
+    "folio": "Folio",
+    "estado": "Estado",
+    "prioridad": "Prioridad",
+    "fecha": "Fecha",
+    "sinReportes": "No tienes reportes aún."
+  },
+  "common": {
+    "loading": "Cargando…",
+    "error": "Ocurrió un error. Por favor intenta de nuevo.",
+    "sinResultados": "Sin resultados",
+    "verMas": "Ver más",
+    "cerrar": "Cerrar",
+    "guardar": "Guardar",
+    "cancelar": "Cancelar",
+    "enviar": "Enviar",
+    "buscar": "Buscar",
+    "limpiar": "Limpiar",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "pagina": "Página {current} de {total}",
+    "volver": "Volver"
+  }
+}

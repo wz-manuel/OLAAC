@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Home",
+    "scores": "Scores",
+    "tickets": "Reports",
+    "distintivo": "Badge",
+    "reportes": "Reports",
+    "marcoLegal": "Legal framework",
+    "api": "API",
+    "ariaLabel": "Main navigation",
+    "homeAriaLabel": "OLAAC — Home"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Select language",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português"
+  },
+  "home": {
+    "meta": {
+      "title": "OLAAC — Latin American Accessibility Observatory",
+      "description": "A social oversight mechanism that independently audits and monitors accessibility compliance in digital and physical environments across Latin America."
+    },
+    "hero": {
+      "title": "Working for accessibility in Latin America",
+      "description": "The Latin American Accessibility Observatory (OLAAC) is a social oversight mechanism that audits and monitors accessibility compliance in digital and physical environments.",
+      "reportar": "Report an issue",
+      "unirme": "Join the team"
+    },
+    "whatIs": {
+      "title": "What is OLAAC?",
+      "diagnosticamos": "We Audit",
+      "diagnosticamosDesc": "We conduct independent technical accessibility audits of websites, applications, and physical spaces.",
+      "informamos": "We Report",
+      "informamosDesc": "We publish public Accessibility Audit Campaign (AAC) reports to guide development teams.",
+      "vigilamos": "We Monitor",
+      "vigilamosDesc": "We track compliance with accessibility regulations and public policies at the regional level."
+    },
+    "scoresSection": {
+      "title": "Accessibility Dashboard",
+      "subtitle": "Real-time ranking of Latin American sites audited with Lighthouse",
+      "verRanking": "View full ranking →",
+      "sinDatos": "Ranking data is updated automatically every Sunday.",
+      "ariaLabel": "Top 5 sites by accessibility score",
+      "solicitarAuditoria": "Request an audit for your site"
+    },
+    "academia": {
+      "badge": "OLAAC Academy",
+      "title": "Get trained in digital accessibility",
+      "description": "Courses designed by accessibility experts. Learn WCAG, evaluation tools, and how to build inclusive digital products. Completing each course earns you a verifiable certificate.",
+      "cursoDestacado": "Featured course",
+      "verCursos": "View available courses",
+      "certificadosVerificables": "Verifiable certificates"
+    },
+    "tickets": {
+      "title": "Found an accessibility barrier?",
+      "description": "Let the observatory know. Your report helps responsible organizations understand barriers and correct them. All reports are public and receive technical follow-up.",
+      "abrirReporte": "Open new report",
+      "estadoSistema": "System status",
+      "reportesAbiertos": "Open reports",
+      "sitiosMonitoreados": "Monitored sites",
+      "paisesCubiertos": "Countries covered",
+      "verMisReportes": "View my reports →"
+    },
+    "blog": {
+      "title": "Latest news",
+      "verTodas": "View all →",
+      "ariaLabel": "Latest blog posts"
+    }
+  },
+  "scores": {
+    "title": "Accessibility Scores",
+    "description": "Independent monitoring of digital accessibility in government and public service sites across Latin America.",
+    "verDetalles": "View details",
+    "solicitarAuditoria": "Request audit",
+    "sitio": "Site",
+    "pais": "Country",
+    "score": "Score",
+    "marcoLegal": "Legal framework",
+    "categoria": "Category",
+    "ultimaAuditoria": "Last audit",
+    "sinResultados": "No score data available yet.",
+    "violaciones": {
+      "title": "High-impact violations",
+      "sinViolaciones": "No critical or serious violations detected in the last audit.",
+      "impacto": "Impact",
+      "critical": "Critical",
+      "serious": "Serious",
+      "elementosAfectados": "{count} elements affected",
+      "verDocumentacion": "View rule documentation"
+    }
+  },
+  "tickets": {
+    "title": "Accessibility Reports",
+    "nuevo": "New report",
+    "misReportes": "My reports",
+    "folio": "Reference",
+    "estado": "Status",
+    "prioridad": "Priority",
+    "fecha": "Date",
+    "sinReportes": "You have no reports yet."
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "An error occurred. Please try again.",
+    "sinResultados": "No results",
+    "verMas": "View more",
+    "cerrar": "Close",
+    "guardar": "Save",
+    "cancelar": "Cancel",
+    "enviar": "Submit",
+    "buscar": "Search",
+    "limpiar": "Clear",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "pagina": "Page {current} of {total}",
+    "volver": "Back"
+  }
+}

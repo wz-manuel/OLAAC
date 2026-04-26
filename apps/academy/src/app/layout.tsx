@@ -1,27 +1,5 @@
-import { SkipLink } from '@olaac/ui'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-
-import { SiteHeader } from '@/components/site-header'
-
-const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
-
-export const metadata: Metadata = {
-  title: { template: '%s | Academia OLAAC', default: 'Academia OLAAC — Formación en Accesibilidad' },
-  description: 'Aprende accesibilidad digital y física con el Observatorio Latinoamericano de Accesibilidad.',
-}
-
+// Root layout — pass-through. HTML/body are provided by app/[locale]/layout.tsx.
+// API routes (app/api/) don't use any layout wrapper.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="es" className={inter.variable}>
-      <body className="min-h-screen bg-white font-sans antialiased">
-        <SkipLink href="#main-content" />
-        <SiteHeader />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-      </body>
-    </html>
-  )
+  return children
 }
