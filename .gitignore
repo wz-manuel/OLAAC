@@ -58,3 +58,4 @@ apps/academy/certificado-*.pdf
 identidad/*.ai
 identidad/*.eps
 identidad/*.pdf
+.vercel
