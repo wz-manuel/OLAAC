@@ -47,11 +47,11 @@ function SiteNav() {
   const t = useTranslations('nav')
 
   const links = [
-    { href: '/scores',       label: t('scores') },
-    { href: '/tickets',      label: t('tickets') },
-    { href: '/distintivo',   label: t('distintivo') },
-    { href: '/reportes',     label: t('reportes') },
-    { href: '/marco-legal',  label: t('marcoLegal') },
+    { href: '/scores',         label: t('scores') },
+    { href: '/tickets',        label: t('tickets') },
+    { href: '/distintivo',     label: t('distintivo') },
+    { href: '/reportes',       label: t('reportes') },
+    { href: '/marco-legal',    label: t('marcoLegal') },
     { href: '/datos-abiertos', label: t('api') },
   ]
 
@@ -68,6 +68,14 @@ function SiteNav() {
             </Link>
           </li>
         ))}
+        <li>
+          <Link
+            href="/donativos"
+            className="rounded-md bg-[#005fcc]/10 px-3 py-1 text-sm font-medium text-[#005fcc] transition-colors hover:bg-[#005fcc]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+          >
+            {t('donativos')}
+          </Link>
+        </li>
       </ul>
     </nav>
   )

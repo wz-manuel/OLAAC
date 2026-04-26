@@ -313,6 +313,42 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Donativo ─────────────────────────────────────────────────────── */}
+      <section
+        aria-labelledby="donativo-heading"
+        className="border-y border-[#005fcc]/20 bg-[#005fcc]/5 px-4 py-10 sm:px-6"
+      >
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 sm:flex-row">
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#005fcc]">
+              Somos independientes
+            </p>
+            <h2 id="donativo-heading" className="mt-1 text-xl font-bold text-gray-900">
+              OLAAC no tiene publicidad ni fondos institucionales
+            </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Nos financian personas y organizaciones que creen que la accesibilidad digital
+              debe ser pública, medible y exigible. Con un donativo mensual ayudas a mantener
+              el observatorio y a financiar becas para organizaciones sin recursos.
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <Link
+              href="/donativos"
+              className="inline-flex items-center rounded-lg bg-[#005fcc] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0050b0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+            >
+              Hacer un donativo
+            </Link>
+            <Link
+              href="/sobre-el-observatorio"
+              className="inline-flex items-center rounded-lg border border-[#005fcc] px-5 py-2.5 text-sm font-semibold text-[#005fcc] transition-colors hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+            >
+              Conocer más
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Últimas entradas ─────────────────────────────────────────────── */}
       {latestPosts.length > 0 && (
         <section

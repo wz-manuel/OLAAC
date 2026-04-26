@@ -9,8 +9,63 @@ import { createClient } from '@/lib/supabase/server'
 export const metadata: Metadata = {
   title: 'Distintivo de Accesibilidad — OLAAC',
   description:
-    'Obtén el Distintivo de Accesibilidad OLAAC. Un reconocimiento para organizaciones públicas y privadas comprometidas con la inclusión digital en América Latina.',
+    'Obtén el Distintivo de Accesibilidad OLAAC. Programa de certificación con plan de inicio gratuito y becas de descuento para organizaciones de América Latina.',
 }
+
+const PLANES = [
+  {
+    id: 'inicio',
+    nombre: 'Plan de Inicio',
+    precio: 'Gratis',
+    subprecio: 'sin costo, siempre',
+    descripcion:
+      'Ideal para organizaciones que quieren comenzar el camino hacia la accesibilidad. Incluye las etapas de concientización y capacitación, un diagnóstico básico y acceso al soporte comunitario.',
+    items: [
+      'Etapas de concientización y capacitación',
+      'Diagnóstico básico con Lighthouse',
+      'Acceso a cursos de la Academia OLAAC',
+      'Soporte comunitario',
+    ],
+    cta: 'Solicitar plan de inicio',
+    ctaVariant: 'outline' as const,
+    destacado: false,
+  },
+  {
+    id: 'completo',
+    nombre: 'Plan Completo',
+    precio: 'Desde USD 350',
+    subprecio: 'pago único por proceso',
+    descripcion:
+      'El programa completo de 7 etapas para obtener el Distintivo (Oro, Platino o Diamante). Incluye auditoría independiente, seguimiento dedicado y emisión del sello verificado.',
+    items: [
+      'Las 7 etapas del programa',
+      'Auditoría por auditores certificados',
+      'Soporte dedicado vía tickets',
+      'Distintivo con verificación pública',
+      'Vigencia 12 a 24 meses según nivel',
+    ],
+    cta: 'Iniciar proceso completo',
+    ctaVariant: 'default' as const,
+    destacado: true,
+  },
+  {
+    id: 'beca',
+    nombre: 'Beca OLAAC',
+    precio: 'Hasta 100 % off',
+    subprecio: 'sujeto a aprobación',
+    descripcion:
+      'Para ONGs, organizaciones de personas con discapacidad y organismos públicos con recursos limitados. Aplica a una beca de descuento y accede al programa completo sin costo o con reducción significativa.',
+    items: [
+      'Descuento del 50 % al 100 %',
+      'Mismo programa que el Plan Completo',
+      'Aprobación en 5 días hábiles',
+      'Prioridad para organizaciones de PcD',
+    ],
+    cta: 'Aplicar a una beca',
+    ctaVariant: 'outline' as const,
+    destacado: false,
+  },
+]
 
 export default async function DistintivoPage() {
   const supabase = await createClient()
@@ -55,6 +110,7 @@ export default async function DistintivoPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+
       {/* Hero */}
       <header className="mb-14 text-center">
         <p className="mb-3 text-sm font-medium uppercase tracking-widest text-[#005fcc]">
@@ -76,6 +132,64 @@ export default async function DistintivoPage() {
           </Button>
         </div>
       </header>
+
+      {/* Planes */}
+      <section aria-labelledby="planes-heading" className="mb-16">
+        <h2 id="planes-heading" className="mb-2 text-2xl font-bold text-gray-900">
+          Planes de acceso
+        </h2>
+        <p className="mb-8 text-gray-600">
+          El programa tiene un costo que cubre la auditoría, el acompañamiento y la
+          emisión del distintivo. Si tu organización no puede asumir ese costo, tienes
+          dos alternativas sin pagar.
+        </p>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {PLANES.map((plan) => (
+            <div
+              key={plan.id}
+              className={[
+                'relative flex flex-col rounded-xl border p-6',
+                plan.destacado
+                  ? 'border-[#005fcc] ring-1 ring-[#005fcc] bg-[#005fcc]/5'
+                  : 'border-gray-200 bg-white',
+              ].join(' ')}
+            >
+              {plan.destacado && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#005fcc] px-3 py-0.5 text-xs font-semibold text-white">
+                  Más completo
+                </span>
+              )}
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#005fcc]">
+                {plan.nombre}
+              </p>
+              <p className="mt-2 text-2xl font-extrabold text-gray-900">{plan.precio}</p>
+              <p className="text-xs text-gray-500">{plan.subprecio}</p>
+              <p className="mt-4 flex-1 text-sm text-gray-600">{plan.descripcion}</p>
+              <ul className="mt-5 space-y-2">
+                {plan.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                    <span className="mt-0.5 shrink-0 text-[#005fcc]" aria-hidden="true">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <Button asChild variant={plan.ctaVariant} className="w-full">
+                  <Link href={plan.id === 'beca' ? '/contacto?asunto=beca-distintivo' : ctaHref}>
+                    {plan.cta}
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 text-center text-xs text-gray-500">
+          ¿Tu organización financia becas para otras?{' '}
+          <Link href="/donativos" className="text-[#005fcc] underline-offset-2 hover:underline">
+            Conoce cómo apoyar el fondo de becas →
+          </Link>
+        </p>
+      </section>
 
       {/* Niveles */}
       {criterios && criterios.length > 0 && (
@@ -157,12 +271,15 @@ export default async function DistintivoPage() {
           ¿Tu organización está lista para el distintivo?
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-gray-600">
-          El proceso es completamente gratuito. Acompañamos a cada organización durante todo
-          el programa hasta la emisión del sello verificado.
+          Empieza con el plan gratuito o solicita una beca si tu organización no tiene
+          recursos. Acompañamos a cada organización durante todo el programa.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg">
             <Link href={ctaHref}>{ctaLabel}</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/contacto?asunto=beca-distintivo">Solicitar beca</Link>
           </Button>
         </div>
       </section>

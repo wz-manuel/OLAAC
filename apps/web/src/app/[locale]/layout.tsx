@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 
+import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { routing, type Locale } from '@/i18n/routing'
 import '../globals.css'
@@ -56,6 +57,7 @@ export default async function LocaleLayout({
           <main id="main-content" tabIndex={-1}>
             {children}
           </main>
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>
