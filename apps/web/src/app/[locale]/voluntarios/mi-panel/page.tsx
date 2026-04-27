@@ -314,7 +314,7 @@ export default async function MiPanelPage() {
                   >
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
-                        <p className="font-mono text-xs text-gray-400">{ticket.folio}</p>
+                        <p className="font-mono text-xs text-gray-500">{ticket.folio}</p>
                         <p className="mt-0.5 text-sm font-medium text-gray-900">{ticket.titulo}</p>
                         {ticket.url_afectada && (
                           <p className="mt-0.5 truncate text-xs text-gray-500">{ticket.url_afectada}</p>
@@ -322,7 +322,7 @@ export default async function MiPanelPage() {
                       </div>
                       <StatusBadge status={ticket.estado as Parameters<typeof StatusBadge>[0]['status']} />
                     </div>
-                    <p className="mt-2 text-xs text-gray-400">
+                    <p className="mt-2 text-xs text-gray-500">
                       Asignado el{' '}
                       {new Date(ticket.created_at).toLocaleDateString('es-MX', { dateStyle: 'medium' })}
                     </p>

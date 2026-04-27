@@ -77,7 +77,7 @@ export function CreateTicketForm() {
           aria-describedby={state.fieldErrors?.descripcion ? 'error-descripcion' : 'hint-descripcion'}
           rows={4}
           placeholder="Describe el problema con el mayor detalle posible: pasos para reproducirlo, tecnología asistiva afectada, etc."
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
         />
         {state.fieldErrors?.descripcion ? (
           <p id="error-descripcion" className="text-xs text-red-600">{state.fieldErrors.descripcion}</p>
@@ -129,7 +129,7 @@ export function CreateTicketForm() {
 
       {/* URL afectada (opcional) */}
       <div className="space-y-1.5">
-        <Label htmlFor="url_afectada">URL afectada <span className="text-gray-400 font-normal text-xs">(opcional)</span></Label>
+        <Label htmlFor="url_afectada">URL afectada <span className="text-gray-500 font-normal text-xs">(opcional)</span></Label>
         <Input
           id="url_afectada"
           name="url_afectada"

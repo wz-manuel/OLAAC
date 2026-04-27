@@ -59,7 +59,7 @@ export function SiteFooter() {
         <div className="grid gap-8 sm:grid-cols-3">
           {FOOTER_LINKS.map((grupo) => (
             <nav key={grupo.titulo} aria-label={grupo.titulo}>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-500">
                 {grupo.titulo}
               </p>
               <ul className="space-y-2">
@@ -79,7 +79,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-gray-100 pt-6 sm:flex-row">
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} OLAAC — Observatorio Latinoamericano de Accesibilidad
           </p>
           <Link

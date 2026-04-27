@@ -55,7 +55,7 @@ function WcagResultsSummary({ results }: { results: WcagResultRow[] }) {
                   <li key={c.codigo} className="flex flex-col gap-0.5 px-3 py-2 text-xs">
                     <div className="flex items-center justify-between gap-2">
                       <span>
-                        <span className="font-mono text-gray-400">{c.codigo}</span>
+                        <span className="font-mono text-gray-500">{c.codigo}</span>
                         {' '}
                         <span className="text-gray-800">{c.nombre}</span>
                       </span>
@@ -148,7 +148,7 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
       <div className="rounded-lg border border-gray-200 bg-white p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="font-mono text-xs text-gray-400">{ticket.folio}</p>
+            <p className="font-mono text-xs text-gray-500">{ticket.folio}</p>
             <h1 className="mt-1 text-xl font-semibold text-gray-900">{ticket.titulo}</h1>
           </div>
           <div className="flex items-center gap-2">
@@ -158,28 +158,28 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
         </div>
 
         <div className="mt-5">
-          <h2 className="text-xs font-medium uppercase tracking-wide text-gray-400">Descripción</h2>
+          <h2 className="text-xs font-medium uppercase tracking-wide text-gray-500">Descripción</h2>
           <p className="mt-2 whitespace-pre-wrap text-sm text-gray-700">{ticket.descripcion}</p>
         </div>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-gray-100 pt-5 sm:grid-cols-3 text-sm">
           <div>
-            <dt className="text-xs font-medium text-gray-400">Categoría</dt>
+            <dt className="text-xs font-medium text-gray-500">Categoría</dt>
             <dd className="mt-0.5 text-gray-700 capitalize">{CATEGORIA_LABELS[ticket.categoria] ?? ticket.categoria}</dd>
           </div>
           <div>
-            <dt className="text-xs font-medium text-gray-400">Creado</dt>
+            <dt className="text-xs font-medium text-gray-500">Creado</dt>
             <dd className="mt-0.5 text-gray-700">{new Date(ticket.created_at).toLocaleDateString('es-MX')}</dd>
           </div>
           {ticket.resolved_at && (
             <div>
-              <dt className="text-xs font-medium text-gray-400">Resuelto</dt>
+              <dt className="text-xs font-medium text-gray-500">Resuelto</dt>
               <dd className="mt-0.5 text-gray-700">{new Date(ticket.resolved_at).toLocaleDateString('es-MX')}</dd>
             </div>
           )}
           {ticket.url_afectada && (
             <div className="col-span-2 sm:col-span-3">
-              <dt className="text-xs font-medium text-gray-400">URL afectada</dt>
+              <dt className="text-xs font-medium text-gray-500">URL afectada</dt>
               <dd className="mt-0.5 break-all">
                 <a
                   href={ticket.url_afectada}
@@ -272,7 +272,7 @@ export default async function TicketDetailPage({ params }: { params: Promise<{ i
           <ol className="space-y-3">
             {events.map((event) => (
               <li key={event.id} className="flex gap-3 rounded-lg border border-gray-100 bg-white px-4 py-3 text-sm">
-                <time className="shrink-0 text-xs text-gray-400 mt-0.5">
+                <time className="shrink-0 text-xs text-gray-500 mt-0.5">
                   {new Date(event.created_at).toLocaleDateString('es-MX')}
                 </time>
                 <p className="text-gray-700">{event.evento}</p>

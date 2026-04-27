@@ -108,7 +108,7 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
           aria-describedby={state.fieldErrors?.resumen ? 'error-resumen' : 'hint-resumen'}
           rows={4}
           placeholder="Describe el estado general de accesibilidad del sitio: qué encontraste, qué impacto tiene para los usuarios y cuál es la gravedad global."
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 aria-[invalid=true]:border-red-600"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 aria-[invalid=true]:border-red-600"
         />
         {state.fieldErrors?.resumen ? (
           <p id="error-resumen" role="alert" className="text-xs text-red-600">
@@ -133,7 +133,7 @@ export function AuditResultForm({ ticketId, ticketFolio }: AuditResultFormProps)
           rows={3}
           aria-describedby="hint-recomendaciones"
           placeholder="Pasos accionables, priorizados por impacto. Se compartirán con el equipo OLAAC."
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
         />
         <p id="hint-recomendaciones" className="text-xs text-gray-500">
           ¿Qué acciones concretas debería tomar el equipo responsable del sitio?

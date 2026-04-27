@@ -70,10 +70,10 @@ const ETAPAS = [
 ]
 
 const ESTADO_STYLES: Record<EtapaEstado, { dot: string; text: string; label: string }> = {
-  pendiente:  { dot: 'bg-gray-200', text: 'text-gray-400', label: 'Pendiente' },
+  pendiente:  { dot: 'bg-gray-200', text: 'text-gray-500', label: 'Pendiente' },
   en_curso:   { dot: 'bg-[#005fcc] animate-pulse', text: 'text-[#005fcc]', label: 'En curso' },
   completada: { dot: 'bg-green-500', text: 'text-green-700', label: 'Completada' },
-  omitida:    { dot: 'bg-gray-300', text: 'text-gray-400', label: 'Omitida' },
+  omitida:    { dot: 'bg-gray-300', text: 'text-gray-500', label: 'Omitida' },
 }
 
 export function ProgramStages({ progreso }: ProgramStagesProps) {
@@ -104,7 +104,7 @@ export function ProgramStages({ progreso }: ProgramStagesProps) {
 
             <div className="flex flex-col gap-1">
               <div className="flex flex-wrap items-baseline gap-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
                   {etapa.numero}
                 </span>
                 <h3 className="text-base font-semibold text-gray-900">{etapa.titulo}</h3>

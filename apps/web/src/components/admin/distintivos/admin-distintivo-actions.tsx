@@ -192,7 +192,7 @@ export function AdminDistintivoActions({
                     aria-label={`${label} accesibles`}
                     className="w-16 rounded-md border border-gray-300 px-2 py-1 text-sm focus:border-[#005fcc] focus:outline-none focus:ring-1 focus:ring-[#005fcc]"
                   />
-                  <span className="self-center text-gray-400">/</span>
+                  <span className="self-center text-gray-500">/</span>
                   <input
                     type="number"
                     min={0}

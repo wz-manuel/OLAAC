@@ -56,7 +56,7 @@ export default async function MisReportesPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="font-mono text-xs text-gray-400">{ticket.folio}</p>
+                    <p className="font-mono text-xs text-gray-500">{ticket.folio}</p>
                     <p className="mt-0.5 truncate text-sm font-medium text-gray-900">{ticket.titulo}</p>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
@@ -64,7 +64,7 @@ export default async function MisReportesPage() {
                     <StatusBadge status={ticket.estado} />
                   </div>
                 </div>
-                <p className="mt-2 text-xs text-gray-400">
+                <p className="mt-2 text-xs text-gray-500">
                   Creado el {new Date(ticket.created_at).toLocaleDateString('es-MX')}
                   {ticket.resolved_at && ` · Resuelto el ${new Date(ticket.resolved_at).toLocaleDateString('es-MX')}`}
                 </p>

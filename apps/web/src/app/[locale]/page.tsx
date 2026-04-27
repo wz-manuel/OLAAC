@@ -14,15 +14,16 @@ export const metadata: Metadata = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
+// Colores WCAG AA: texto sobre fondo blanco ≥4.5:1 · texto sobre fondo claro con contraste suficiente
 function scoreColor(score: number | null): string {
-  if (score === null) return 'text-gray-400'
-  if (score >= 90) return 'text-green-600'
-  if (score >= 50) return 'text-yellow-600'
-  return 'text-red-600'
+  if (score === null) return 'text-gray-500'
+  if (score >= 90) return 'text-green-900'
+  if (score >= 50) return 'text-yellow-900'
+  return 'text-red-900'
 }
 
 function scoreBg(score: number | null): string {
-  if (score === null) return 'bg-gray-100'
+  if (score === null) return 'bg-gray-100 border-gray-200'
   if (score >= 90) return 'bg-green-50 border-green-200'
   if (score >= 50) return 'bg-yellow-50 border-yellow-200'
   return 'bg-red-50 border-red-200'
@@ -168,7 +169,7 @@ export default async function HomePage() {
                     >
                       {site.nombre_sitio}
                     </Link>
-                    <p className="text-xs text-gray-400">{site.pais}</p>
+                    <p className="text-xs text-gray-500">{site.pais}</p>
                   </div>
                   <div
                     className={`flex h-10 w-14 shrink-0 items-center justify-center rounded-lg border text-sm font-bold ${scoreBg(site.accessibility_score)} ${scoreColor(site.accessibility_score)}`}
@@ -180,7 +181,7 @@ export default async function HomePage() {
               ))}
             </ol>
           ) : (
-            <div className="mt-8 rounded-xl border border-dashed border-gray-300 bg-white px-6 py-10 text-center text-sm text-gray-400">
+            <div className="mt-8 rounded-xl border border-dashed border-gray-300 bg-white px-6 py-10 text-center text-sm text-gray-500">
               Los datos del ranking se actualizan cada domingo de forma automática.
             </div>
           )}
@@ -219,7 +220,7 @@ export default async function HomePage() {
 
               {featuredCourse && (
                 <div className="mt-6 rounded-lg border border-gray-100 bg-gray-50 p-4">
-                  <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
+                  <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
                     Curso destacado
                   </p>
                   <p className="mt-1 text-sm font-semibold text-gray-900">
@@ -393,7 +394,7 @@ export default async function HomePage() {
                         {excerpt}
                       </p>
                     )}
-                    <time dateTime={post.fecha} className="mt-3 text-xs text-gray-400">
+                    <time dateTime={post.fecha} className="mt-3 text-xs text-gray-500">
                       {new Date(post.fecha).toLocaleDateString('es-MX', {
                         year: 'numeric',
                         month: 'long',

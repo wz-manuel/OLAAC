@@ -74,7 +74,7 @@ export function ViolationsAccordion({ violations, className }: ViolationsAccordi
                 <span className="flex-1 font-mono text-xs text-gray-700">{v.id}</span>
                 {/* Chevron */}
                 <svg
-                  className="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                  className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-180"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"

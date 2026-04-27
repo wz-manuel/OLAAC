@@ -11,7 +11,10 @@
     "lint:a11y": "eslint . --ext .tsx --rulesdir ../../node_modules/eslint-plugin-jsx-a11y/lib/rules",
     "type-check": "tsc --noEmit",
     "lhci": "lhci autorun",
-    "clean": "rm -rf .next .turbo"
+    "clean": "rm -rf .next .turbo",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.1036.0",
@@ -34,9 +37,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.2",
     "@lhci/cli": "^0.14.0",
     "@olaac/eslint-config": "workspace:*",
     "@olaac/tsconfig": "workspace:*",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

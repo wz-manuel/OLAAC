@@ -68,7 +68,7 @@ export function ScoreTrendChart({ snapshots, siteName }: ScoreTrendChartProps) {
 
   if (points.length === 0) {
     return (
-      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-gray-200 bg-gray-50 text-sm text-gray-400">
+      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-gray-200 bg-gray-50 text-sm text-gray-500">
         Sin datos históricos disponibles.
       </div>
     )
@@ -99,7 +99,7 @@ export function ScoreTrendChart({ snapshots, siteName }: ScoreTrendChartProps) {
         <span className="text-sm font-medium text-gray-700">
           Tendencia histórica
         </span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-gray-500">
           {points.length} auditoría{points.length !== 1 ? 's' : ''}
         </span>
       </figcaption>

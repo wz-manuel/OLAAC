@@ -47,7 +47,7 @@ export default async function ReportePaisPage({ params }: Props) {
             <span className="block text-lg font-normal text-gray-500">Informe de accesibilidad web · {year}</span>
           </h1>
           {stats.last_audit && (
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-gray-500">
               Datos al <time dateTime={stats.last_audit}>{formatDateLong(stats.last_audit)}</time>
             </p>
           )}
@@ -76,7 +76,7 @@ export default async function ReportePaisPage({ params }: Props) {
           <div key={kpi.label} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
             <p className="text-2xl font-bold text-[#252858]">
               {kpi.value}
-              <span className="text-sm font-normal text-gray-400">{kpi.sub}</span>
+              <span className="text-sm font-normal text-gray-500">{kpi.sub}</span>
             </p>
             <p className={`mt-0.5 text-xs ${kpi.danger ? 'text-red-600 font-medium' : 'text-gray-500'}`}>{kpi.label}</p>
           </div>
@@ -103,12 +103,12 @@ export default async function ReportePaisPage({ params }: Props) {
             <tbody className="divide-y divide-gray-100">
               {sites.map((site, i) => (
                 <tr key={site.alias} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="px-4 py-2.5 text-xs text-gray-400">{i + 1}</td>
+                  <td className="px-4 py-2.5 text-xs text-gray-500">{i + 1}</td>
                   <td className="px-4 py-2.5">
                     <Link href={`/scores/${site.alias}`} className="font-medium text-gray-900 hover:text-[#005fcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded">
                       {site.nombre_sitio}
                     </Link>
-                    <p className="text-xs text-gray-400 font-mono">{site.url}</p>
+                    <p className="text-xs text-gray-500 font-mono">{site.url}</p>
                   </td>
                   <td className="px-4 py-2.5 text-xs text-gray-500 hidden sm:table-cell">
                     {site.categoria}{site.subcategoria ? ` · ${site.subcategoria}` : ''}

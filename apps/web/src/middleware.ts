@@ -70,10 +70,12 @@ export async function middleware(request: NextRequest) {
 
   const { supabaseResponse, user } = await updateSession(request)
 
+  // Mezclar cookies de sesión Supabase en la respuesta i18n (cubre redirects y rewrites)
+  supabaseResponse.cookies.getAll().forEach((cookie) => {
+    intlResponse.cookies.set(cookie.name, cookie.value, cookie)
+  })
+
   if (isI18nRedirect) {
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      intlResponse.cookies.set(cookie.name, cookie.value, cookie)
-    })
     return intlResponse
   }
 
@@ -96,7 +98,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(homeUrl)
   }
 
-  return supabaseResponse
+  // Retornar intlResponse (puede tener rewrite para el locale por defecto)
+  return intlResponse
 }
 
 export const config = {

@@ -205,7 +205,7 @@ export default function DatosAbiertosPage() {
           <h2 id="endpoints-heading" className="mb-2 text-xl font-semibold text-gray-900">
             Endpoints disponibles
           </h2>
-          <p className="mb-8 text-sm text-gray-500">
+          <p className="mb-8 text-sm text-gray-700">
             URL base: <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs">https://olaac.org/api/v1</code>
           </p>
 
@@ -249,9 +249,17 @@ export default function DatosAbiertosPage() {
                 <div className="border-b border-gray-200 bg-gray-50 px-4 py-2">
                   <span className="text-xs font-semibold text-gray-700">{ex.label}</span>
                 </div>
-                <pre className="overflow-x-auto bg-[#1e1e2e] p-4 text-xs leading-relaxed text-gray-300">
-                  <code>{ex.code}</code>
-                </pre>
+                {/* tabIndex permite navegación de teclado en la región scrollable */}
+                <div
+                  role="region"
+                  aria-label={`Ejemplo de código: ${ex.label}`}
+                  tabIndex={0}
+                  className="overflow-x-auto bg-[#1e1e2e]"
+                >
+                  <pre className="p-4 text-xs leading-relaxed text-gray-300">
+                    <code>{ex.code}</code>
+                  </pre>
+                </div>
               </div>
             ))}
           </div>

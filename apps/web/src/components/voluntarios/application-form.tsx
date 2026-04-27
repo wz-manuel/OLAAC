@@ -170,7 +170,7 @@ export function ApplicationForm() {
           aria-describedby={state.fieldErrors?.motivacion ? 'error-motivacion' : 'hint-motivacion'}
           rows={5}
           placeholder="¿Por qué quieres ser auditor de accesibilidad? ¿Qué impacto esperas generar? ¿Tienes experiencia con personas con discapacidad o en tecnología accesible?"
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
         />
         {state.fieldErrors?.motivacion ? (
           <p id="error-motivacion" role="alert" className="text-xs text-red-600">
@@ -195,7 +195,7 @@ export function ApplicationForm() {
           rows={3}
           aria-describedby="hint-experiencia"
           placeholder="Ej: desarrollador web, diseñador UX, docente de TIC, voluntario en organización de discapacidad…"
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
         />
         <p id="hint-experiencia" className="text-xs text-gray-500">
           No es requisito. Comparte cualquier experiencia relevante con tecnología, educación o inclusión.

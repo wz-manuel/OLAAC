@@ -57,12 +57,12 @@ export default async function SolicitarPage() {
       {/* Indicador de pasos */}
       <nav aria-label="Pasos de la solicitud" className="mb-8">
         <ol className="flex gap-2 text-sm">
-          <li className={`flex items-center gap-1.5 font-medium ${!org ? 'text-[#005fcc]' : 'text-gray-400 line-through'}`}>
+          <li className={`flex items-center gap-1.5 font-medium ${!org ? 'text-[#005fcc]' : 'text-gray-500 line-through'}`}>
             <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-current text-xs text-white">1</span>
             Datos de la organización
           </li>
           <li aria-hidden="true" className="text-gray-300">→</li>
-          <li className={`flex items-center gap-1.5 font-medium ${org ? 'text-[#005fcc]' : 'text-gray-400'}`}>
+          <li className={`flex items-center gap-1.5 font-medium ${org ? 'text-[#005fcc]' : 'text-gray-500'}`}>
             <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-current text-xs text-white">2</span>
             Nivel solicitado
           </li>

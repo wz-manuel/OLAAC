@@ -65,7 +65,7 @@ function CriterioRow({
     <div className="border-b border-gray-100 py-3 last:border-0">
       <div className="flex items-start gap-3">
         {/* Código */}
-        <span className="w-12 shrink-0 font-mono text-xs text-gray-400 pt-0.5">{codigo}</span>
+        <span className="w-12 shrink-0 font-mono text-xs text-gray-500 pt-0.5">{codigo}</span>
 
         {/* Nombre + badges + controles */}
         <div className="min-w-0 flex-1">
@@ -81,7 +81,7 @@ function CriterioRow({
               {nivel}
             </span>
             {es_21 && (
-              <span className="text-[10px] text-gray-400">2.1</span>
+              <span className="text-[10px] text-gray-500">2.1</span>
             )}
           </div>
 
@@ -121,7 +121,7 @@ function CriterioRow({
                 value={notas}
                 onChange={e => onNotas(codigo, e.target.value)}
                 placeholder="Notas opcionales: describe el hallazgo o la razón del resultado…"
-                className="w-full resize-none rounded border border-gray-200 px-2 py-1 text-xs text-gray-700 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#005fcc]"
+                className="w-full resize-none rounded border border-gray-200 px-2 py-1 text-xs text-gray-700 placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#005fcc]"
               />
             </div>
           )}
@@ -156,7 +156,7 @@ function PrincipioSection({ principio, estado, onResultado, onNotas }: Principal
         <div className="flex items-center gap-3">
           {/* Chevron */}
           <svg
-            className="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-90"
+            className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-90"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
@@ -177,7 +177,7 @@ function PrincipioSection({ principio, estado, onResultado, onNotas }: Principal
               )}
             </>
           )}
-          <span className="text-gray-400">{evaluados.length}/{criterios.length}</span>
+          <span className="text-gray-500">{evaluados.length}/{criterios.length}</span>
         </div>
       </summary>
 

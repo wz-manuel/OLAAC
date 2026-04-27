@@ -109,17 +109,17 @@ export default async function AdminVoluntarioDetailPage({
 
         <dl className="space-y-4 text-sm">
           <div>
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Motivación</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Motivación</dt>
             <dd className="mt-1 whitespace-pre-wrap text-gray-700">{application.motivacion}</dd>
           </div>
           {application.experiencia_previa && (
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Experiencia previa</dt>
+              <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Experiencia previa</dt>
               <dd className="mt-1 whitespace-pre-wrap text-gray-700">{application.experiencia_previa}</dd>
             </div>
           )}
           <div>
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Solicitud enviada</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Solicitud enviada</dt>
             <dd className="mt-1 text-gray-700">
               {new Date(application.created_at).toLocaleDateString('es-MX', { dateStyle: 'long' })}
             </dd>
@@ -180,13 +180,13 @@ export default async function AdminVoluntarioDetailPage({
                   </span>
                   <span className={`flex-1 ${completado ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
                     {course.titulo}
-                    {item.obligatorio && <span className="ml-1 text-xs text-gray-400">(obligatorio)</span>}
+                    {item.obligatorio && <span className="ml-1 text-xs text-gray-500">(obligatorio)</span>}
                   </span>
                   {!completado && progreso > 0 && (
                     <span className="text-xs text-[#005fcc]">{Math.round(progreso)}%</span>
                   )}
                   {!completado && !enrollment && (
-                    <span className="text-xs text-gray-400">Sin iniciar</span>
+                    <span className="text-xs text-gray-500">Sin iniciar</span>
                   )}
                 </li>
               )
@@ -210,7 +210,7 @@ export default async function AdminVoluntarioDetailPage({
                     <p className="font-mono text-xs text-gray-500 mb-1">{ticket.folio}</p>
                   )}
                   <p className="text-gray-700 line-clamp-2">{sub.resumen}</p>
-                  <p className="mt-1 text-xs text-gray-400">
+                  <p className="mt-1 text-xs text-gray-500">
                     {new Date(sub.submitted_at).toLocaleDateString('es-MX', { dateStyle: 'medium' })}
                   </p>
                 </li>

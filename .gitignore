@@ -59,3 +59,8 @@ identidad/*.ai
 identidad/*.eps
 identidad/*.pdf
 .vercel
+
+# Playwright
+playwright-report/
+test-results/
+

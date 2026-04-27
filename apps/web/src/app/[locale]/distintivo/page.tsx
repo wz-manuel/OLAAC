@@ -163,7 +163,7 @@ export default async function DistintivoPage() {
                 {plan.nombre}
               </p>
               <p className="mt-2 text-2xl font-extrabold text-gray-900">{plan.precio}</p>
-              <p className="text-xs text-gray-500">{plan.subprecio}</p>
+              <p className="text-xs text-gray-600">{plan.subprecio}</p>
               <p className="mt-4 flex-1 text-sm text-gray-600">{plan.descripcion}</p>
               <ul className="mt-5 space-y-2">
                 {plan.items.map((item) => (
@@ -185,7 +185,7 @@ export default async function DistintivoPage() {
         </div>
         <p className="mt-5 text-center text-xs text-gray-500">
           ¿Tu organización financia becas para otras?{' '}
-          <Link href="/donativos" className="text-[#005fcc] underline-offset-2 hover:underline">
+          <Link href="/donativos" className="text-[#005fcc] underline underline-offset-2">
             Conoce cómo apoyar el fondo de becas →
           </Link>
         </p>

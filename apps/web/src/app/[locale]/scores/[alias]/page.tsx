@@ -128,7 +128,7 @@ export default async function ScoreDetailPage({ params }: Props) {
           </a>
         </div>
 
-        <p className="mt-1 text-xs text-gray-400">
+        <p className="mt-1 text-xs text-gray-500">
           Última auditoría:{' '}
           <time dateTime={metric.measured_at}>{measuredDate}</time>
         </p>
@@ -144,7 +144,7 @@ export default async function ScoreDetailPage({ params }: Props) {
         ) : (
           <div className="flex flex-col items-center gap-1">
             <span className="text-4xl font-bold text-gray-300" aria-hidden="true">—</span>
-            <span className="text-xs text-gray-400">Sin dato</span>
+            <span className="text-xs text-gray-500">Sin dato</span>
           </div>
         )}
 
@@ -156,7 +156,7 @@ export default async function ScoreDetailPage({ params }: Props) {
             <>
               <p className="text-3xl font-bold text-gray-900 tabular-nums">
                 {scoreInt}
-                <span className="ml-1 text-base font-normal text-gray-400">/ 100</span>
+                <span className="ml-1 text-base font-normal text-gray-500">/ 100</span>
               </p>
               <p className="text-sm text-gray-600">
                 Calificación: <strong>{label}</strong>

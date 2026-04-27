@@ -42,6 +42,11 @@
       "outputs": [".lighthouseci/**"],
       "cache": false
     },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "outputs": ["playwright-report/**", "test-results/**"],
+      "cache": false
+    },
     "clean": {
       "cache": false
     }

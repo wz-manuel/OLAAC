@@ -63,7 +63,7 @@ export default function InformarPage() {
       </div>
 
       {/* Política de datos */}
-      <p className="mt-6 text-xs text-gray-400 text-center">
+      <p className="mt-6 text-xs text-gray-500 text-center">
         Al enviar aceptas nuestra{' '}
         <Link
           href="/politica-privacidad"

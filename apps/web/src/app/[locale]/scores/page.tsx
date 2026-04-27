@@ -100,7 +100,7 @@ export default async function ScoresDashboardPage() {
         <h2 className="mb-3 text-base font-medium text-gray-700">
           Sitios monitoreados{' '}
           {rows.length > 0 && (
-            <span className="font-normal text-gray-400">({rows.length})</span>
+            <span className="font-normal text-gray-500">({rows.length})</span>
           )}
         </h2>
 
@@ -176,7 +176,7 @@ export default async function ScoresDashboardPage() {
                     <td className="px-4 py-3 text-sm text-gray-600 hidden md:table-cell">
                       <span>{row.categoria}</span>
                       {row.subcategoria && (
-                        <span className="ml-1 text-xs text-gray-400">· {row.subcategoria}</span>
+                        <span className="ml-1 text-xs text-gray-500">· {row.subcategoria}</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-center">
@@ -186,7 +186,7 @@ export default async function ScoresDashboardPage() {
                         <span className="text-gray-300" aria-label="Sin dato">—</span>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-xs text-gray-400 hidden lg:table-cell">
+                    <td className="px-4 py-3 text-xs text-gray-500 hidden lg:table-cell">
                       <time dateTime={row.measured_at}>
                         {new Date(row.measured_at).toLocaleDateString('es-MX')}
                       </time>

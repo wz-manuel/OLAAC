@@ -79,14 +79,14 @@ export default async function MarcoLegalPage() {
           <li className="rounded-lg border border-red-200 bg-red-50 p-5 shadow-sm">
             <p className="text-xs font-medium uppercase tracking-wide text-red-700">Sanción alta</p>
             <p className="mt-2 text-3xl font-bold text-red-800">{byNivel.alto.length}</p>
-            <p className="mt-1 text-xs text-red-600">
+            <p className="mt-1 text-xs text-red-800">
               {byNivel.alto.map((l) => l.pais).join(', ') || '—'}
             </p>
           </li>
           <li className="rounded-lg border border-amber-200 bg-amber-50 p-5 shadow-sm">
             <p className="text-xs font-medium uppercase tracking-wide text-amber-700">Sanción media</p>
             <p className="mt-2 text-3xl font-bold text-amber-800">{byNivel.medio.length}</p>
-            <p className="mt-1 text-xs text-amber-600">
+            <p className="mt-1 text-xs text-amber-800">
               {byNivel.medio.map((l) => l.pais).join(', ') || '—'}
             </p>
           </li>

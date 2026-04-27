@@ -68,7 +68,7 @@ export default function BlogPage() {
                 )}
 
                 <div className="mt-4 flex items-center gap-4">
-                  <time dateTime={post.fecha} className="text-xs text-gray-400">
+                  <time dateTime={post.fecha} className="text-xs text-gray-500">
                     {new Date(post.fecha).toLocaleDateString('es-MX', {
                       year: 'numeric', month: 'long', day: 'numeric',
                     })}

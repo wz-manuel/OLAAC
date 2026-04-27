@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <time
           dateTime={post.fecha}
-          className="mt-4 block text-sm text-gray-400"
+          className="mt-4 block text-sm text-gray-500"
         >
           {new Date(post.fecha).toLocaleDateString('es-MX', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',

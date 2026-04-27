@@ -128,7 +128,7 @@ export default async function AdminVoluntariosPage({
                           {AUDITOR_STATUS[profile.estado] ?? profile.estado}
                         </span>
                       ) : (
-                        <span className="text-gray-400">—</span>
+                        <span className="text-gray-500">—</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-500">

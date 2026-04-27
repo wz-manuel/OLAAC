@@ -31,7 +31,7 @@ export default async function SolicitarUrlPage() {
         <SolicitarUrlForm />
       </div>
 
-      <p className="mt-4 text-xs text-gray-400">
+      <p className="mt-4 text-xs text-gray-500">
         Las solicitudes son revisadas por el equipo OLAAC. Recibirás actualizaciones a través del sistema de tickets.
       </p>
     </div>

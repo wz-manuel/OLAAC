@@ -70,7 +70,7 @@ export default async function AdminCoberturaPage() {
           { label: 'Cobertura global',   value: `${pctGlobal}%` },
         ].map(stat => (
           <div key={stat.label} className="rounded-lg border border-gray-200 bg-white p-4 text-center">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">{stat.label}</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">{stat.label}</dt>
             <dd className="mt-1 text-2xl font-bold text-gray-900">{stat.value}</dd>
           </div>
         ))}
@@ -104,7 +104,7 @@ export default async function AdminCoberturaPage() {
                     </td>
                     <td className="px-4 py-3 text-right text-gray-700">{p.auditados_total ?? 0}</td>
                     <td className="px-4 py-3 text-right text-gray-500">{p.meta_total ?? 0}</td>
-                    <td className={`px-4 py-3 text-right font-semibold ${pct >= 100 ? 'text-green-700' : pct >= 50 ? 'text-amber-600' : 'text-gray-400'}`}>
+                    <td className={`px-4 py-3 text-right font-semibold ${pct >= 100 ? 'text-green-700' : pct >= 50 ? 'text-amber-600' : 'text-gray-500'}`}>
                       {pct}%
                     </td>
                     <td className="px-4 py-3 text-center text-gray-600">
@@ -159,7 +159,7 @@ export default async function AdminCoberturaPage() {
                     <td className="px-4 py-2.5 text-gray-600">{CATEGORIA_LABEL[row.categoria ?? ''] ?? row.categoria}</td>
                     <td className="px-4 py-2.5 text-right text-gray-700">{aud}</td>
                     <td className="px-4 py-2.5 text-right text-gray-500">{meta}</td>
-                    <td className={`px-4 py-2.5 text-right font-medium ${row.cumple_umbral ? 'text-green-700' : aud > 0 ? 'text-amber-600' : 'text-gray-400'}`}>
+                    <td className={`px-4 py-2.5 text-right font-medium ${row.cumple_umbral ? 'text-green-700' : aud > 0 ? 'text-amber-600' : 'text-gray-500'}`}>
                       {pct}%
                     </td>
                     <td className="px-4 py-2.5 text-center">

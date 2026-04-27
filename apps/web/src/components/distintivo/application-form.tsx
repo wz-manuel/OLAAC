@@ -116,7 +116,7 @@ export function ApplicationForm() {
 
         <div>
           <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700">
-            Descripción breve <span className="text-gray-400">(opcional)</span>
+            Descripción breve <span className="text-gray-500">(opcional)</span>
           </label>
           <textarea
             id="descripcion"
@@ -166,7 +166,7 @@ export function ApplicationForm() {
 
           <div>
             <label htmlFor="contacto_telefono" className="block text-sm font-medium text-gray-700">
-              Teléfono <span className="text-gray-400">(opcional)</span>
+              Teléfono <span className="text-gray-500">(opcional)</span>
             </label>
             <input
               id="contacto_telefono"

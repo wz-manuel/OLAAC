@@ -110,7 +110,7 @@ export default async function AdminMarcoLegalPage() {
                       <span className="text-xl" aria-hidden="true">{getFlagEmoji(ley.iso_code)}</span>
                       <div>
                         <p className="font-medium text-gray-900">{ley.pais}</p>
-                        <p className="text-xs font-mono text-gray-400">{ley.iso_code}</p>
+                        <p className="text-xs font-mono text-gray-500">{ley.iso_code}</p>
                       </div>
                     </div>
                   </td>
@@ -162,7 +162,7 @@ export default async function AdminMarcoLegalPage() {
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-xs text-gray-400 hidden lg:table-cell">
+                  <td className="px-4 py-3 text-xs text-gray-500 hidden lg:table-cell">
                     <time dateTime={ley.updated_at}>
                       {new Date(ley.updated_at).toLocaleDateString('es-MX')}
                     </time>

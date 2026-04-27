@@ -119,7 +119,7 @@ export function CriticalIssuesAccordion({ issues, className }: CriticalIssuesAcc
                 {/* Contador de elementos afectados */}
                 {issue.affectedCount > 0 && (
                   <span
-                    className="shrink-0 text-xs text-gray-400 tabular-nums"
+                    className="shrink-0 text-xs text-gray-500 tabular-nums"
                     aria-label={`${issue.affectedCount} elemento${issue.affectedCount !== 1 ? 's' : ''} afectado${issue.affectedCount !== 1 ? 's' : ''}`}
                   >
                     {issue.affectedCount} elem.
@@ -128,7 +128,7 @@ export function CriticalIssuesAccordion({ issues, className }: CriticalIssuesAcc
 
                 {/* Chevron animado */}
                 <svg
-                  className="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                  className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-180"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"

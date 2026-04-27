@@ -109,7 +109,7 @@ export default async function AdminTicketsPage({
             >
               <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                 <div>
-                  <p className="font-mono text-xs text-gray-400">{ticket.folio}</p>
+                  <p className="font-mono text-xs text-gray-500">{ticket.folio}</p>
                   <Link
                     href={`/tickets/${ticket.id}`}
                     className="mt-0.5 block text-sm font-medium text-gray-900 hover:text-[#005fcc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"

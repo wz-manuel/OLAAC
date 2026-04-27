@@ -53,7 +53,7 @@ export function LanguageSwitcher() {
       </select>
       {/* chevron decorativo */}
       <svg
-        className="pointer-events-none absolute right-1.5 h-3 w-3 text-gray-400"
+        className="pointer-events-none absolute right-1.5 h-3 w-3 text-gray-500"
         viewBox="0 0 12 12"
         fill="none"
         aria-hidden="true"

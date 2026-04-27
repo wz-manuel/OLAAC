@@ -66,7 +66,6 @@ export function KpiCards({ avgA11y, totalSites, lastMeasuredAt, criticalCount }:
       {cards.map((card) => (
         <li
           key={card.id}
-          role="region"
           aria-label={card.description}
           className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
         >

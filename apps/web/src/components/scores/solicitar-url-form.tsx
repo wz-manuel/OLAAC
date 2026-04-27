@@ -144,7 +144,7 @@ export function SolicitarUrlForm() {
           </div>
           <Toast.Close
             aria-label="Cerrar notificación"
-            className="shrink-0 rounded p-1 text-gray-400 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc]"
+            className="shrink-0 rounded p-1 text-gray-500 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc]"
           >
             <svg className="h-4 w-4" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
               <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
@@ -271,7 +271,7 @@ export function SolicitarUrlForm() {
           aria-describedby={state.fieldErrors?.motivo ? 'error-motivo' : 'hint-motivo'}
           rows={4}
           placeholder="¿Por qué es importante auditar este sitio? ¿Qué barreras de accesibilidad has identificado? ¿A qué población impacta?"
-          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
+          className="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:border-red-600"
         />
         {state.fieldErrors?.motivo ? (
           <p id="error-motivo" role="alert" className="text-xs text-red-600">

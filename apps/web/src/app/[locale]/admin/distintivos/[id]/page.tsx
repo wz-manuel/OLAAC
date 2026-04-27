@@ -176,7 +176,7 @@ export default async function AdminDistintivoDetailPage({ params }: Props) {
                   <p className="text-xs text-gray-500">{m.label}</p>
                   <p className="mt-1 text-2xl font-bold text-gray-900">
                     {m.value}
-                    <span className="ml-1 text-sm font-normal text-gray-400">/ {m.total}</span>
+                    <span className="ml-1 text-sm font-normal text-gray-500">/ {m.total}</span>
                   </p>
                   <div className="mt-2 h-1.5 rounded-full bg-gray-200">
                     <div

@@ -52,7 +52,7 @@ function StatusChip({ pct }: { pct: number }) {
   if (pct >= 100) return <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">Completa</span>
   if (pct >= 50)  return <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">En progreso</span>
   if (pct > 0)    return <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">Iniciando</span>
-  return               <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500">Sin datos</span>
+  return               <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700">Sin datos</span>
 }
 
 function ProgressBar({ value, max, label }: { value: number; max: number; label: string }) {
@@ -128,19 +128,19 @@ export default async function CoberturaPage() {
         <h2 id="stats-heading" className="sr-only">Estadísticas globales de cobertura</h2>
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div className="rounded-xl border border-gray-200 bg-white p-5 text-center">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Países</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Países</dt>
             <dd className="mt-1 text-3xl font-bold text-gray-900">{totalPaises}</dd>
           </div>
           <div className="rounded-xl border border-gray-200 bg-white p-5 text-center">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Sitios auditados</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Sitios auditados</dt>
             <dd className="mt-1 text-3xl font-bold text-gray-900">{totalAuditados}</dd>
           </div>
           <div className="rounded-xl border border-gray-200 bg-white p-5 text-center">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Meta global</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Meta global</dt>
             <dd className="mt-1 text-3xl font-bold text-gray-900">{totalMeta}</dd>
           </div>
           <div className={`rounded-xl border p-5 text-center ${pctGlobal >= 100 ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'}`}>
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-400">Cobertura alcanzada</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Cobertura alcanzada</dt>
             <dd className={`mt-1 text-3xl font-bold ${pctGlobal >= 100 ? 'text-green-700' : pctGlobal >= 50 ? 'text-amber-600' : 'text-gray-900'}`}>
               {pctGlobal}%
             </dd>
@@ -236,15 +236,15 @@ export default async function CoberturaPage() {
                     </td>
                     {categorias.map(cat => {
                       const fila = filas.find(f => f.categoria === cat)
-                      if (!fila) return <td key={cat} className="px-4 py-3 text-center text-gray-300">—</td>
+                      if (!fila) return <td key={cat} className="px-4 py-3 text-center text-gray-500">—</td>
                       const aud  = fila.sitios_auditados ?? 0
                       const meta = fila.umbral_minimo ?? 0
                       return (
                         <td key={cat} className="px-4 py-3 text-center">
-                          <span className={`font-medium ${fila.cumple_umbral ? 'text-green-700' : aud > 0 ? 'text-amber-600' : 'text-gray-400'}`}>
+                          <span className={`font-medium ${fila.cumple_umbral ? 'text-green-700' : aud > 0 ? 'text-amber-700' : 'text-gray-500'}`}>
                             {aud}
                           </span>
-                          <span className="text-gray-300">/{meta}</span>
+                          <span className="text-gray-500">/{meta}</span>
                         </td>
                       )
                     })}

@@ -173,7 +173,7 @@ export default async function AdminDistintivosPage({
                       >
                         {org?.nombre_organizacion ?? '—'}
                       </Link>
-                      <p className="font-mono text-xs text-gray-400">{s.folio}</p>
+                      <p className="font-mono text-xs text-gray-500">{s.folio}</p>
                     </td>
                     <td className="hidden px-4 py-3 text-xs text-gray-600 sm:table-cell">
                       {TIPO_LABEL[org?.tipo ?? ''] ?? org?.tipo ?? '—'} · {org?.pais ?? '—'}
@@ -182,7 +182,7 @@ export default async function AdminDistintivosPage({
                       {s.nivel_otorgado ? (
                         <DistintivoChip nivel={s.nivel_otorgado as 'oro' | 'platino' | 'diamante'} />
                       ) : (
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-gray-500">
                           Solicita: {s.nivel_solicitado}
                         </span>
                       )}
