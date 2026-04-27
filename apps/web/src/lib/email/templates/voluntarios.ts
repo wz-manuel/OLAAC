@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, divider, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, divider, sectionHeading, textFooter } from '../base'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
 
@@ -21,7 +21,8 @@ export function templateVoluntarioRecibido(opts: {
 Hola ${opts.nombre}, recibimos tu solicitud para el programa de auditores voluntarios.
 Te notificaremos cuando sea revisada.
 
-Academia OLAAC: ${APP_URL}`
+Academia OLAAC: ${APP_URL}
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -52,7 +53,8 @@ export function templateVoluntarioAprobado(opts: {
 Hola ${opts.nombre}, tu solicitud como auditor voluntario OLAAC fue aprobada.
 Completa la ruta de formación para obtener tu certificación.
 
-Panel de voluntario: ${APP_URL}/voluntarios/mi-panel`
+Panel de voluntario: ${APP_URL}/voluntarios/mi-panel
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -77,7 +79,8 @@ export function templateVoluntarioRechazado(opts: {
 Hola ${opts.nombre}, en esta ocasión no pudimos continuar con tu incorporación al programa.
 ${opts.motivo ? `Comentario: ${opts.motivo}` : ''}
 
-Puedes seguir contribuyendo en: ${APP_URL}/tickets/nuevo`
+Puedes seguir contribuyendo en: ${APP_URL}/tickets/nuevo
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -108,7 +111,8 @@ export function templateAuditorCertificado(opts: {
 Hola ${opts.nombre}, completaste la ruta de formación OLAAC.
 Eres auditor certificado del Observatorio Latinoamericano de Accesibilidad.
 
-Panel de auditor: ${APP_URL}/voluntarios/mi-panel`
+Panel de auditor: ${APP_URL}/voluntarios/mi-panel
+${textFooter}`
 
   return { subject, html, text }
 }

@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, highlightBox, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, highlightBox, sectionHeading, textFooter } from '../base'
 
 const ACADEMY_URL = process.env.NEXT_PUBLIC_ACADEMY_URL ?? 'https://academia.olaac.org'
 
@@ -22,7 +22,8 @@ export function templateCertificadoEmitido(opts: {
 Curso: ${opts.tituloCurso}
 Folio: ${opts.folio}
 
-Descargar: ${ACADEMY_URL}/certificados/${opts.folio}`
+Descargar: ${ACADEMY_URL}/certificados/${opts.folio}
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -44,7 +45,8 @@ export function templateRolEstudianteAsignado(opts: {
 
 Hola ${opts.nombre}, estás inscrito/a en ${opts.tituloCurso}.
 
-Comenzar: ${ACADEMY_URL}/cursos`
+Comenzar: ${ACADEMY_URL}/cursos
+${textFooter}`
 
   return { subject, html, text }
 }

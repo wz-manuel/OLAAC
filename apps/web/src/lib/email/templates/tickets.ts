@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, highlightBox, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, highlightBox, sectionHeading, textFooter } from '../base'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
 
@@ -39,7 +39,8 @@ Título: ${opts.titulo}
 Categoría: ${opts.categoria}
 Prioridad: ${opts.prioridad}
 
-Seguimiento: ${APP_URL}/tickets/mis-reportes`
+Seguimiento: ${APP_URL}/tickets/mis-reportes
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -85,7 +86,8 @@ export function templateTicketEstadoCambio(opts: {
 Hola ${opts.nombre}, el estado de tu reporte cambió de "${opts.estadoAnterior}" a "${nuevoLabel}".
 ${opts.notas ? `\nNota: ${opts.notas}` : ''}
 
-Ver ticket: ${APP_URL}/tickets/mis-reportes`
+Ver ticket: ${APP_URL}/tickets/mis-reportes
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -112,7 +114,8 @@ Hola ${opts.nombreAdmin}, se te asignó el ticket ${opts.folio}.
 Título: ${opts.titulo}
 Prioridad: ${opts.prioridad}
 
-Gestionar: ${APP_URL}/admin/tickets`
+Gestionar: ${APP_URL}/admin/tickets
+${textFooter}`
 
   return { subject, html, text }
 }

@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, sectionHeading, textFooter } from '../base'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
 
@@ -17,10 +17,7 @@ export function templateBienvenida(nombre: string): { subject: string; html: str
 Tu cuenta en OLAAC ha sido creada y verificada.
 
 Accede al observatorio en: ${APP_URL}
-
----
-Observatorio Latinoamericano de Accesibilidad
-no-reply@olaac.org`
+${textFooter}`
 
   return { subject, html, text }
 }

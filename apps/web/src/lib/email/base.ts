@@ -47,14 +47,39 @@ export function baseTemplate(content: string): string {
 
           <!-- Footer -->
           <tr>
-            <td bgcolor="#f9fafb" style="padding:20px 40px;border-top:1px solid #e5e7eb;">
-              <p style="margin:0 0 6px;font-size:12px;color:#6b7280;font-family:Arial,sans-serif;line-height:1.5;">
-                Este mensaje fue enviado por el Observatorio Latinoamericano de Accesibilidad.<br>
-                Si no esperabas recibirlo, puedes ignorarlo de forma segura.
-              </p>
-              <p style="margin:0;font-size:12px;color:#9ca3af;font-family:Arial,sans-serif;">
-                <a href="${APP_URL}" style="color:#4452a6;text-decoration:none;">olaac.org</a>
-                &nbsp;·&nbsp; no-reply@olaac.org
+            <td bgcolor="#f9fafb" style="padding:24px 40px;border-top:1px solid #e5e7eb;">
+
+              <!-- Aviso cuenta no supervisada -->
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:16px;">
+                <tr>
+                  <td bgcolor="#fffbeb" style="padding:10px 14px;border-radius:6px;border-left:3px solid #f59e0b;">
+                    <p style="margin:0;font-size:12px;color:#92400e;font-family:Arial,sans-serif;line-height:1.5;">
+                      <strong>Cuenta no supervisada.</strong> Este mensaje fue enviado desde no-reply@olaac.org, una dirección de solo notificación. Las respuestas a este correo no serán atendidas. Para contactarnos usa nuestras redes sociales oficiales o <a href="${APP_URL}/tickets/nuevo" style="color:#92400e;font-weight:bold;">crea un ticket</a>.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Redes sociales -->
+              <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:14px;">
+                <tr>
+                  <td align="center" style="font-size:12px;color:#6b7280;font-family:Arial,sans-serif;line-height:2;">
+                    <a href="mailto:hola@olaac.org" style="color:#4452a6;text-decoration:none;font-family:Arial,sans-serif;">✉&nbsp;hola@olaac.org</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="https://www.linkedin.com/company/olaac/" target="_blank" style="color:#4452a6;text-decoration:none;font-family:Arial,sans-serif;">LinkedIn</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="https://x.com/a11yLatam" target="_blank" style="color:#4452a6;text-decoration:none;font-family:Arial,sans-serif;">X&nbsp;@a11yLatam</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="https://www.facebook.com/ObservatorioOLAC" target="_blank" style="color:#4452a6;text-decoration:none;font-family:Arial,sans-serif;">Facebook</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="https://www.youtube.com/@A11YLatam/" target="_blank" style="color:#4452a6;text-decoration:none;font-family:Arial,sans-serif;">YouTube</a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0;font-size:11px;color:#9ca3af;font-family:Arial,sans-serif;text-align:center;">
+                <a href="${APP_URL}" style="color:#9ca3af;text-decoration:none;">olaac.org</a>
+                &nbsp;·&nbsp; Observatorio Latinoamericano de Accesibilidad
               </p>
             </td>
           </tr>
@@ -107,3 +132,18 @@ export function bodyText(text: string): string {
 
 /** Divider */
 export const divider = `<hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0;">`
+
+/** Pie de página para versiones de texto plano */
+export const textFooter = `
+---
+Este mensaje fue enviado desde no-reply@olaac.org (cuenta no supervisada).
+No respondas a este correo — las respuestas no serán atendidas.
+Para contactarnos: hola@olaac.org | olaac.org/tickets/nuevo
+
+Redes sociales oficiales:
+LinkedIn  → linkedin.com/company/olaac
+X         → x.com/a11yLatam
+Facebook  → facebook.com/ObservatorioOLAC
+YouTube   → youtube.com/@A11YLatam
+
+© OLAAC — Observatorio Latinoamericano de Accesibilidad · olaac.org`

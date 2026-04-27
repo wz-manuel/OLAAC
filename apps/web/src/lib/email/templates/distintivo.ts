@@ -1,4 +1,4 @@
-import { baseTemplate, bodyText, ctaButton, divider, highlightBox, sectionHeading } from '../base'
+import { baseTemplate, bodyText, ctaButton, divider, highlightBox, sectionHeading, textFooter } from '../base'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
 
@@ -36,7 +36,8 @@ Folio: ${opts.folio}
 Organización: ${opts.nombreOrganizacion}
 Nivel: ${opts.nivel}
 
-Ver estado: ${APP_URL}/distintivo/mi-organizacion`
+Ver estado: ${APP_URL}/distintivo/mi-organizacion
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -66,7 +67,8 @@ Folio: ${opts.folio}
 Organización: ${opts.nombreOrganizacion}
 ${siguiente ? `Siguiente etapa: ${siguiente}` : '¡Programa completado!'}
 
-Ver progreso: ${APP_URL}/distintivo/mi-organizacion`
+Ver progreso: ${APP_URL}/distintivo/mi-organizacion
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -98,7 +100,8 @@ Organización: ${opts.nombreOrganizacion}
 Folio: ${opts.folio}
 Vigencia: ${opts.vigenciaAnios} año(s)
 
-Descargar: ${APP_URL}/distintivo/verificar/${opts.folio}`
+Descargar: ${APP_URL}/distintivo/verificar/${opts.folio}
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -126,7 +129,8 @@ export function templateDistintivoRechazado(opts: {
 Organización: ${opts.nombreOrganizacion}
 ${opts.motivo ? `Observaciones: ${opts.motivo}` : ''}
 
-Nueva solicitud: ${APP_URL}/distintivo/mi-organizacion`
+Nueva solicitud: ${APP_URL}/distintivo/mi-organizacion
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -151,7 +155,7 @@ export function templateRegresionDetectada(opts: {
     ${divider}
     ${bodyText('Si no se corrige antes de la próxima auditoría, el Distintivo podría ser suspendido. Te recomendamos revisar los criterios WCAG que están fallando y corregirlos.')}
     ${ctaButton('Ver scores en OLAAC', `${APP_URL}/scores`)}
-    ${bodyText('Si tienes dudas, responde a este correo o contáctanos a través del formulario de contacto.')}
+    ${bodyText('Si tienes dudas, contáctanos a través de nuestras <a href="https://olaac.org/tickets/nuevo" style="color:#005fcc;">redes sociales oficiales o crea un ticket</a>. Este correo no está supervisado.')}
   `)
 
   const text = `Alerta de regresión — Distintivo ${opts.folio}
@@ -161,7 +165,8 @@ Score actual: ${opts.scoreActual.toFixed(1)}
 Score mínimo requerido: ${opts.scoreMinimo.toFixed(1)}
 URL verificada: ${opts.urlVerificada}
 
-Ver scores: ${APP_URL}/scores`
+Ver scores: ${APP_URL}/scores
+${textFooter}`
 
   return { subject, html, text }
 }
@@ -192,7 +197,8 @@ Organización: ${opts.nombreOrganizacion}
 Nivel: ${nv}
 Vence en: ${opts.diasRestantes} días (${opts.fechaVencimiento})
 
-Solicitar renovación: ${APP_URL}/distintivo/mi-organizacion`
+Solicitar renovación: ${APP_URL}/distintivo/mi-organizacion
+${textFooter}`
 
   return { subject, html, text }
 }
