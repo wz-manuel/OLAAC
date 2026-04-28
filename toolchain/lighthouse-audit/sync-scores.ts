@@ -359,6 +359,28 @@ async function insertSnapshots(
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
+// Suprimir excepciones de protocolo CDP que escapan al event loop
+//
+// Cuando un sitio agota el timeout, Lighthouse sigue corriendo en background
+// con la conexión Chrome abierta. Al matar Chrome para reiniciarlo, los
+// callbacks pendientes del CDP lanzan "Protocol error / Target closed" como
+// excepciones NO capturables vía .catch() porque provienen de listeners del
+// WebSocket, no de cadenas de promesas. Las suprimimos aquí para que no
+// maten el proceso; cualquier otra excepción no capturada sí lo termina.
+// ──────────────────────────────────────────────────────────────────────────────
+
+process.on('uncaughtException', (err) => {
+  const msg = err?.message ?? ''
+  if (msg.includes('Protocol error') || msg.includes('Target closed') || msg.includes('Session closed')) {
+    // Residuo de Lighthouse en background tras el reinicio de Chrome — ignorar.
+    return
+  }
+  // Cualquier otra excepción sí debe terminar el proceso.
+  console.error('Error fatal no capturado:', err)
+  process.exit(1)
+})
+
+// ──────────────────────────────────────────────────────────────────────────────
 // Orquestador principal
 // ──────────────────────────────────────────────────────────────────────────────
 
