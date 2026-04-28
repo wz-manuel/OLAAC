@@ -273,18 +273,24 @@ async function auditSite(
   chromePort: number,
   timeoutMs: number = 60_000
 ): Promise<{ score: number | null; issues: CriticalIssue[] }> {
+  const lhPromise = lighthouse(url, {
+    port: chromePort,
+    output: 'json',
+    logLevel: 'error', // suprime ruido de Lighthouse en los logs
+    onlyCategories: ['accessibility'],
+    formFactor: 'desktop',
+    screenEmulation: { disabled: true },
+    throttlingMethod: 'provided',      // sin throttling artificial — más rápido
+    disableStorageReset: false,
+    locale: 'es-419',                  // español latinoamericano para titles y explanations
+  })
+
+  // Evita "unhandled rejection" si el timeout gana la carrera y Lighthouse
+  // falla después: el error queda suprimido aquí en lugar de crashear el proceso.
+  lhPromise.catch(() => {})
+
   const result = await Promise.race([
-    lighthouse(url, {
-      port: chromePort,
-      output: 'json',
-      logLevel: 'error', // suprime ruido de Lighthouse en los logs
-      onlyCategories: ['accessibility'],
-      formFactor: 'desktop',
-      screenEmulation: { disabled: true },
-      throttlingMethod: 'provided',      // sin throttling artificial — más rápido
-      disableStorageReset: false,
-      locale: 'es-419',                  // español latinoamericano para titles y explanations
-    }),
+    lhPromise,
     new Promise<never>((_, reject) =>
       setTimeout(() => reject(new Error(`Timeout después de ${timeoutMs / 1000}s`)), timeoutMs)
     ),
@@ -400,18 +406,23 @@ async function main(): Promise<void> {
   sites.forEach((s, i) => log.info(`${String(i + 1).padStart(3)}. [${s.alias}] ${s.url}`))
   log.endGroup()
 
-  // ── Lanzar Chrome (una sola vez para todo el batch) ─────────────────────
+  // ── Lanzar Chrome ────────────────────────────────────────────────────────
+  const chromeFlags = [
+    '--headless',
+    '--no-sandbox',
+    '--disable-gpu',
+    '--disable-dev-shm-usage',
+    '--disable-extensions',
+  ]
+
+  async function launchChrome() {
+    const instance = await chromeLauncher.launch({ chromeFlags })
+    log.success(`Chrome PID ${instance.pid} en puerto ${instance.port}`)
+    return instance
+  }
+
   log.group('Iniciando Chrome headless')
-  const chrome = await chromeLauncher.launch({
-    chromeFlags: [
-      '--headless',
-      '--no-sandbox',
-      '--disable-gpu',
-      '--disable-dev-shm-usage',
-      '--disable-extensions',
-    ],
-  })
-  log.success(`Chrome PID ${chrome.pid} en puerto ${chrome.port}`)
+  let chrome = await launchChrome()
   log.endGroup()
 
   // ── Procesar cada sitio ─────────────────────────────────────────────────
@@ -451,13 +462,32 @@ async function main(): Promise<void> {
         const msg = err instanceof Error ? err.message : String(err)
         log.error(`${site.alias}: ${msg}`)
         summary.failed.push(site.alias)
+
+        // Reiniciar Chrome para limpiar cualquier estado corrupto antes del
+        // siguiente sitio (un timeout o crash de protocolo puede dejar el
+        // proceso interno en estado inválido).
+        try { await chrome.kill() } catch { /* ya muerto */ }
+        if (i < sites.length - 1) {
+          log.group('Reiniciando Chrome')
+          try {
+            chrome = await launchChrome()
+          } catch (launchErr) {
+            const launchMsg = launchErr instanceof Error ? launchErr.message : String(launchErr)
+            log.error(`No se pudo relanzar Chrome: ${launchMsg}`)
+            const remaining = sites.slice(i + 1).map((s) => s.alias)
+            summary.skipped.push(...remaining)
+            log.endGroup()
+            break
+          }
+          log.endGroup()
+        }
       }
 
       log.endGroup()
     }
   } finally {
     // Chrome siempre se cierra, incluso si hay errores
-    await chrome.kill()
+    try { await chrome.kill() } catch { /* ya muerto si se reinició en el último sitio */ }
     log.info('Chrome cerrado.')
   }
 
