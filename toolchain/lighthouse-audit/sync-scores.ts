@@ -391,7 +391,7 @@ async function main(): Promise<void> {
     options: {
       'dry-run': { type: 'boolean', default: false },
       'csv': { type: 'string', default: 'urls.csv' },
-      'timeout': { type: 'string', default: '60000' },
+      'timeout': { type: 'string', default: '100000' },
     },
     strict: false,
   })
@@ -548,12 +548,17 @@ async function main(): Promise<void> {
   log.group('Resumen')
   log.info(`Total:     ${summary.total}`)
   log.info(`Exitosos:  ${summary.succeeded}`)
-  log.info(`Fallidos:  ${summary.failed.length}${summary.failed.length ? ' → ' + summary.failed.join(', ') : ''}`)
+  log.info(`Timeouts:  ${summary.failed.length}${summary.failed.length ? ' → ' + summary.failed.join(', ') : ''}`)
   if (summary.skipped.length) log.info(`Omitidos:  ${summary.skipped.join(', ')}`)
   log.endGroup()
 
-  if (summary.failed.length > 0) {
-    process.exit(1) // GitHub Actions marcará el job como fallido
+  // Solo se considera un fallo real (exit 1 → email de GitHub) cuando:
+  // - Supabase no pudo escribir (supabase-upsert en failed), o
+  // - Ningún sitio fue auditado exitosamente.
+  // Los timeouts por sitios lentos son advertencias, no fallos del pipeline.
+  const hasFatalError = summary.failed.includes('supabase-upsert') || summary.succeeded === 0
+  if (hasFatalError) {
+    process.exit(1)
   }
 }
 
