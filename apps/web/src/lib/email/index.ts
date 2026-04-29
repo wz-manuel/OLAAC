@@ -1,6 +1,7 @@
 import { sendEmail } from './ses'
 import { templateCertificadoEmitido } from './templates/academia'
 import { templateBienvenida } from './templates/auth'
+import { templateContactoRecibido } from './templates/contacto'
 import {
   templateDistintivoEmitido,
   templateDistintivoEtapaCompletada,
@@ -20,6 +21,19 @@ import {
   templateVoluntarioRechazado,
   templateVoluntarioRecibido,
 } from './templates/voluntarios'
+
+// ── Contacto ─────────────────────────────────────────────────────────────────
+
+export async function notifyContactoRecibido(opts: {
+  to: string
+  nombre: string
+  folio: string
+  asunto: string
+  mensaje: string
+}) {
+  const t = templateContactoRecibido(opts)
+  await sendEmail({ to: opts.to, ...t, type: 'contacto_recibido', metadata: { folio: opts.folio } })
+}
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 

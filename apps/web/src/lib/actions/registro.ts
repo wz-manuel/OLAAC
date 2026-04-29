@@ -24,9 +24,12 @@ export interface RegistroResult {
 export async function enviarOtpRegistro(data: EnviarOtpData): Promise<RegistroResult> {
   const supabase = await createClient()
 
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://olaac.org'
+
   const { error } = await supabase.auth.signInWithOtp({
     email: data.email,
     options: {
+      emailRedirectTo: `${appUrl}/auth/callback`,
       shouldCreateUser: true,
       data: {
         nombre_completo: data.nombre,

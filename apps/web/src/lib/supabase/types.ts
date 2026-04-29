@@ -685,6 +685,8 @@ export type Database = {
           folio: string
           id: string
           prioridad: Database["public"]["Enums"]["ticket_priority"]
+          reporter_email: string | null
+          reporter_nombre: string | null
           resolved_at: string | null
           titulo: string
           updated_at: string
@@ -700,6 +702,8 @@ export type Database = {
           folio: string
           id?: string
           prioridad?: Database["public"]["Enums"]["ticket_priority"]
+          reporter_email?: string | null
+          reporter_nombre?: string | null
           resolved_at?: string | null
           titulo: string
           updated_at?: string
@@ -715,6 +719,8 @@ export type Database = {
           folio?: string
           id?: string
           prioridad?: Database["public"]["Enums"]["ticket_priority"]
+          reporter_email?: string | null
+          reporter_nombre?: string | null
           resolved_at?: string | null
           titulo?: string
           updated_at?: string

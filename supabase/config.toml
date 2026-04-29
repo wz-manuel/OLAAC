@@ -22,8 +22,15 @@ port = 54324
 file_size_limit = "50MiB"
 
 [auth]
-site_url = "http://localhost:3000"
-additional_redirect_urls = ["http://localhost:3001"]
+site_url = "https://olaac.org"
+additional_redirect_urls = [
+  "https://olaac.org/auth/callback",
+  "https://academia.olaac.org/auth/callback",
+  "http://localhost:3000",
+  "http://localhost:3000/auth/callback",
+  "http://localhost:3001",
+  "http://localhost:3001/auth/callback",
+]
 jwt_expiry = 3600
 enable_signup = true
 
@@ -31,3 +38,22 @@ enable_signup = true
 enable_signup = true
 double_confirm_changes = true
 enable_confirmations = false
+otp_length = 6
+otp_expiry = 3600
+
+[auth.email.smtp]
+enabled = true
+host = "email-smtp.us-east-2.amazonaws.com"
+port = 587
+user = "env(AWS_ACCESS_KEY_ID)"
+pass = "env(SES_SMTP_PASSWORD)"
+admin_email = "no-reply@olaac.org"
+sender_name = "OLAAC Observatorio"
+
+[auth.email.template.confirmation]
+subject = "Tu código de verificación — OLAAC"
+content_path = "./supabase/templates/otp.html"
+
+[auth.email.template.magic_link]
+subject = "Tu código de verificación — OLAAC"
+content_path = "./supabase/templates/otp.html"
