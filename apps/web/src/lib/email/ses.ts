@@ -1,6 +1,6 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 
 const FROM_ADDRESS = 'OLAAC Observatorio <no-reply@olaac.org>'
 
@@ -61,7 +61,7 @@ export async function sendEmail(params: SendEmailParams): Promise<void> {
 
 async function logNotification(params: SendEmailParams & { status: 'sent' | 'failed' | 'skipped'; error?: string }) {
   try {
-    const supabase = await createClient()
+    const supabase = createServiceClient()
     await supabase.from('notification_log').insert({
       user_id:  params.userId ?? null,
       email:    params.to,
