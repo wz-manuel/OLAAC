@@ -10,7 +10,7 @@ export function GET() {
     version: '1.0.0',
     description:
       'API pública del Observatorio Latinoamericano de Accesibilidad. ' +
-      'Proporciona datos de auditorías Lighthouse de más de 50 sitios web ' +
+      'Proporciona datos de pruebas automáticas de accesibilidad de más de 50 sitios web ' +
       'de gobiernos y universidades de América Latina.',
     base_url: 'https://olaac.org/api/v1',
     docs: 'https://olaac.org/datos-abiertos',

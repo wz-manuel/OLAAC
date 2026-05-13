@@ -22,7 +22,7 @@ const PLANES = [
       'Ideal para organizaciones que quieren comenzar el camino hacia la accesibilidad. Incluye las etapas de concientización y capacitación, un diagnóstico básico y acceso al soporte comunitario.',
     items: [
       'Etapas de concientización y capacitación',
-      'Diagnóstico básico con Lighthouse',
+      'Diagnóstico básico con prueba automática',
       'Acceso a cursos de la Academia OLAAC',
       'Soporte comunitario',
     ],

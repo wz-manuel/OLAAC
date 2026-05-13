@@ -53,3 +53,22 @@ UP — Universidad de Panamá,https://www.up.ac.pa,up-pa,Panamá,Educación,Univ
 Gobierno de Honduras,https://www.gob.hn,gov-hn,Honduras,Gobierno,Portal Nacional
 UNAH — Universidad Nacional Autónoma de Honduras,https://www.unah.edu.hn,unah-hn,Honduras,Educación,Universidad Pública
 Gobierno de El Salvador,https://www.transparencia.gob.sv,gov-sv,El Salvador,Gobierno,Portal Nacional
+# ── Organismos Electorales ────────────────────────────────────────────────────
+INE — Instituto Nacional Electoral,https://ine.mx,ine-mx,México,Gobierno,Electoral
+TSE — Tribunal Superior Electoral,https://www.tse.jus.br,tse-br,Brasil,Gobierno,Electoral
+SERVEL — Servicio Electoral de Chile,https://www.servel.cl,servel-cl,Chile,Gobierno,Electoral
+Registraduría Nacional del Estado Civil,https://www.registraduria.gov.co,registraduria-co,Colombia,Gobierno,Electoral
+ONPE — Oficina Nacional de Procesos Electorales,https://www.onpe.gob.pe,onpe-pe,Perú,Gobierno,Electoral
+CNE — Consejo Nacional Electoral Ecuador,https://www.cne.gob.ec,cne-ec,Ecuador,Gobierno,Electoral
+OEP — Órgano Electoral Plurinacional,https://www.oep.org.bo,oep-bo,Bolivia,Gobierno,Electoral
+TSE — Tribunal Supremo de Elecciones,https://www.tse.go.cr,tse-cr,Costa Rica,Gobierno,Electoral
+TSE — Tribunal Supremo Electoral,https://tse.org.gt,tse-gt,Guatemala,Gobierno,Electoral
+TSJE — Tribunal Superior de Justicia Electoral,https://tsje.gov.py,tsje-py,Paraguay,Gobierno,Electoral
+# ── Vivienda (homólogos INFONAVIT) ───────────────────────────────────────────
+INFONAVIT — Instituto del Fondo Nacional de la Vivienda,https://www.infonavit.org.mx,infonavit-mx,México,Gobierno,Vivienda
+MINVU — Ministerio de Vivienda y Urbanismo,https://www.minvu.gob.cl,minvu-cl,Chile,Gobierno,Vivienda
+Minvivienda — Ministerio de Vivienda Ciudad y Territorio,https://minvivienda.gov.co,minvivienda-co,Colombia,Gobierno,Vivienda
+MVCS — Ministerio de Vivienda Construcción y Saneamiento,https://www.vivienda.gob.pe,mvcs-pe,Perú,Gobierno,Vivienda
+# ── Libros de Texto Gratuitos (homólogos CONALITEG) ──────────────────────────
+CONALITEG — Comisión Nacional de Libros de Texto Gratuitos,https://libros.conaliteg.gob.mx,conaliteg-mx,México,Educación,Libros de Texto
+PNLD — Programa Nacional do Livro Didático,https://pnld.fnde.gov.br,pnld-br,Brasil,Educación,Libros de Texto

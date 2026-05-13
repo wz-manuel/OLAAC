@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: staticPage?.titulo ?? 'Evaluadores de accesibilidad web',
   description: staticPage
     ? excerptFromMarkdown(staticPage.contenido_markdown)
-    : 'Herramientas automáticas para evaluar la accesibilidad: Axe, WAVE, Lighthouse y Rocket Validator.',
+    : 'Herramientas automáticas para evaluar la accesibilidad web: Axe, WAVE, Rocket Validator y otras.',
 }
 
 export default async function EvaluadoresPage() {
@@ -55,12 +55,12 @@ export default async function EvaluadoresPage() {
             Scores registrados por el observatorio
           </h2>
           <p className="mt-1 text-sm text-gray-500">
-            Resultados de auditorías con Lighthouse realizadas por el equipo OLAAC.
+            Resultados de pruebas automáticas de accesibilidad realizadas por el equipo OLAAC.
           </p>
           <div className="mt-4">
             <A11yDataTable
               scores={scores ?? []}
-              caption="Scores de accesibilidad Lighthouse medidos por OLAAC"
+              caption="Resultados de pruebas automáticas de accesibilidad medidos por OLAAC"
             />
           </div>
         </section>

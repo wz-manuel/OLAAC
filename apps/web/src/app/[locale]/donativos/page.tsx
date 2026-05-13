@@ -19,7 +19,7 @@ const USOS = [
     porcentaje: '30 %',
     titulo: 'Infraestructura y herramientas',
     descripcion:
-      'Mantenemos el observatorio, el motor de auditorías Lighthouse, la base de datos pública y la Academia OLAAC operando sin interrupciones.',
+      'Mantenemos el observatorio, el motor de pruebas automáticas de accesibilidad, la base de datos pública y la Academia OLAAC operando sin interrupciones.',
   },
   {
     porcentaje: '25 %',

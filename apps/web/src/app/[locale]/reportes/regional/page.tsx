@@ -5,7 +5,7 @@ import { fetchReportData, scoreColor, scoreLabel, formatDateLong } from '@/lib/r
 
 export const metadata: Metadata = {
   title: 'Informe Regional LATAM — Accesibilidad Digital | OLAAC',
-  description: 'Informe de accesibilidad web de América Latina: rankings por país y sitio, scores Lighthouse y violaciones WCAG detectadas.',
+  description: 'Informe de accesibilidad web de América Latina: rankings por país y sitio, resultados de pruebas automáticas y violaciones WCAG detectadas.',
 }
 
 export const revalidate = 3600

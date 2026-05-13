@@ -138,7 +138,7 @@ export default async function HomePage() {
                 Dashboard de Accesibilidad
               </h2>
               <p className="mt-1 text-sm text-gray-500">
-                Ranking en tiempo real de sitios latinoamericanos auditados con Lighthouse
+                Ranking en tiempo real de sitios latinoamericanos evaluados con pruebas automáticas
               </p>
             </div>
             <Link

@@ -1,8 +1,8 @@
-import { Button, ScoreBadge } from '@olaac/ui'
+import { Button } from '@olaac/ui'
 import Link from 'next/link'
 
 import { KpiCards } from '@/components/scores/kpi-cards'
-import { LegalBadge } from '@/components/scores/legal-badge'
+import { ScoresBrowser } from '@/components/scores/scores-browser'
 import { createClient } from '@/lib/supabase/server'
 import type { Tables } from '@/lib/supabase/types'
 
@@ -37,13 +37,8 @@ export default async function ScoresDashboardPage() {
       .eq('vigente', true),
   ])
 
-  // Índice por país para lookup O(1) en la tabla
-  const legislacionByPais = new Map<string, LegislacionRow>()
-  for (const ley of (leyes ?? []) as LegislacionRow[]) {
-    legislacionByPais.set(ley.pais, ley)
-  }
-
   const rows = (data ?? []) as unknown as LighthouseMetricRow[]
+  const legislacion = (leyes ?? []) as LegislacionRow[]
 
   // ── KPIs ────────────────────────────────────────────────────────────────
   const scored = rows.filter((r) => r.accessibility_score !== null)
@@ -71,7 +66,7 @@ export default async function ScoresDashboardPage() {
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Scores de accesibilidad</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Resultados públicos de auditorías Lighthouse realizadas por OLAAC.
+            Resultados públicos de pruebas automáticas de accesibilidad realizadas por OLAAC.
             Actualizados cada domingo.
           </p>
         </div>
@@ -95,118 +90,38 @@ export default async function ScoresDashboardPage() {
         criticalCount={criticalCount}
       />
 
-      {/* Tabla de sitios */}
-      <section aria-label="Listado de sitios auditados" className="mt-8">
-        <h2 className="mb-3 text-base font-medium text-gray-700">
-          Sitios monitoreados{' '}
-          {rows.length > 0 && (
-            <span className="font-normal text-gray-500">({rows.length})</span>
-          )}
-        </h2>
+      {/* Aviso de alcance */}
+      <aside
+        aria-label="Alcance de las pruebas automáticas"
+        className="mt-6 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900"
+      >
+        <strong className="font-semibold">Estas pruebas no constituyen una auditoría exhaustiva.</strong>{' '}
+        Cada medición analiza únicamente la página de inicio mediante criterios automatizables, lo que detecta
+        aproximadamente el 30–40 % de los problemas reales de accesibilidad. Una auditoría completa
+        incluye la evaluación manual de tareas y flujos sobre una muestra representativa del sitio,
+        no solo de la portada.{' '}
+        <Link
+          href="/scores/solicitar-url"
+          className="font-medium underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+        >
+          Solicitar auditoría completa
+        </Link>
+        .
+      </aside>
 
-        {!rows.length ? (
+      {/* Tabla de sitios con filtro por país */}
+      {!rows.length ? (
+        <section aria-label="Listado de sitios auditados" className="mt-8">
           <p className="py-12 text-center text-sm text-gray-500" role="status">
             No hay auditorías registradas aún.{' '}
             <Link href="/scores/solicitar-url" className="text-[#005fcc] underline">
               ¿Quieres solicitar la primera?
             </Link>
           </p>
-        ) : (
-          <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
-            <table
-              className="min-w-full divide-y divide-gray-200 text-sm"
-              aria-label="Tabla de scores de accesibilidad por sitio"
-            >
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
-                    Sitio
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden sm:table-cell">
-                    País
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden xl:table-cell">
-                    Marco legal
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden md:table-cell">
-                    Categoría
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500">
-                    Accesibilidad
-                  </th>
-                  <th scope="col" className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 hidden lg:table-cell">
-                    Medido
-                  </th>
-                  <th scope="col" className="px-4 py-3">
-                    <span className="sr-only">Acciones</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {rows.map((row) => (
-                  <tr key={row.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3">
-                      <p className="font-medium text-gray-900 truncate max-w-[14rem]" title={row.nombre_sitio}>
-                        {row.nombre_sitio}
-                      </p>
-                      <a
-                        href={row.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-0.5 block font-mono text-xs text-[#005fcc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded truncate max-w-[14rem]"
-                        title={row.url}
-                      >
-                        {row.url}
-                        <span className="sr-only"> (abre en nueva pestaña)</span>
-                      </a>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600 hidden sm:table-cell">
-                      {row.pais}
-                    </td>
-                    <td className="px-4 py-3 hidden xl:table-cell">
-                      {(() => {
-                        const ley = legislacionByPais.get(row.pais)
-                        return ley ? (
-                          <LegalBadge legislacion={ley} compact />
-                        ) : (
-                          <span className="text-xs text-gray-300">—</span>
-                        )
-                      })()}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600 hidden md:table-cell">
-                      <span>{row.categoria}</span>
-                      {row.subcategoria && (
-                        <span className="ml-1 text-xs text-gray-500">· {row.subcategoria}</span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      {row.accessibility_score !== null ? (
-                        <ScoreBadge score={row.accessibility_score} size="sm" showLabel={false} />
-                      ) : (
-                        <span className="text-gray-300" aria-label="Sin dato">—</span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-xs text-gray-500 hidden lg:table-cell">
-                      <time dateTime={row.measured_at}>
-                        {new Date(row.measured_at).toLocaleDateString('es-MX')}
-                      </time>
-                    </td>
-                    <td className="px-4 py-3">
-                      <Link
-                        href={`/scores/${row.alias}`}
-                        className="text-xs text-[#005fcc] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
-                        aria-label={`Ver detalle de ${row.nombre_sitio}`}
-                      >
-                        Ver detalle
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
+        </section>
+      ) : (
+        <ScoresBrowser rows={rows} legislacion={legislacion} />
+      )}
 
       {/* Enlace a cobertura geográfica */}
       <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-sm text-gray-600">

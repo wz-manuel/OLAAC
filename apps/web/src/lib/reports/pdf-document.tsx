@@ -276,7 +276,7 @@ function SummaryPage({ data }: { data: ReportData }) {
         Este informe presenta los resultados de la auditoría automatizada de accesibilidad
         web realizada por el Observatorio Latinoamericano de Accesibilidad (OLAAC) sobre
         sitios web de instituciones públicas de América Latina. Los scores corresponden a la
-        categoría de Accesibilidad de Google Lighthouse (escala 0–100) y se actualizan cada
+        categoría de Accesibilidad obtenida mediante análisis automático (escala 0–100) y se actualizan cada
         semana de forma automática.
       </Text>
 
@@ -407,7 +407,7 @@ function MethodologyPage({ data }: { data: ReportData }) {
         Motor de auditoría
       </Text>
       <Text style={s.bodyText}>
-        Los scores se obtienen mediante Google Lighthouse v12 (API Node.js), ejecutando
+        Los scores se obtienen mediante análisis automático de accesibilidad, evaluando
         únicamente la categoría de Accesibilidad sobre cada URL. La auditoría se realiza
         en modo escritorio (desktop), sin throttling artificial, usando Chrome headless.
         Cada sitio se audita una vez por semana, los domingos a las 00:00 UTC.
@@ -468,7 +468,7 @@ export function ReportDocument({ data }: { data: ReportData }) {
       title={data.title}
       author="OLAAC — Observatorio Latinoamericano de Accesibilidad"
       subject="Informe de accesibilidad web"
-      keywords="accesibilidad, WCAG, Lighthouse, LATAM, OLAAC"
+      keywords="accesibilidad, WCAG, LATAM, OLAAC, accesibilidad digital"
       creator="olaac.org"
     >
       <CoverPage data={data} />

@@ -283,7 +283,7 @@ export default async function CoberturaPage() {
           ¿Tu sitio no está en el observatorio?
         </h2>
         <p className="mb-4 text-sm text-blue-700">
-          Puedes solicitar que incluyamos tu organización en el siguiente ciclo de auditorías Lighthouse.
+          Puedes solicitar que incluyamos tu organización en el siguiente ciclo de pruebas automáticas.
         </p>
         <Link
           href="/scores/solicitar-url"

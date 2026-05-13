@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { CriticalIssuesAccordion, type CriticalIssue } from '@/components/scores/critical-issues-accordion'
 import { LegalBadge } from '@/components/scores/legal-badge'
 import { ScoreTrendChart } from '@/components/scores/score-trend-chart'
+import { ShareButtons } from '@/components/scores/share-buttons'
 import { createClient } from '@/lib/supabase/server'
 import type { Tables } from '@/lib/supabase/types'
 
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
 
   return {
     title: `${data.nombre_sitio} — Accesibilidad ${score}`,
-    description: `Score de accesibilidad Lighthouse de ${data.nombre_sitio}: ${score}. Auditado por OLAAC.`,
+    description: `Resultado de prueba automática de accesibilidad de ${data.nombre_sitio}: ${score}. Medido por OLAAC.`,
   }
 }
 
@@ -129,7 +130,7 @@ export default async function ScoreDetailPage({ params }: Props) {
         </div>
 
         <p className="mt-1 text-xs text-gray-500">
-          Última auditoría:{' '}
+          Última medición:{' '}
           <time dateTime={metric.measured_at}>{measuredDate}</time>
         </p>
       </header>
@@ -150,7 +151,7 @@ export default async function ScoreDetailPage({ params }: Props) {
 
         <div className="space-y-2">
           <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
-            Score de Accesibilidad Lighthouse
+            Resultado de prueba automática
           </p>
           {scoreInt !== null ? (
             <>
@@ -174,6 +175,25 @@ export default async function ScoreDetailPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* ── Aviso de alcance ────────────────────────────────────────────────── */}
+      <aside
+        aria-label="Alcance de las pruebas automáticas"
+        className="mb-8 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900"
+      >
+        <strong className="font-semibold">Este resultado no constituye una auditoría exhaustiva.</strong>{' '}
+        La prueba automática evalúa únicamente la página de inicio mediante criterios detectables por herramientas
+        y cubre aproximadamente el 30–40 % de los problemas reales de accesibilidad.
+        Una auditoría completa incluye la evaluación manual de tareas y flujos sobre una muestra
+        representativa del sitio, no solo de la portada.{' '}
+        <Link
+          href="/scores/solicitar-url"
+          className="font-medium underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
+        >
+          Solicitar auditoría completa
+        </Link>
+        .
+      </aside>
 
       {/* ── Tendencia histórica ──────────────────────────────────────────────── */}
       {snapshots && snapshots.length > 0 && (
@@ -245,6 +265,15 @@ export default async function ScoreDetailPage({ params }: Props) {
           </div>
         </aside>
       )}
+
+      {/* ── Compartir ────────────────────────────────────────────────────────── */}
+      <ShareButtons
+        siteName={metric.nombre_sitio}
+        pais={metric.pais}
+        score={scoreInt}
+        alias={params.alias}
+        totalViolations={criticalCount + seriousCount}
+      />
 
       {/* ── Solicitar re-auditoría ───────────────────────────────────────────── */}
       <div className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600">

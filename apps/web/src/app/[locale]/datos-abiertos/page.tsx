@@ -112,7 +112,7 @@ export default function DatosAbiertosPage() {
           </h1>
 
           <p className="mb-8 max-w-2xl text-base text-white/80 sm:text-lg">
-            Scores Lighthouse, violaciones WCAG y tendencias históricas de más de
+            Resultados de pruebas automáticas, violaciones WCAG y tendencias históricas de más de
             50 sitios web de gobiernos y universidades de 14 países.
             <strong className="text-white"> Gratis. Sin registro. CORS abierto.</strong>
           </p>
