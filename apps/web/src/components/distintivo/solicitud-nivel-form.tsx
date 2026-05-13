@@ -1,7 +1,8 @@
 'use client'
 
 import { Button } from '@olaac/ui'
-import { useState, useActionState } from 'react'
+import { useState } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 
 import { enviarSolicitud, type SolicitudState } from '@/lib/actions/distintivo'
 
@@ -26,9 +27,18 @@ interface SolicitudNivelFormProps {
 
 const INITIAL: SolicitudState = { error: null }
 
+function ConfirmarButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending ? 'Enviando solicitud…' : 'Confirmar y enviar solicitud'}
+    </Button>
+  )
+}
+
 export function SolicitudNivelForm({ criterios, orgNombre }: SolicitudNivelFormProps) {
   const [nivelSeleccionado, setNivel] = useState<BadgeNivel | null>(null)
-  const [state, action, pending] = useActionState(enviarSolicitud, INITIAL)
+  const [state, action] = useFormState(enviarSolicitud, INITIAL)
 
   return (
     <div className="space-y-6">
@@ -68,9 +78,7 @@ export function SolicitudNivelForm({ criterios, orgNombre }: SolicitudNivelFormP
               para <strong>{orgNombre}</strong>. El equipo OLAAC revisará tu solicitud y te
               contactará para iniciar el programa.
             </p>
-            <Button type="submit" disabled={pending}>
-              {pending ? 'Enviando solicitud…' : 'Confirmar y enviar solicitud'}
-            </Button>
+            <ConfirmarButton />
           </div>
         </form>
       )}

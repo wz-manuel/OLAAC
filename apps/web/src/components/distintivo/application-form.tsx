@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@olaac/ui'
-import { useActionState } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 
 import { registrarOrganizacion, type OrgRegistroState } from '@/lib/actions/distintivo'
 
@@ -30,8 +30,17 @@ function FieldError({ msg }: { msg?: string }) {
   )
 }
 
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
+      {pending ? 'Registrando…' : 'Registrar organización y continuar'}
+    </Button>
+  )
+}
+
 export function ApplicationForm() {
-  const [state, action, pending] = useActionState(registrarOrganizacion, INITIAL)
+  const [state, action] = useFormState(registrarOrganizacion, INITIAL)
 
   return (
     <form action={action} noValidate className="space-y-8">
@@ -179,9 +188,7 @@ export function ApplicationForm() {
         </div>
       </fieldset>
 
-      <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-        {pending ? 'Registrando…' : 'Registrar organización y continuar'}
-      </Button>
+      <SubmitButton />
     </form>
   )
 }
