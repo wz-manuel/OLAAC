@@ -47,9 +47,9 @@ jobs:
     name: Lighthouse · Audit → Supabase
     runs-on: ubuntu-latest
 
-    # Máximo: 67 sitios × 100 s de timeout + overhead de install ≈ 120 min.
+    # Máximo: 86 sitios × 100 s de timeout + overhead de install ≈ 165 min.
     # Aumentar si se amplía el urls.csv significativamente.
-    timeout-minutes: 120
+    timeout-minutes: 180
 
     steps:
       # ── 1. Código ─────────────────────────────────────────────────────────
