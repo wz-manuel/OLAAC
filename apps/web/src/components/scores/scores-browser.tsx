@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
 import { ScoreBadge } from '@olaac/ui'
+import Link from 'next/link'
+import { useState } from 'react'
 
 import { LegalBadge } from '@/components/scores/legal-badge'
 import type { Tables } from '@/lib/supabase/types'

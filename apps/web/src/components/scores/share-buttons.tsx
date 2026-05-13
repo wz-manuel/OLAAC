@@ -73,7 +73,7 @@ function buildTexts(
   return { xText, linkedInTitle, linkedInSummary, facebookQuote }
 }
 
-export function ShareButtons({ siteName, pais, score, alias, totalViolations }: Props) {
+export function ShareButtons({ siteName, pais, score, alias: _alias, totalViolations }: Props) {
   const [copied, setCopied] = useState(false)
 
   function openShare(buildUrl: (pageUrl: string) => string) {
