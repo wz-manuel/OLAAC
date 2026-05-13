@@ -1187,6 +1187,10 @@ export type Database = {
     Functions: {
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
+      rate_limit_check: {
+        Args: { p_key: string; p_window_start: string; p_limit: number }
+        Returns: boolean
+      }
     }
     Enums: {
       application_status: "pendiente" | "aprobado" | "rechazado"

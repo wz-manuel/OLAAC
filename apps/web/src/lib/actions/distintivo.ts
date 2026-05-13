@@ -3,7 +3,9 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-import { createClient } from '@/lib/supabase/server'
+import { getAdminUser } from '@/lib/admin'
+import { checkRateLimitDb } from '@/lib/rate-limit-db'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -50,7 +52,8 @@ export async function registrarOrganizacion(
   if (!tipo)                fieldErrors.tipo = 'Selecciona el tipo de organización'
   if (!sitio_web)           fieldErrors.sitio_web = 'El sitio web es obligatorio'
   if (!contacto_nombre)     fieldErrors.contacto_nombre = 'El nombre del contacto es obligatorio'
-  if (!contacto_email)      fieldErrors.contacto_email = 'El correo de contacto es obligatorio'
+  if (!contacto_email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contacto_email))
+                            fieldErrors.contacto_email = 'Ingresa un correo de contacto válido'
   if (!pais)                fieldErrors.pais = 'El país es obligatorio'
 
   if (Object.keys(fieldErrors).length > 0) {
@@ -60,6 +63,12 @@ export async function registrarOrganizacion(
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { error: 'Debes iniciar sesión para registrar tu organización' }
+
+  // Rate limit: 3 registros de organización por cuenta cada hora
+  const rl = await checkRateLimitDb(`org-registro:${user.id}`, 3, 60 * 60 * 1000)
+  if (!rl.success) {
+    return { error: 'Has realizado demasiados intentos. Espera una hora antes de intentarlo de nuevo.' }
+  }
 
   const { error } = await supabase
     .from('organizaciones_distintivo')
@@ -148,9 +157,9 @@ export async function actualizarEtapa(
   estado: string,
   extras?: { ticket_id?: string; curso_id?: string; notas?: string }
 ): Promise<EtapaState> {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return { error: 'No autenticado' }
+  const admin = await getAdminUser()
+  if (!admin) return { error: 'No tienes permisos de administrador' }
+  const supabase = createServiceClient()
 
   const { error } = await supabase
     .from('etapas_progreso')
@@ -175,9 +184,9 @@ export async function actualizarEtapa(
 // ─── aprobarSolicitud (admin) ─────────────────────────────────────────────────
 
 export async function aprobarSolicitud(solicitudId: string): Promise<EtapaState> {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return { error: 'No autenticado' }
+  const admin = await getAdminUser()
+  if (!admin) return { error: 'No tienes permisos de administrador' }
+  const supabase = createServiceClient()
 
   const etapas: string[] = [
     'concientizacion', 'capacitacion', 'auditoria',
@@ -223,9 +232,9 @@ export async function emitirDistintivo(
     total_experiencias: number
   }
 ): Promise<EtapaState & { folio?: string }> {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return { error: 'No autenticado' }
+  const admin = await getAdminUser()
+  if (!admin) return { error: 'No tienes permisos de administrador' }
+  const supabase = createServiceClient()
 
   const { data: solicitud } = await supabase
     .from('solicitudes_distintivo')
@@ -288,9 +297,9 @@ export async function rechazarSolicitud(
   solicitudId: string,
   notas: string
 ): Promise<EtapaState> {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return { error: 'No autenticado' }
+  const admin = await getAdminUser()
+  if (!admin) return { error: 'No tienes permisos de administrador' }
+  const supabase = createServiceClient()
 
   const { error } = await supabase
     .from('solicitudes_distintivo')

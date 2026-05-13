@@ -118,3 +118,24 @@ jobs:
         # Si el script sale con código ≠ 0, el step falla → el job falla →
         # GitHub envía notificación por correo a los maintainers del repo.
         # No es necesario ningún paso adicional de notificación.
+
+      # ── 6. Limpieza de rate limit log ────────────────────────────────────────
+      # pg_cron no disponible en Supabase free tier; se limpia aquí cada domingo.
+      # Elimina entradas de rate_limit_log con más de 2 horas de antigüedad.
+      - name: Limpiar rate_limit_log expirado
+        if: ${{ inputs.dry_run != true }}
+        env:
+          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            "${SUPABASE_URL}/rest/v1/rpc/cleanup_rate_limit_log" \
+            -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{}')
+          if echo "$STATUS" | grep -qE '^2'; then
+            echo "::notice::rate_limit_log limpiado (HTTP $STATUS)."
+          else
+            echo "::warning::No se pudo limpiar rate_limit_log — HTTP $STATUS (no crítico)."
+          fi

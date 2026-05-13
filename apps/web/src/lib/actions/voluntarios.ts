@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 
 import { notifyAuditorCertificado, notifyVoluntarioRecibido } from '@/lib/email'
+import { checkRateLimitDb } from '@/lib/rate-limit-db'
 import { createClient } from '@/lib/supabase/server'
 import { calcularPuntajeWcag, type WcagResultado, type WcagResultadoEntry } from '@/lib/wcag/criterios'
 
@@ -54,6 +55,12 @@ export async function submitApplication(
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { error: 'Debes iniciar sesión para enviar tu solicitud' }
+
+  // Rate limit: 3 solicitudes por cuenta cada hora
+  const rl = await checkRateLimitDb(`voluntario:${user.id}`, 3, 60 * 60 * 1000)
+  if (!rl.success) {
+    return { error: 'Has enviado demasiadas solicitudes. Espera una hora antes de intentarlo de nuevo.' }
+  }
 
   const { error } = await supabase
     .from('volunteer_applications')

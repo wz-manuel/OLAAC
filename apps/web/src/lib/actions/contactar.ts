@@ -1,6 +1,7 @@
 'use server'
 
 import { notifyContactoRecibido } from '@/lib/email'
+import { checkRateLimitDb } from '@/lib/rate-limit-db'
 import { createServiceClient } from '@/lib/supabase/server'
 
 export interface ContactarState {
@@ -32,14 +33,20 @@ export async function enviarContacto(
   const mensaje = formData.get('mensaje')?.toString().trim() ?? ''
 
   const fieldErrors: ContactarState['fieldErrors'] = {}
-  if (!nombre || nombre.length < 2)           fieldErrors.nombre  = 'Ingresa tu nombre completo'
-  if (!email  || !email.includes('@'))         fieldErrors.email   = 'Ingresa un correo válido'
-  if (!asunto)                                 fieldErrors.asunto  = 'Selecciona un asunto'
-  if (!mensaje || mensaje.length < 10)         fieldErrors.mensaje = 'El mensaje es demasiado corto'
-  if (mensaje.length > 2000)                   fieldErrors.mensaje = 'El mensaje no puede superar 2,000 caracteres'
+  if (!nombre || nombre.length < 2)                           fieldErrors.nombre  = 'Ingresa tu nombre completo'
+  if (!email  || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fieldErrors.email   = 'Ingresa un correo válido'
+  if (!asunto)                                                fieldErrors.asunto  = 'Selecciona un asunto'
+  if (!mensaje || mensaje.length < 10)                        fieldErrors.mensaje = 'El mensaje es demasiado corto'
+  if (mensaje.length > 2000)                                  fieldErrors.mensaje = 'El mensaje no puede superar 2,000 caracteres'
 
   if (Object.keys(fieldErrors).length > 0) {
     return { error: 'Corrige los campos marcados', fieldErrors }
+  }
+
+  // Rate limit: 5 mensajes por dirección de correo cada 15 minutos
+  const rl = await checkRateLimitDb(`contacto:${email.toLowerCase()}`, 5, 15 * 60 * 1000)
+  if (!rl.success) {
+    return { error: 'Has enviado demasiados mensajes. Espera unos minutos antes de intentarlo de nuevo.' }
   }
 
   const asuntoData = ASUNTOS_CONTACTO.find(a => a.value === asunto)
