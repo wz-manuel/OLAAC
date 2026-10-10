@@ -9,6 +9,9 @@
 #   - Manual: workflow_dispatch desde la pestaña Actions
 #             (incluye opción de dry-run para pruebas)
 #
+# El job "keepalive" re-habilita este workflow en cada ejecución para
+# que GitHub no desactive el cron por inactividad del repo (60 días).
+#
 # Secrets requeridos (Settings → Secrets and variables → Actions):
 #   NEXT_PUBLIC_SUPABASE_URL     → URL del proyecto Supabase
 #   SUPABASE_SERVICE_ROLE_KEY    → Service role key (bypassa RLS)
@@ -139,3 +142,17 @@ jobs:
           else
             echo "::warning::No se pudo limpiar rate_limit_log — HTTP $STATUS (no crítico)."
           fi
+
+  # Evita que GitHub desactive el cron tras 60 días sin commits en el repo
+  # (repos públicos). Re-habilitar el workflow vía API reinicia ese contador.
+  # Job separado: corre aunque la auditoría falle y acota actions: write aquí.
+  keepalive:
+    name: Keepalive del cron
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Re-habilitar workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/accessibility-audit.yml/enable"
