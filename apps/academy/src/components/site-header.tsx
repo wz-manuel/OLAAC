@@ -1,7 +1,7 @@
 import { OlaacLogo, UserNav } from '@olaac/ui'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { createClient } from '@/lib/supabase/server'
@@ -17,7 +17,7 @@ export async function SiteHeader() {
     redirect('/login')
   }
 
-  const t = useTranslations('nav')
+  const t = await getTranslations('nav')
 
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100 bg-white">
