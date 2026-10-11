@@ -1,7 +1,16 @@
 {
+  "meta": {
+    "titleTemplate": "%s | Academia OLAAC",
+    "defaultTitle": "Academia OLAAC — Formación en Accesibilidad",
+    "description": "Aprende accesibilidad digital y física con el Observatorio Latinoamericano de Accesibilidad."
+  },
   "nav": {
     "homeAriaLabel": "OLAAC Academia — Inicio",
-    "academiaBadge": "Academia"
+    "academiaBadge": "Academia",
+    "skipLink": "Saltar al contenido principal",
+    "sesionComo": "Sesión iniciada como {email}",
+    "cerrarSesion": "Cerrar sesión",
+    "cerrandoSesion": "Cerrando…"
   },
   "localeSwitcher": {
     "ariaLabel": "Seleccionar idioma",
@@ -11,33 +20,69 @@
   },
   "home": {
     "title": "Academia OLAAC",
-    "subtitle": "Formación especializada en accesibilidad digital y física para profesionales de América Latina.",
+    "subtitle": "Formación práctica en accesibilidad digital para equipos de diseño, desarrollo y políticas públicas en Latinoamérica.",
     "verCursos": "Ver todos los cursos",
-    "misCursos": "Mis cursos"
+    "destacados": "Cursos disponibles"
   },
   "courses": {
-    "title": "Cursos disponibles",
-    "inscribirse": "Inscribirse",
-    "continuar": "Continuar",
-    "completado": "Completado",
-    "lecciones": "{count} lecciones",
-    "progreso": "Progreso: {value}%",
+    "metaTitle": "Cursos de accesibilidad",
+    "metaDescription": "Explora el catálogo de cursos de la Academia OLAAC sobre accesibilidad digital.",
+    "title": "Catálogo de cursos",
+    "subtitle": "Formación práctica en accesibilidad digital para equipos de toda Latinoamérica.",
     "sinCursos": "No hay cursos disponibles por el momento.",
-    "certificado": "Ver certificado"
+    "lecciones": "{count, plural, one {# lección} other {# lecciones}}",
+    "verCurso": "Ver curso",
+    "porcentajeCompletado": "{value}% completado",
+    "migasAria": "Migas de pan",
+    "migasCursos": "Cursos",
+    "tuProgreso": "Tu progreso",
+    "cursoCompletado": "¡Curso completado!",
+    "puedesDescargar": "Ya puedes descargar tu certificado de finalización.",
+    "inscribirme": "Inscribirme en este curso",
+    "loginParaInscribirte": "Inicia sesión para inscribirte",
+    "contenido": "Contenido del curso",
+    "leccionCompletadaSr": "(completada)",
+    "bloqueado": "Bloqueado",
+    "duracion": "{min} min",
+    "tipos": {
+      "lectura": "Lectura",
+      "video": "Video",
+      "ejercicio": "Ejercicio",
+      "evaluacion": "Evaluación"
+    }
+  },
+  "certificate": {
+    "descargar": "Descargar certificado (PDF)",
+    "descargarAria": "Descargar certificado del curso {course}",
+    "generandoAria": "Generando certificado, por favor espera…",
+    "generando": "Generando PDF…",
+    "error": "No se pudo generar el certificado: {message}. Intenta de nuevo.",
+    "errorDesconocido": "Error desconocido"
   },
   "lesson": {
     "leccion": "Lección {number}",
+    "progresoCurso": "Progreso del curso: {value}%",
+    "sinContenido": "El contenido de esta lección no está disponible.",
+    "navAria": "Navegación entre lecciones",
+    "volverAlCurso": "Volver al curso",
     "marcarCompleta": "Marcar como completada",
-    "completada": "Completada",
-    "siguiente": "Siguiente lección",
-    "anterior": "Lección anterior",
-    "volverAlCurso": "Volver al curso"
+    "completada": "Lección completada",
+    "guardando": "Guardando…"
   },
   "login": {
-    "title": "Iniciar sesión",
-    "subtitle": "Accede a la Academia OLAAC",
+    "metaTitle": "Iniciar sesión",
+    "title": "Academia OLAAC",
+    "subtitle": "Formación en accesibilidad digital",
+    "errorEnlace": "El enlace de acceso no es válido o ha expirado. Solicita uno nuevo.",
+    "formAria": "Iniciar sesión en Academia OLAAC",
     "email": "Correo electrónico",
-    "continuar": "Continuar con correo"
+    "emailPlaceholder": "tu@correo.gob.mx",
+    "emailHint": "Te enviaremos un enlace mágico — no necesitas contraseña.",
+    "enviar": "Enviar enlace de acceso",
+    "enviando": "Enviando…",
+    "enviandoSr": "Enviando enlace…",
+    "exito": "Revisa tu correo — te enviamos un enlace de acceso a",
+    "exitoNota": "El enlace expira en 1 hora. Puedes cerrar esta ventana."
   },
   "profile": {
     "metaTitle": "Completa tu perfil",
@@ -57,6 +102,18 @@
     "errorGuardar": "No se pudo guardar tu perfil. Inténtalo de nuevo.",
     "certificadoAviso": "Completa tu perfil para descargar tu certificado: necesitamos tu nombre completo.",
     "certificadoEnlace": "Completar mi perfil"
+  },
+  "verify": {
+    "metaTitle": "Verificar certificado {folio}",
+    "metaDescription": "Verificación de autenticidad de certificado emitido por la Academia OLAAC.",
+    "valido": "Certificado válido",
+    "autentico": "Este certificado fue emitido por la Academia OLAAC y es auténtico.",
+    "estudiante": "Estudiante",
+    "curso": "Curso completado",
+    "folio": "Folio",
+    "fecha": "Fecha de emisión",
+    "emitidoPor": "Emitido por OLAAC — Observatorio Latinoamericano de Accesibilidad",
+    "volver": "← Volver a la Academia OLAAC"
   },
   "common": {
     "loading": "Cargando…",

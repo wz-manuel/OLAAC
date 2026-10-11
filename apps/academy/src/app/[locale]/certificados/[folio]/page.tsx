@@ -4,9 +4,10 @@
  * URL: /certificados/CERT-2026-INTACC-A3F8B2C1
  */
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getFormatter, getTranslations } from 'next-intl/server'
 
+import { Link } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 interface Props {
@@ -14,9 +15,10 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const t = await getTranslations('verify')
   return {
-    title:       `Verificar certificado ${params.folio}`,
-    description: 'Verificación de autenticidad de certificado emitido por la Academia OLAAC.',
+    title:       t('metaTitle', { folio: params.folio }),
+    description: t('metaDescription'),
     robots:      { index: false }, // no indexar páginas de verificación individuales
   }
 }
@@ -30,7 +32,9 @@ export default async function CertificateVerifyPage({ params }: Props) {
 
   if (!cert) notFound()
 
-  const issuedDate = new Date(cert.issued_at).toLocaleDateString('es-MX', {
+  const t = await getTranslations('verify')
+  const format = await getFormatter()
+  const issuedDate = format.dateTime(new Date(cert.issued_at), {
     day: 'numeric', month: 'long', year: 'numeric',
   })
 
@@ -52,28 +56,28 @@ export default async function CertificateVerifyPage({ params }: Props) {
         </div>
 
         <h1 id="cert-heading" className="text-xl font-bold text-green-800">
-          Certificado válido
+          {t('valido')}
         </h1>
 
         <p className="mt-2 text-sm text-green-700">
-          Este certificado fue emitido por la Academia OLAAC y es auténtico.
+          {t('autentico')}
         </p>
 
         <dl className="mt-6 space-y-3 text-left">
           <div className="rounded-lg bg-white px-4 py-3">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Estudiante</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">{t('estudiante')}</dt>
             <dd className="mt-1 text-base font-semibold text-gray-900">{cert.student_name}</dd>
           </div>
           <div className="rounded-lg bg-white px-4 py-3">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Curso completado</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">{t('curso')}</dt>
             <dd className="mt-1 text-base font-semibold text-gray-900">{cert.course_title}</dd>
           </div>
           <div className="rounded-lg bg-white px-4 py-3">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Folio</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">{t('folio')}</dt>
             <dd className="mt-1 font-mono text-sm font-semibold text-gray-900">{cert.folio}</dd>
           </div>
           <div className="rounded-lg bg-white px-4 py-3">
-            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">Fecha de emisión</dt>
+            <dt className="text-xs font-medium uppercase tracking-wide text-gray-500">{t('fecha')}</dt>
             <dd className="mt-1 text-sm text-gray-700">
               <time dateTime={cert.issued_at}>{issuedDate}</time>
             </dd>
@@ -81,7 +85,7 @@ export default async function CertificateVerifyPage({ params }: Props) {
         </dl>
 
         <p className="mt-6 text-xs text-gray-400">
-          Emitido por OLAAC — Observatorio Latinoamericano de Accesibilidad
+          {t('emitidoPor')}
         </p>
       </div>
 
@@ -90,7 +94,7 @@ export default async function CertificateVerifyPage({ params }: Props) {
           href="/cursos"
           className="text-sm text-[#005fcc] underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
         >
-          ← Volver a la Academia OLAAC
+          {t('volver')}
         </Link>
       </div>
     </div>

@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 
 import { DownloadCertificateButton } from '@/components/courses/download-certificate-button'
 import { ProgressBar } from '@/components/courses/progress-bar'
-import { Link as IntlLink } from '@/i18n/navigation'
-import { routing } from '@/i18n/routing'
+import { getPathname, Link } from '@/i18n/navigation'
 import { enrollCourse } from '@/lib/actions/courses'
 import { createClient } from '@/lib/supabase/server'
 
@@ -78,17 +76,18 @@ export default async function CourseDetailPage({ params }: Props) {
     : { data: null }
 
   const locale = await getLocale()
+  const t = await getTranslations('courses')
   const tProfile = await getTranslations('profile')
-  const completeProfileHref =
-    `/perfil/completar?next=${encodeURIComponent(`${locale === routing.defaultLocale ? '' : `/${locale}`}/cursos/${slug}`)}`
+  // `next` viaja como ruta completa (con prefijo de idioma) porque login y callback lo usan tal cual
+  const coursePath = encodeURIComponent(getPathname({ href: `/cursos/${slug}`, locale }))
 
   const completedSet = new Set((lessonProgress ?? []).map((lp) => lp.lesson_id))
 
   const typeLabel: Record<string, string> = {
-    lectura: 'Lectura',
-    video: 'Video',
-    ejercicio: 'Ejercicio',
-    evaluacion: 'Evaluación',
+    lectura: t('tipos.lectura'),
+    video: t('tipos.video'),
+    ejercicio: t('tipos.ejercicio'),
+    evaluacion: t('tipos.evaluacion'),
   }
 
   async function handleEnroll() {
@@ -99,11 +98,11 @@ export default async function CourseDetailPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Breadcrumb */}
-      <nav aria-label="Migas de pan" className="mb-8 text-sm text-gray-500">
+      <nav aria-label={t('migasAria')} className="mb-8 text-sm text-gray-500">
         <ol className="flex items-center gap-1.5">
           <li>
             <Link href="/cursos" className="hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded">
-              Cursos
+              {t('migasCursos')}
             </Link>
           </li>
           <li aria-hidden="true">/</li>
@@ -120,7 +119,7 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="mt-6">
           {enrollment ? (
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-700">Tu progreso</p>
+              <p className="text-sm font-medium text-gray-700">{t('tuProgreso')}</p>
               <ProgressBar value={enrollment.progress} />
               {enrollment.estado === 'completado' && (
                 <div className="space-y-3 rounded-lg border border-green-200 bg-green-50 p-4">
@@ -128,12 +127,12 @@ export default async function CourseDetailPage({ params }: Props) {
                     <svg className="h-4 w-4 shrink-0" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
                     </svg>
-                    ¡Curso completado!
+                    {t('cursoCompletado')}
                   </p>
                   {profile ? (
                     <>
                       <p className="text-xs text-green-700">
-                        Ya puedes descargar tu certificado de finalización.
+                        {t('puedesDescargar')}
                       </p>
                       <DownloadCertificateButton
                         courseId={course.id}
@@ -143,12 +142,12 @@ export default async function CourseDetailPage({ params }: Props) {
                   ) : (
                     <>
                       <p className="text-xs text-green-700">{tProfile('certificadoAviso')}</p>
-                      <IntlLink
-                        href={completeProfileHref}
+                      <Link
+                        href={`/perfil/completar?next=${coursePath}`}
                         className="inline-flex items-center rounded-lg bg-[#252858] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#2d3476] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
                       >
                         {tProfile('certificadoEnlace')}
-                      </IntlLink>
+                      </Link>
                     </>
                   )}
                 </div>
@@ -160,15 +159,15 @@ export default async function CourseDetailPage({ params }: Props) {
                 type="submit"
                 className="rounded-md bg-[#005fcc] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#004db3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
               >
-                Inscribirme en este curso
+                {t('inscribirme')}
               </button>
             </form>
           ) : (
             <Link
-              href={`/login?next=/cursos/${slug}`}
+              href={`/login?next=${coursePath}`}
               className="inline-block rounded-md bg-[#005fcc] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#004db3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
             >
-              Inicia sesión para inscribirte
+              {t('loginParaInscribirte')}
             </Link>
           )}
         </div>
@@ -177,7 +176,7 @@ export default async function CourseDetailPage({ params }: Props) {
       {/* Lesson list */}
       <section aria-labelledby="lessons-heading">
         <h2 id="lessons-heading" className="mb-4 text-xl font-semibold text-gray-900">
-          Contenido del curso
+          {t('contenido')}
         </h2>
 
         <ol className="divide-y divide-gray-200 rounded-xl border border-gray-200">
@@ -204,19 +203,19 @@ export default async function CourseDetailPage({ params }: Props) {
                       className="text-sm font-medium text-gray-900 hover:text-[#005fcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded"
                     >
                       {lesson.titulo}
-                      {isCompleted && <span className="sr-only"> (completada)</span>}
+                      {isCompleted && <span className="sr-only"> {t('leccionCompletadaSr')}</span>}
                     </Link>
                   ) : (
                     <span className="text-sm font-medium text-gray-500">{lesson.titulo}</span>
                   )}
                   <p className="mt-0.5 text-xs text-gray-400">
                     {typeLabel[lesson.tipo] ?? lesson.tipo}
-                    {lesson.duracion_min ? ` · ${lesson.duracion_min} min` : ''}
+                    {lesson.duracion_min ? ` · ${t('duracion', { min: lesson.duracion_min })}` : ''}
                   </p>
                 </div>
 
                 {!canAccess && (
-                  <svg className="h-4 w-4 shrink-0 text-gray-400" aria-label="Bloqueado" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="h-4 w-4 shrink-0 text-gray-400" aria-label={t('bloqueado')} fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
                   </svg>
                 )}

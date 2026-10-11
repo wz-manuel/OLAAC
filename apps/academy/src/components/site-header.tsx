@@ -1,9 +1,8 @@
 import { OlaacLogo, UserNav } from '@olaac/ui'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { Link, redirect } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export async function SiteHeader() {
@@ -14,7 +13,7 @@ export async function SiteHeader() {
     'use server'
     const supabase = await createClient()
     await supabase.auth.signOut()
-    redirect('/login')
+    redirect({ href: '/login', locale: await getLocale() })
   }
 
   const t = await getTranslations('nav')
@@ -38,7 +37,15 @@ export async function SiteHeader() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           {user?.email && (
-            <UserNav email={user.email} onSignOut={signOut} />
+            <UserNav
+              email={user.email}
+              onSignOut={signOut}
+              labels={{
+                signedInAs: t('sesionComo', { email: user.email }),
+                signOut: t('cerrarSesion'),
+                signingOut: t('cerrandoSesion'),
+              }}
+            />
           )}
         </div>
       </div>

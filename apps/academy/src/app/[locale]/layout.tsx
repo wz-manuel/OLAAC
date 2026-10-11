@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { SiteHeader } from '@/components/site-header'
 import { routing, type Locale } from '@/i18n/routing'
@@ -11,9 +11,13 @@ import '../globals.css'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
 
-export const metadata: Metadata = {
-  title: { template: '%s | Academia OLAAC', default: 'Academia OLAAC — Formación en Accesibilidad' },
-  description: 'Aprende accesibilidad digital y física con el Observatorio Latinoamericano de Accesibilidad.',
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale) ? params.locale : routing.defaultLocale
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: { template: t.raw('titleTemplate'), default: t('defaultTitle') },
+    description: t('description'),
+  }
 }
 
 export function generateStaticParams() {
@@ -34,12 +38,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale)
 
   const messages = await getMessages()
+  const t = await getTranslations('nav')
 
   return (
     <html lang={locale} className={inter.variable}>
       <body className="min-h-screen bg-white font-sans antialiased">
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <SkipLink href="#main-content" />
+          <SkipLink href="#main-content">{t('skipLink')}</SkipLink>
           <SiteHeader />
           <main id="main-content" tabIndex={-1}>
             {children}

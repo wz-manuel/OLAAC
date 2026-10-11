@@ -1,8 +1,9 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { getLocale } from 'next-intl/server'
 
+import { redirect } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export async function enrollCourse(courseId: string): Promise<{ error?: string }> {
@@ -10,7 +11,7 @@ export async function enrollCourse(courseId: string): Promise<{ error?: string }
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/login')
+    return redirect({ href: '/login', locale: await getLocale() })
   }
 
   // Check if already enrolled
@@ -44,7 +45,7 @@ export async function completeLesson(
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) redirect('/login')
+  if (!user) return redirect({ href: '/login', locale: await getLocale() })
 
   // Upsert lesson progress
   const { error: progressError } = await supabase.from('lesson_progress').upsert(

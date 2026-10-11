@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 interface ProgressBarProps {
   value: number // 0–100
   label?: string
@@ -5,7 +7,8 @@ interface ProgressBarProps {
 
 export function ProgressBar({ value, label }: ProgressBarProps) {
   const clamped = Math.min(100, Math.max(0, value))
-  const displayLabel = label ?? `${clamped}% completado`
+  const t = useTranslations('courses')
+  const displayLabel = label ?? t('porcentajeCompletado', { value: clamped })
 
   return (
     <div className="flex items-center gap-3">

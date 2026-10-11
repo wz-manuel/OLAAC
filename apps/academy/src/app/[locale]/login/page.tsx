@@ -1,9 +1,14 @@
 import { AuthForm } from '@olaac/ui'
 import { redirect } from 'next/navigation'
+import { getLocale, getTranslations } from 'next-intl/server'
 
+import { getPathname } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
-export const metadata = { title: 'Iniciar sesión — Academia OLAAC' }
+export async function generateMetadata() {
+  const t = await getTranslations('login')
+  return { title: t('metaTitle') }
+}
 
 export default async function LoginPage({
   searchParams,
@@ -15,7 +20,10 @@ export default async function LoginPage({
   // Si ya hay sesión, redirigir
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (user) redirect(next ?? '/')
+  const locale = await getLocale()
+  if (user) redirect(next ?? getPathname({ href: '/', locale }))
+
+  const t = await getTranslations('login')
 
   async function sendMagicLink(email: string): Promise<{ error?: string }> {
     'use server'
@@ -35,9 +43,9 @@ export default async function LoginPage({
     <main className="flex min-h-svh items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm space-y-6">
         <div className="space-y-1 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">Academia OLAAC</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{t('title')}</h1>
           <p className="text-sm text-gray-500">
-            Formación en accesibilidad digital
+            {t('subtitle')}
           </p>
         </div>
         {error === 'auth_callback_failed' && (
@@ -45,10 +53,24 @@ export default async function LoginPage({
             role="alert"
             className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
           >
-            El enlace de acceso no es válido o ha expirado. Solicita uno nuevo.
+            {t('errorEnlace')}
           </p>
         )}
-        <AuthForm onSubmit={sendMagicLink} appName="Academia OLAAC" />
+        <AuthForm
+          onSubmit={sendMagicLink}
+          appName="Academia OLAAC"
+          labels={{
+            formAriaLabel: t('formAria'),
+            email: t('email'),
+            emailPlaceholder: t('emailPlaceholder'),
+            emailHint: t('emailHint'),
+            submit: t('enviar'),
+            submitting: t('enviando'),
+            submittingSr: t('enviandoSr'),
+            success: t('exito'),
+            successNote: t('exitoNota'),
+          }}
+        />
       </div>
     </main>
   )

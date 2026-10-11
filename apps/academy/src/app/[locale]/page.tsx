@@ -1,9 +1,11 @@
-import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
 import { CourseCard } from '@/components/courses/course-card'
+import { Link } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function HomePage() {
+  const t = await getTranslations('home')
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -42,16 +44,16 @@ export default async function HomePage() {
       <section className="bg-gradient-to-b from-blue-50 to-white py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-            Academia OLAAC
+            {t('title')}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            Formación práctica en accesibilidad digital para equipos de diseño, desarrollo y políticas públicas en Latinoamérica.
+            {t('subtitle')}
           </p>
           <Link
             href="/cursos"
             className="mt-8 inline-block rounded-md bg-[#005fcc] px-6 py-3 text-base font-semibold text-white hover:bg-[#004db3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
           >
-            Ver todos los cursos
+            {t('verCursos')}
           </Link>
         </div>
       </section>
@@ -60,7 +62,7 @@ export default async function HomePage() {
       {courses && courses.length > 0 && (
         <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6" aria-labelledby="featured-heading">
           <h2 id="featured-heading" className="mb-6 text-2xl font-bold text-gray-900">
-            Cursos disponibles
+            {t('destacados')}
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {courses.map((course) => (

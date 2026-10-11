@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 
 import { CompleteLessonButton } from '@/components/courses/complete-lesson-button'
 import { ProgressBar } from '@/components/courses/progress-bar'
+import { getPathname, Link } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 interface Props {
@@ -28,7 +29,14 @@ export default async function LessonPage({ params }: Props) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) redirect(`/login?next=/cursos/${slug}/leccion/${lessonId}`)
+  const locale = await getLocale()
+  const t = await getTranslations('lesson')
+  const tCourses = await getTranslations('courses')
+
+  if (!user) {
+    const lessonPath = getPathname({ href: `/cursos/${slug}/leccion/${lessonId}`, locale })
+    redirect(`${getPathname({ href: '/login', locale })}?next=${encodeURIComponent(lessonPath)}`)
+  }
 
   // Fetch course
   const { data: course } = await supabase
@@ -48,7 +56,7 @@ export default async function LessonPage({ params }: Props) {
     .eq('user_id', user.id)
     .single()
 
-  if (!enrollment) redirect(`/cursos/${slug}`)
+  if (!enrollment) redirect(getPathname({ href: `/cursos/${slug}`, locale }))
 
   // Fetch lesson
   const { data: lesson } = await supabase
@@ -87,11 +95,11 @@ export default async function LessonPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Breadcrumb */}
-      <nav aria-label="Migas de pan" className="mb-6 text-sm text-gray-500">
+      <nav aria-label={tCourses('migasAria')} className="mb-6 text-sm text-gray-500">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
             <Link href="/cursos" className="hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:rounded">
-              Cursos
+              {tCourses('migasCursos')}
             </Link>
           </li>
           <li aria-hidden="true">/</li>
@@ -107,14 +115,14 @@ export default async function LessonPage({ params }: Props) {
 
       {/* Progress */}
       <div className="mb-6">
-        <ProgressBar value={enrollment.progress} label={`Progreso del curso: ${enrollment.progress}%`} />
+        <ProgressBar value={enrollment.progress} label={t('progresoCurso', { value: enrollment.progress })} />
       </div>
 
       <article aria-labelledby="lesson-title">
         <header className="mb-8">
           <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#005fcc]">
-            Lección {lesson.orden}
-            {lesson.duracion_min ? ` · ${lesson.duracion_min} min` : ''}
+            {t('leccion', { number: lesson.orden })}
+            {lesson.duracion_min ? ` · ${tCourses('duracion', { min: lesson.duracion_min })}` : ''}
           </p>
           <h1 id="lesson-title" className="text-2xl font-bold text-gray-900 sm:text-3xl">
             {lesson.titulo}
@@ -129,7 +137,7 @@ export default async function LessonPage({ params }: Props) {
             />
           </div>
         ) : (
-          <p className="text-gray-500">El contenido de esta lección no está disponible.</p>
+          <p className="text-gray-500">{t('sinContenido')}</p>
         )}
 
         {/* Complete lesson action */}
@@ -144,7 +152,7 @@ export default async function LessonPage({ params }: Props) {
       </article>
 
       {/* Prev / Next navigation */}
-      <nav aria-label="Navegación entre lecciones" className="mt-8">
+      <nav aria-label={t('navAria')} className="mt-8">
         <div className="flex items-center justify-between gap-4">
           {prevLesson ? (
             <Link
@@ -175,7 +183,7 @@ export default async function LessonPage({ params }: Props) {
               href={`/cursos/${slug}`}
               className="flex items-center gap-2 rounded-md bg-[#005fcc] px-4 py-2 text-sm font-medium text-white hover:bg-[#004db3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
             >
-              Volver al curso
+              {t('volverAlCurso')}
               <svg aria-hidden="true" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>

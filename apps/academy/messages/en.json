@@ -1,7 +1,16 @@
 {
+  "meta": {
+    "titleTemplate": "%s | OLAAC Academy",
+    "defaultTitle": "OLAAC Academy — Accessibility Training",
+    "description": "Learn digital and physical accessibility with the Latin American Accessibility Observatory."
+  },
   "nav": {
     "homeAriaLabel": "OLAAC Academy — Home",
-    "academiaBadge": "Academy"
+    "academiaBadge": "Academy",
+    "skipLink": "Skip to main content",
+    "sesionComo": "Signed in as {email}",
+    "cerrarSesion": "Sign out",
+    "cerrandoSesion": "Signing out…"
   },
   "localeSwitcher": {
     "ariaLabel": "Select language",
@@ -11,33 +20,69 @@
   },
   "home": {
     "title": "OLAAC Academy",
-    "subtitle": "Specialized training in digital and physical accessibility for professionals across Latin America.",
+    "subtitle": "Hands-on digital accessibility training for design, development and public policy teams in Latin America.",
     "verCursos": "View all courses",
-    "misCursos": "My courses"
+    "destacados": "Available courses"
   },
   "courses": {
-    "title": "Available courses",
-    "inscribirse": "Enroll",
-    "continuar": "Continue",
-    "completado": "Completed",
-    "lecciones": "{count} lessons",
-    "progreso": "Progress: {value}%",
+    "metaTitle": "Accessibility courses",
+    "metaDescription": "Browse the OLAAC Academy catalog of digital accessibility courses.",
+    "title": "Course catalog",
+    "subtitle": "Hands-on digital accessibility training for teams across Latin America.",
     "sinCursos": "No courses available at the moment.",
-    "certificado": "View certificate"
+    "lecciones": "{count, plural, one {# lesson} other {# lessons}}",
+    "verCurso": "View course",
+    "porcentajeCompletado": "{value}% complete",
+    "migasAria": "Breadcrumb",
+    "migasCursos": "Courses",
+    "tuProgreso": "Your progress",
+    "cursoCompletado": "Course completed!",
+    "puedesDescargar": "You can now download your certificate of completion.",
+    "inscribirme": "Enroll in this course",
+    "loginParaInscribirte": "Sign in to enroll",
+    "contenido": "Course content",
+    "leccionCompletadaSr": "(completed)",
+    "bloqueado": "Locked",
+    "duracion": "{min} min",
+    "tipos": {
+      "lectura": "Reading",
+      "video": "Video",
+      "ejercicio": "Exercise",
+      "evaluacion": "Assessment"
+    }
+  },
+  "certificate": {
+    "descargar": "Download certificate (PDF)",
+    "descargarAria": "Download certificate for the course {course}",
+    "generandoAria": "Generating certificate, please wait…",
+    "generando": "Generating PDF…",
+    "error": "The certificate could not be generated: {message}. Please try again.",
+    "errorDesconocido": "Unknown error"
   },
   "lesson": {
     "leccion": "Lesson {number}",
+    "progresoCurso": "Course progress: {value}%",
+    "sinContenido": "The content of this lesson is not available.",
+    "navAria": "Lesson navigation",
+    "volverAlCurso": "Back to course",
     "marcarCompleta": "Mark as complete",
-    "completada": "Completed",
-    "siguiente": "Next lesson",
-    "anterior": "Previous lesson",
-    "volverAlCurso": "Back to course"
+    "completada": "Lesson completed",
+    "guardando": "Saving…"
   },
   "login": {
-    "title": "Sign in",
-    "subtitle": "Access OLAAC Academy",
+    "metaTitle": "Sign in",
+    "title": "OLAAC Academy",
+    "subtitle": "Digital accessibility training",
+    "errorEnlace": "The access link is invalid or has expired. Request a new one.",
+    "formAria": "Sign in to OLAAC Academy",
     "email": "Email address",
-    "continuar": "Continue with email"
+    "emailPlaceholder": "you@example.org",
+    "emailHint": "We will send you a magic link — no password needed.",
+    "enviar": "Send access link",
+    "enviando": "Sending…",
+    "enviandoSr": "Sending link…",
+    "exito": "Check your email — we sent an access link to",
+    "exitoNota": "The link expires in 1 hour. You can close this window."
   },
   "profile": {
     "metaTitle": "Complete your profile",
@@ -57,6 +102,18 @@
     "errorGuardar": "We couldn't save your profile. Please try again.",
     "certificadoAviso": "Complete your profile to download your certificate: we need your full name.",
     "certificadoEnlace": "Complete my profile"
+  },
+  "verify": {
+    "metaTitle": "Verify certificate {folio}",
+    "metaDescription": "Authenticity check for a certificate issued by OLAAC Academy.",
+    "valido": "Valid certificate",
+    "autentico": "This certificate was issued by OLAAC Academy and is authentic.",
+    "estudiante": "Student",
+    "curso": "Course completed",
+    "folio": "Certificate ID",
+    "fecha": "Date issued",
+    "emitidoPor": "Issued by OLAAC — Latin American Accessibility Observatory",
+    "volver": "← Back to OLAAC Academy"
   },
   "common": {
     "loading": "Loading…",

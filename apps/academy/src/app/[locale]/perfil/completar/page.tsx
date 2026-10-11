@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 
 import { CompleteProfileForm } from '@/components/profile/complete-profile-form'
-import { routing } from '@/i18n/routing'
+import { getPathname } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export async function generateMetadata() {
@@ -24,9 +24,8 @@ export default async function CompleteProfilePage({
 
   // Sin sesión → login
   if (!user) {
-    const locale = await getLocale()
-    const localePrefix = locale === routing.defaultLocale ? '' : `/${locale}`
-    redirect(`${localePrefix}/login${next !== '/' ? `?next=${encodeURIComponent(next)}` : ''}`)
+    const loginPath = getPathname({ href: '/login', locale: await getLocale() })
+    redirect(`${loginPath}${next !== '/' ? `?next=${encodeURIComponent(next)}` : ''}`)
   }
 
   // Ya tiene perfil → continuar

@@ -11,6 +11,21 @@ export interface AuthFormProps {
   onSubmit: (email: string) => Promise<{ error?: string }>
   /** Texto del campo de origen para el redirect post-login */
   appName?: string
+  /** Textos de la interfaz — por defecto en español; pásalos traducidos en apps multilingües */
+  labels?: Partial<AuthFormLabels>
+}
+
+export interface AuthFormLabels {
+  formAriaLabel: string
+  email: string
+  emailPlaceholder: string
+  emailHint: string
+  submit: string
+  submitting: string
+  submittingSr: string
+  /** Texto que precede al email en el mensaje de éxito */
+  success: string
+  successNote: string
 }
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
@@ -24,7 +39,20 @@ type FormState = 'idle' | 'loading' | 'success' | 'error'
  * - 4.1.3: mensajes de estado anunciados con aria-live="polite"
  * - 2.4.7: foco visible heredado de primitivas Button e Input
  */
-export function AuthForm({ onSubmit, appName = 'OLAAC' }: AuthFormProps) {
+export function AuthForm({ onSubmit, appName = 'OLAAC', labels }: AuthFormProps) {
+  const l: AuthFormLabels = {
+    formAriaLabel: `Iniciar sesión en ${appName}`,
+    email: 'Correo electrónico',
+    emailPlaceholder: 'tu@correo.gob.mx',
+    emailHint: 'Te enviaremos un enlace mágico — no necesitas contraseña.',
+    submit: 'Enviar enlace de acceso',
+    submitting: 'Enviando…',
+    submittingSr: 'Enviando enlace…',
+    success: 'Revisa tu correo — te enviamos un enlace de acceso a',
+    successNote: 'El enlace expira en 1 hora. Puedes cerrar esta ventana.',
+    ...labels,
+  }
+
   const [email, setEmail] = React.useState('')
   const [state, setState] = React.useState<FormState>('idle')
   const [errorMsg, setErrorMsg] = React.useState('')
@@ -54,28 +82,28 @@ export function AuthForm({ onSubmit, appName = 'OLAAC' }: AuthFormProps) {
         className="rounded-lg border border-green-200 bg-green-50 p-6 text-center"
       >
         <p className="text-sm font-medium text-green-800">
-          Revisa tu correo — te enviamos un enlace de acceso a{' '}
+          {l.success}{' '}
           <strong>{email}</strong>.
         </p>
         <p className="mt-1 text-xs text-green-700">
-          El enlace expira en 1 hora. Puedes cerrar esta ventana.
+          {l.successNote}
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5" aria-label={`Iniciar sesión en ${appName}`}>
+    <form onSubmit={handleSubmit} noValidate className="space-y-5" aria-label={l.formAriaLabel}>
       <div className="space-y-1.5">
         <Label htmlFor="auth-email">
-          Correo electrónico
+          {l.email}
         </Label>
         <Input
           id="auth-email"
           type="email"
           name="email"
           autoComplete="email"
-          placeholder="tu@correo.gob.mx"
+          placeholder={l.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={state === 'loading'}
@@ -86,7 +114,7 @@ export function AuthForm({ onSubmit, appName = 'OLAAC' }: AuthFormProps) {
         />
         {state !== 'error' && (
           <p id="auth-hint" className="text-xs text-gray-500">
-            Te enviaremos un enlace mágico — no necesitas contraseña.
+            {l.emailHint}
           </p>
         )}
       </div>
@@ -114,11 +142,11 @@ export function AuthForm({ onSubmit, appName = 'OLAAC' }: AuthFormProps) {
       >
         {state === 'loading' ? (
           <>
-            <span className="sr-only">Enviando enlace…</span>
-            <span aria-hidden="true">Enviando…</span>
+            <span className="sr-only">{l.submittingSr}</span>
+            <span aria-hidden="true">{l.submitting}</span>
           </>
         ) : (
-          'Enviar enlace de acceso'
+          l.submit
         )}
       </Button>
     </form>
