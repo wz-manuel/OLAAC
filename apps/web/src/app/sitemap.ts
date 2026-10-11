@@ -31,6 +31,18 @@ const PRIORITY: Record<string, number> = {
   '/herramientas-y-recursos': 0.7,
 }
 
+// Secciones de la aplicación que no vienen del contenido en markdown
+const APP_SECTIONS: Array<{ path: string; priority: number }> = [
+  { path: '/scores',         priority: 0.9 },
+  { path: '/reportes',       priority: 0.8 },
+  { path: '/cobertura',      priority: 0.8 },
+  { path: '/marco-legal',    priority: 0.7 },
+  { path: '/datos-abiertos', priority: 0.7 },
+  { path: '/distintivo',     priority: 0.7 },
+  { path: '/voluntarios',    priority: 0.7 },
+  { path: '/donativos',      priority: 0.6 },
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = getAllPages()
   const posts = getAllPosts()
@@ -54,5 +66,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticEntries, ...blogEntries]
+  const appEntries: MetadataRoute.Sitemap = APP_SECTIONS.map(({ path, priority }) => ({
+    url: `${BASE_URL}${path}`,
+    changeFrequency: 'weekly',
+    priority,
+  }))
+
+  return [...staticEntries, ...appEntries, ...blogEntries]
 }
