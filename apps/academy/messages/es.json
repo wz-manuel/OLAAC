@@ -39,6 +39,25 @@
     "email": "Correo electrónico",
     "continuar": "Continuar con correo"
   },
+  "profile": {
+    "metaTitle": "Completa tu perfil",
+    "title": "Completa tu perfil",
+    "subtitle": "Solo te tomará un momento",
+    "formAriaLabel": "Completar perfil de la Academia OLAAC",
+    "sesionComo": "Sesión iniciada como <strong>{email}</strong>. Tu nombre aparecerá en tus certificados tal como lo escribas.",
+    "nombre": "Nombre completo",
+    "nombrePlaceholder": "Tu nombre completo",
+    "pais": "País",
+    "paisPlaceholder": "Selecciona tu país",
+    "guardando": "Guardando…",
+    "guardar": "Guardar y continuar",
+    "errorSesion": "Sesión no encontrada. Inicia sesión nuevamente.",
+    "errorNombre": "Escribe tu nombre completo (mínimo 2 caracteres).",
+    "errorPais": "Selecciona tu país.",
+    "errorGuardar": "No se pudo guardar tu perfil. Inténtalo de nuevo.",
+    "certificadoAviso": "Completa tu perfil para descargar tu certificado: necesitamos tu nombre completo.",
+    "certificadoEnlace": "Completar mi perfil"
+  },
   "common": {
     "loading": "Cargando…",
     "error": "Ocurrió un error. Por favor intenta de nuevo.",

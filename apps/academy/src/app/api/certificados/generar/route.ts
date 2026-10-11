@@ -111,11 +111,22 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   // ── 5. Nombre del estudiante ───────────────────────────────────────────
-  // Preferencia: full_name → name → parte local del email
-  const studentName: string =
-    (user.user_metadata?.['full_name'] as string | undefined) ??
-    (user.user_metadata?.['name'] as string | undefined) ??
-    (user.email?.split('@')[0] ?? 'Estudiante')
+  // Preferencia: user_profiles.nombre_completo → metadatos de Auth.
+  // Nunca se deriva del email: sin nombre no se emite el certificado.
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('nombre_completo')
+    .eq('user_id', user.id)
+    .maybeSingle()
+
+  const profileName = [
+    profile?.nombre_completo,
+    user.user_metadata?.['nombre_completo'],
+    user.user_metadata?.['full_name'],
+    user.user_metadata?.['name'],
+  ]
+    .find((v): v is string => typeof v === 'string' && v.trim().length >= 2)
+    ?.trim()
 
   // ── 6. Crear o recuperar certificado (idempotente) ─────────────────────
   const admin = adminClient()
@@ -128,19 +139,52 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     .eq('course_id', courseId)
     .single()
 
+  // Certificados emitidos antes de pedir el nombre guardaron la parte local del email
+  const emailLocalPart = user.email?.split('@')[0]
+  const needsNameRepair = !!existing && existing.student_name === emailLocalPart
+
+  if ((!existing || needsNameRepair) && !profileName) {
+    return NextResponse.json(
+      {
+        error: 'Completa tu perfil con tu nombre completo para emitir el certificado',
+        code:  'profile_required',
+      },
+      { status: 409 }
+    )
+  }
+
+  let studentName: string
   let folio:       string
   let issuedAt:    string
   let certId:      string
 
   if (existing) {
-    // El certificado ya fue emitido — reutilizar el folio original
-    folio      = existing.folio
-    issuedAt   = existing.issued_at
-    certId     = existing.id
+    // El certificado ya fue emitido — reutilizar el folio y el nombre originales
+    folio       = existing.folio
+    issuedAt    = existing.issued_at
+    certId      = existing.id
+    studentName = existing.student_name
+
+    if (needsNameRepair && profileName) {
+      const { error: repairError } = await admin
+        .from('certificates')
+        .update({ student_name: profileName })
+        .eq('id', certId)
+
+      if (repairError) {
+        console.error('[certificados/generar] name repair error:', repairError)
+        return NextResponse.json(
+          { error: 'No se pudo actualizar el certificado. Intenta de nuevo.' },
+          { status: 500 }
+        )
+      }
+      studentName = profileName
+    }
   } else {
     // Primera emisión
-    folio    = generateFolio(course.slug)
-    issuedAt = new Date().toISOString()
+    studentName = profileName!
+    folio       = generateFolio(course.slug)
+    issuedAt    = new Date().toISOString()
 
     const { data: inserted, error: insertError } = await admin
       .from('certificates')

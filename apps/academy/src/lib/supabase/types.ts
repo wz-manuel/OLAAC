@@ -494,6 +494,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          nombre_completo: string
+          onboarding_complete: boolean
+          pais: string | null
+          roles: Database["public"]["Enums"]["rol_usuario"][]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          nombre_completo: string
+          onboarding_complete?: boolean
+          pais?: string | null
+          roles?: Database["public"]["Enums"]["rol_usuario"][]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          nombre_completo?: string
+          onboarding_complete?: boolean
+          pais?: string | null
+          roles?: Database["public"]["Enums"]["rol_usuario"][]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       volunteer_applications: {
         Row: {
           created_at: string
@@ -571,6 +607,7 @@ export type Database = {
         | "suspendido"
       enrollment_status: "inscrito" | "en_curso" | "completado" | "abandonado"
       lesson_type: "video" | "lectura" | "ejercicio" | "evaluacion"
+      rol_usuario: "general" | "voluntario" | "auditor" | "estudiante"
       ticket_category: "digital" | "fisico" | "comunicacion" | "servicio"
       ticket_priority: "baja" | "media" | "alta" | "critica"
       ticket_status:
@@ -716,6 +753,7 @@ export const Constants = {
       ],
       enrollment_status: ["inscrito", "en_curso", "completado", "abandonado"],
       lesson_type: ["video", "lectura", "ejercicio", "evaluacion"],
+      rol_usuario: ["general", "voluntario", "auditor", "estudiante"],
       ticket_category: ["digital", "fisico", "comunicacion", "servicio"],
       ticket_priority: ["baja", "media", "alta", "critica"],
       ticket_status: [

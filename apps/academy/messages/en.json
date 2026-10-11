@@ -39,6 +39,25 @@
     "email": "Email address",
     "continuar": "Continue with email"
   },
+  "profile": {
+    "metaTitle": "Complete your profile",
+    "title": "Complete your profile",
+    "subtitle": "It only takes a moment",
+    "formAriaLabel": "Complete your OLAAC Academy profile",
+    "sesionComo": "Signed in as <strong>{email}</strong>. Your name will appear on your certificates exactly as you type it.",
+    "nombre": "Full name",
+    "nombrePlaceholder": "Your full name",
+    "pais": "Country",
+    "paisPlaceholder": "Select your country",
+    "guardando": "Saving…",
+    "guardar": "Save and continue",
+    "errorSesion": "Session not found. Please sign in again.",
+    "errorNombre": "Enter your full name (at least 2 characters).",
+    "errorPais": "Select your country.",
+    "errorGuardar": "We couldn't save your profile. Please try again.",
+    "certificadoAviso": "Complete your profile to download your certificate: we need your full name.",
+    "certificadoEnlace": "Complete my profile"
+  },
   "common": {
     "loading": "Loading…",
     "error": "An error occurred. Please try again.",

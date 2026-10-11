@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import { DownloadCertificateButton } from '@/components/courses/download-certificate-button'
 import { ProgressBar } from '@/components/courses/progress-bar'
+import { Link as IntlLink } from '@/i18n/navigation'
+import { routing } from '@/i18n/routing'
 import { enrollCourse } from '@/lib/actions/courses'
 import { createClient } from '@/lib/supabase/server'
 
@@ -65,6 +68,20 @@ export default async function CourseDetailPage({ params }: Props) {
         .eq('completed', true)
     : { data: [] }
 
+  // El certificado lleva el nombre de user_profiles; sin perfil se pide antes de descargar
+  const { data: profile } = user && enrollment?.estado === 'completado'
+    ? await supabase
+        .from('user_profiles')
+        .select('user_id')
+        .eq('user_id', user.id)
+        .maybeSingle()
+    : { data: null }
+
+  const locale = await getLocale()
+  const tProfile = await getTranslations('profile')
+  const completeProfileHref =
+    `/perfil/completar?next=${encodeURIComponent(`${locale === routing.defaultLocale ? '' : `/${locale}`}/cursos/${slug}`)}`
+
   const completedSet = new Set((lessonProgress ?? []).map((lp) => lp.lesson_id))
 
   const typeLabel: Record<string, string> = {
@@ -113,13 +130,27 @@ export default async function CourseDetailPage({ params }: Props) {
                     </svg>
                     ¡Curso completado!
                   </p>
-                  <p className="text-xs text-green-700">
-                    Ya puedes descargar tu certificado de finalización.
-                  </p>
-                  <DownloadCertificateButton
-                    courseId={course.id}
-                    courseTitle={course.titulo}
-                  />
+                  {profile ? (
+                    <>
+                      <p className="text-xs text-green-700">
+                        Ya puedes descargar tu certificado de finalización.
+                      </p>
+                      <DownloadCertificateButton
+                        courseId={course.id}
+                        courseTitle={course.titulo}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-xs text-green-700">{tProfile('certificadoAviso')}</p>
+                      <IntlLink
+                        href={completeProfileHref}
+                        className="inline-flex items-center rounded-lg bg-[#252858] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#2d3476] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#005fcc] focus-visible:ring-offset-2"
+                      >
+                        {tProfile('certificadoEnlace')}
+                      </IntlLink>
+                    </>
+                  )}
                 </div>
               )}
             </div>
