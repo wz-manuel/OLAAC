@@ -551,6 +551,15 @@ export type Database = {
     Functions: {
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
+      verify_certificate: {
+        Args: { p_folio: string }
+        Returns: {
+          folio: string
+          student_name: string
+          course_title: string
+          issued_at: string
+        }[]
+      }
     }
     Enums: {
       application_status: "pendiente" | "aprobado" | "rechazado"

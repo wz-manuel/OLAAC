@@ -6,7 +6,8 @@ import { updateSession } from '@/lib/supabase/middleware'
 
 const handleI18nRouting = createIntlMiddleware(routing)
 
-const PROTECTED_PREFIXES = ['/cursos']
+// El catálogo y el detalle de curso son públicos; solo las lecciones requieren sesión.
+const PROTECTED_PATTERN = /^\/cursos\/[^/]+\/leccion(\/|$)/
 
 function stripLocale(pathname: string): string {
   return pathname.replace(/^\/(en|pt)(\/|$)/, '/') || '/'
@@ -41,7 +42,7 @@ export async function middleware(request: NextRequest) {
   const cleanPath = stripLocale(pathname)
   const localePrefix = getLocalePrefix(pathname)
 
-  const isProtected = PROTECTED_PREFIXES.some((prefix) => cleanPath.startsWith(prefix))
+  const isProtected = PROTECTED_PATTERN.test(cleanPath)
 
   if (isProtected && !user) {
     const loginUrl = request.nextUrl.clone()

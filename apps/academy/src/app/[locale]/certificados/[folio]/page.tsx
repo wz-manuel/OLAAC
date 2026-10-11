@@ -24,11 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CertificateVerifyPage({ params }: Props) {
   const supabase = await createClient()
 
-  const { data: cert } = await supabase
-    .from('certificates')
-    .select('folio, student_name, course_title, issued_at')
-    .eq('folio', params.folio)
-    .single()
+  // La tabla no es legible por anon; la función devuelve solo el folio consultado.
+  const { data: rows } = await supabase.rpc('verify_certificate', { p_folio: params.folio })
+  const cert = rows?.[0]
 
   if (!cert) notFound()
 
