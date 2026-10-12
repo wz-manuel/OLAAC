@@ -67,7 +67,32 @@
     "volverAlCurso": "Voltar ao curso",
     "marcarCompleta": "Marcar como concluída",
     "completada": "Lição concluída",
-    "guardando": "Salvando…"
+    "guardando": "Salvando…",
+    "videoTitulo": "Vídeo: {titulo}",
+    "videoTranscripcion": "Transcrição e versão com audiodescrição (em inglês)",
+    "imagenFuente": "Fonte:",
+    "tablaDesplazable": "Tabela; role na horizontal se não couber na tela"
+  },
+  "quiz": {
+    "titulo": "Perguntas de controle",
+    "instrucciones": "Responda às {total} perguntas. Você precisa de {required} acertos para ser aprovado no módulo e pode tentar quantas vezes precisar.",
+    "pregunta": "Pergunta {number} de {total}",
+    "enviar": "Enviar respostas",
+    "calificando": "Corrigindo…",
+    "sinResponder": "Falta responder a esta pergunta.",
+    "faltan": "{count, plural, one {Falta responder # pergunta.} other {Falta responder # perguntas.}}",
+    "error": "Não foi possível corrigir suas respostas. Tente novamente.",
+    "correcta": "Correta.",
+    "incorrecta": "Incorreta.",
+    "respuestaCorrecta": "(resposta correta)",
+    "puntaje": "Você acertou {aciertos} de {total}.",
+    "aprobadoTitulo": "Módulo aprovado",
+    "aprobadoTexto": "Você já pode seguir para o próximo módulo.",
+    "reprobadoTitulo": "Ainda não",
+    "reprobadoTexto": "Você precisa de {required} acertos. Revise as explicações e o resumo do módulo e tente novamente.",
+    "reintentar": "Tentar novamente",
+    "repasar": "Revisar as perguntas",
+    "yaAprobado": "Você já foi aprovado nas perguntas de controle deste módulo."
   },
   "login": {
     "metaTitle": "Entrar",

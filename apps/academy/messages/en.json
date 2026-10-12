@@ -67,7 +67,32 @@
     "volverAlCurso": "Back to course",
     "marcarCompleta": "Mark as complete",
     "completada": "Lesson completed",
-    "guardando": "Saving…"
+    "guardando": "Saving…",
+    "videoTitulo": "Video: {titulo}",
+    "videoTranscripcion": "Transcript and audio-described version (in English)",
+    "imagenFuente": "Source:",
+    "tablaDesplazable": "Table; scroll horizontally if it does not fit on screen"
+  },
+  "quiz": {
+    "titulo": "Knowledge check",
+    "instrucciones": "Answer all {total} questions. You need {required} correct answers to pass the module, and you can try as many times as you need.",
+    "pregunta": "Question {number} of {total}",
+    "enviar": "Submit answers",
+    "calificando": "Grading…",
+    "sinResponder": "This question has not been answered.",
+    "faltan": "{count, plural, one {# question still needs an answer.} other {# questions still need an answer.}}",
+    "error": "Your answers could not be graded. Please try again.",
+    "correcta": "Correct.",
+    "incorrecta": "Incorrect.",
+    "respuestaCorrecta": "(correct answer)",
+    "puntaje": "You got {aciertos} out of {total}.",
+    "aprobadoTitulo": "Module passed",
+    "aprobadoTexto": "You can move on to the next module.",
+    "reprobadoTitulo": "Not yet",
+    "reprobadoTexto": "You need {required} correct answers. Review the explanations and the module summary, then try again.",
+    "reintentar": "Try again",
+    "repasar": "Review the questions",
+    "yaAprobado": "You have already passed the knowledge check for this module."
   },
   "login": {
     "metaTitle": "Sign in",

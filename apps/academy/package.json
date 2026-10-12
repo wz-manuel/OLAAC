@@ -12,7 +12,8 @@
     "type-check": "tsc --noEmit",
     "lhci": "lhci autorun",
     "clean": "rm -rf .next .turbo",
-    "cert:emit": "tsx --tsconfig scripts/tsconfig.scripts.json scripts/emit-certificate.ts"
+    "cert:emit": "tsx --tsconfig scripts/tsconfig.scripts.json scripts/emit-certificate.ts",
+    "course:import": "node --env-file-if-exists=.env.local scripts/import-course.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -36,6 +37,7 @@
     "@lhci/cli": "^0.14.0",
     "@olaac/eslint-config": "workspace:*",
     "@olaac/tsconfig": "workspace:*",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20.12.12",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.3",

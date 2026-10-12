@@ -67,7 +67,32 @@
     "volverAlCurso": "Volver al curso",
     "marcarCompleta": "Marcar como completada",
     "completada": "Lección completada",
-    "guardando": "Guardando…"
+    "guardando": "Guardando…",
+    "videoTitulo": "Video: {titulo}",
+    "videoTranscripcion": "Transcripción y versión con audiodescripción (en inglés)",
+    "imagenFuente": "Fuente:",
+    "tablaDesplazable": "Tabla; desplázala en horizontal si no cabe en pantalla"
+  },
+  "quiz": {
+    "titulo": "Preguntas de control",
+    "instrucciones": "Responde las {total} preguntas. Necesitas {required} aciertos para aprobar el módulo y puedes intentarlo las veces que haga falta.",
+    "pregunta": "Pregunta {number} de {total}",
+    "enviar": "Enviar respuestas",
+    "calificando": "Calificando…",
+    "sinResponder": "Falta responder esta pregunta.",
+    "faltan": "{count, plural, one {Falta # pregunta por responder.} other {Faltan # preguntas por responder.}}",
+    "error": "No se pudieron calificar tus respuestas. Inténtalo de nuevo.",
+    "correcta": "Correcta.",
+    "incorrecta": "Incorrecta.",
+    "respuestaCorrecta": "(respuesta correcta)",
+    "puntaje": "Acertaste {aciertos} de {total}.",
+    "aprobadoTitulo": "Módulo aprobado",
+    "aprobadoTexto": "Ya puedes continuar con el siguiente módulo.",
+    "reprobadoTitulo": "Todavía no",
+    "reprobadoTexto": "Necesitas {required} aciertos. Revisa las explicaciones y el resumen del módulo, y vuelve a intentarlo.",
+    "reintentar": "Intentar de nuevo",
+    "repasar": "Repasar las preguntas",
+    "yaAprobado": "Ya aprobaste las preguntas de control de este módulo."
   },
   "login": {
     "metaTitle": "Iniciar sesión",

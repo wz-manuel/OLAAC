@@ -64,3 +64,6 @@ identidad/*.pdf
 playwright-report/
 test-results/
 
+
+# Cursos de la academia: incluyen las respuestas de los cuestionarios
+cursos/

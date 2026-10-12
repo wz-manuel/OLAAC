@@ -334,6 +334,7 @@ export type Database = {
           id: string
           orden: number
           published: boolean
+          quiz_min_pct: number
           tipo: Database["public"]["Enums"]["lesson_type"]
           titulo: string
         }
@@ -345,6 +346,7 @@ export type Database = {
           id?: string
           orden?: number
           published?: boolean
+          quiz_min_pct?: number
           tipo?: Database["public"]["Enums"]["lesson_type"]
           titulo: string
         }
@@ -356,6 +358,7 @@ export type Database = {
           id?: string
           orden?: number
           published?: boolean
+          quiz_min_pct?: number
           tipo?: Database["public"]["Enums"]["lesson_type"]
           titulo?: string
         }
@@ -410,6 +413,88 @@ export type Database = {
           url?: string
         }
         Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          aciertos: number
+          aprobado: boolean
+          created_at: string
+          id: string
+          lesson_id: string
+          respuestas: Json
+          total: number
+          user_id: string
+        }
+        Insert: {
+          aciertos: number
+          aprobado: boolean
+          created_at?: string
+          id?: string
+          lesson_id: string
+          respuestas: Json
+          total: number
+          user_id: string
+        }
+        Update: {
+          aciertos?: number
+          aprobado?: boolean
+          created_at?: string
+          id?: string
+          lesson_id?: string
+          respuestas?: Json
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_questions: {
+        Row: {
+          correcta: number
+          created_at: string
+          enunciado: string
+          explicacion: string
+          id: string
+          lesson_id: string
+          opciones: Json
+          orden: number
+        }
+        Insert: {
+          correcta: number
+          created_at?: string
+          enunciado: string
+          explicacion: string
+          id?: string
+          lesson_id: string
+          opciones: Json
+          orden: number
+        }
+        Update: {
+          correcta?: number
+          created_at?: string
+          enunciado?: string
+          explicacion?: string
+          id?: string
+          lesson_id?: string
+          opciones?: Json
+          orden?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ticket_events: {
         Row: {
@@ -587,6 +672,19 @@ export type Database = {
     Functions: {
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
+      get_lesson_quiz: {
+        Args: { p_lesson_id: string }
+        Returns: {
+          id: string
+          orden: number
+          enunciado: string
+          opciones: Json
+        }[]
+      }
+      submit_lesson_quiz: {
+        Args: { p_lesson_id: string; p_respuestas: Json }
+        Returns: Json
+      }
       verify_certificate: {
         Args: { p_folio: string }
         Returns: {
