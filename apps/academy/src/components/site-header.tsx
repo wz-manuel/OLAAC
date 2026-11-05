@@ -29,7 +29,7 @@ export async function SiteHeader() {
           >
             <OlaacLogo width={120} height={34} />
           </Link>
-          <span className="text-xs font-medium text-accent-500 border border-accent-300 rounded px-2 py-0.5">
+          <span className="hidden min-[360px]:inline text-xs font-medium text-accent-500 border border-accent-300 rounded px-2 py-0.5">
             {t('academiaBadge')}
           </span>
         </div>

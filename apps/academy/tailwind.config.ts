@@ -1,3 +1,4 @@
+import typography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 import { colors, spacing } from '@olaac/ui/tokens'
 
@@ -33,7 +34,7 @@ const config: Config = {
       maxWidth: spacing.container,
     },
   },
-  plugins: [],
+  plugins: [typography],
 }
 
 export default config

@@ -5,6 +5,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 
 import { CompleteLessonButton } from '@/components/courses/complete-lesson-button'
+import { LessonQuiz } from '@/components/courses/lesson-quiz'
+import { lessonMdxComponents } from '@/components/courses/mdx-components'
 import { ProgressBar } from '@/components/courses/progress-bar'
 import { getPathname, Link } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/server'
@@ -61,7 +63,7 @@ export default async function LessonPage({ params }: Props) {
   // Fetch lesson
   const { data: lesson } = await supabase
     .from('lessons')
-    .select('id, titulo, tipo, contenido, orden, duracion_min')
+    .select('id, titulo, tipo, contenido, orden, duracion_min, quiz_min_pct')
     .eq('id', lessonId)
     .eq('course_id', course.id)
     .eq('published', true)
@@ -91,6 +93,14 @@ export default async function LessonPage({ params }: Props) {
     .single()
 
   const isCompleted = progressRecord?.completed ?? false
+
+  // Preguntas de control (sin la respuesta correcta); vacío si la lección no tiene cuestionario
+  const { data: quizRows } = await supabase.rpc('get_lesson_quiz', { p_lesson_id: lesson.id })
+  const quizQuestions = (quizRows ?? []).map((q) => ({
+    id: q.id,
+    enunciado: q.enunciado,
+    opciones: q.opciones as string[],
+  }))
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -130,9 +140,10 @@ export default async function LessonPage({ params }: Props) {
         </header>
 
         {lesson.contenido ? (
-          <div className="prose prose-gray max-w-none prose-headings:font-semibold prose-a:text-[#005fcc] prose-a:no-underline hover:prose-a:underline prose-blockquote:border-[#005fcc] prose-code:text-sm">
+          <div className="prose prose-gray max-w-none break-words prose-headings:font-semibold prose-a:text-[#005fcc] prose-a:no-underline hover:prose-a:underline prose-blockquote:border-[#005fcc] prose-code:text-sm prose-code:before:content-none prose-code:after:content-none">
             <MDXRemote
               source={lesson.contenido}
+              components={lessonMdxComponents}
               options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
             />
           </div>
@@ -140,15 +151,25 @@ export default async function LessonPage({ params }: Props) {
           <p className="text-gray-500">{t('sinContenido')}</p>
         )}
 
-        {/* Complete lesson action */}
-        <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
-          <CompleteLessonButton
+        {/* Una lección con cuestionario se completa aprobándolo; el resto, con el botón */}
+        {quizQuestions.length > 0 ? (
+          <LessonQuiz
             lessonId={lesson.id}
-            courseId={course.id}
             slug={slug}
-            completed={isCompleted}
+            questions={quizQuestions}
+            minPct={lesson.quiz_min_pct}
+            passed={isCompleted}
           />
-        </div>
+        ) : (
+          <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
+            <CompleteLessonButton
+              lessonId={lesson.id}
+              courseId={course.id}
+              slug={slug}
+              completed={isCompleted}
+            />
+          </div>
+        )}
       </article>
 
       {/* Prev / Next navigation */}
