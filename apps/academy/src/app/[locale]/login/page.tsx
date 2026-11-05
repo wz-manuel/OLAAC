@@ -39,6 +39,21 @@ export default async function LoginPage({
     return {}
   }
 
+  // Sólo aceptar paths relativos — rechazar URLs absolutas o protocol-relative (//)
+  const destino = next && next.startsWith('/') && !next.startsWith('//') ? next : getPathname({ href: '/', locale })
+  // /perfil/completar pide nombre y país si faltan; si ya hay perfil, continúa al destino.
+  // Se calcula fuera de la acción para que su closure capture sólo cadenas serializables.
+  const afterLogin = `${getPathname({ href: '/perfil/completar', locale })}?next=${encodeURIComponent(destino)}`
+
+  async function verifyCode(email: string, token: string): Promise<{ error?: string }> {
+    'use server'
+    const supabase = await createClient()
+    const { error } = await supabase.auth.verifyOtp({ email, token, type: 'email' })
+    if (error) return { error: (await getTranslations({ locale, namespace: 'login' }))('codigoInvalido') }
+
+    redirect(afterLogin)
+  }
+
   return (
     <main className="flex min-h-svh items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm space-y-6">
@@ -58,6 +73,7 @@ export default async function LoginPage({
         )}
         <AuthForm
           onSubmit={sendMagicLink}
+          onVerify={verifyCode}
           appName="Academia OLAAC"
           labels={{
             formAriaLabel: t('formAria'),
@@ -69,6 +85,13 @@ export default async function LoginPage({
             submittingSr: t('enviandoSr'),
             success: t('exito'),
             successNote: t('exitoNota'),
+            codeFormAriaLabel: t('codigoFormAria'),
+            code: t('codigo'),
+            codeHint: t('codigoHint'),
+            verify: t('verificar'),
+            verifying: t('verificando'),
+            verifyingSr: t('verificandoSr'),
+            changeEmail: t('otroCorreo'),
           }}
         />
       </div>
