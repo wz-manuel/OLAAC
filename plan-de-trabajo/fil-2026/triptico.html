@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tríptico FIL Culiacán 2026 — Léelo y Academia OLAAC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /*
+    Tríptico carta horizontal (279.4 × 215.9 mm), plegado en C (envolvente).
+    Página 1 = exterior: [solapa interior (estrecha) | contraportada | portada]
+    Página 2 = interior: [panel 1 | panel 2 | panel 3 (estrecho)]
+    Imprimir a doble cara volteando por el BORDE CORTO.
+  */
+  @page { size: 279.4mm 215.9mm; margin: 0; }
+  :root {
+    --navy: #252858;
+    --navy-900: #1a1d40;
+    --cyan: #30BCEE;      /* solo decorativo */
+    --hielo: #C9EAF2;
+    --navy-50: #f0f1f8;
+    --texto: #1a1d40;
+    --suave: #3d4270;     /* 9.6:1 sobre blanco */
+    --ancho: 94mm;
+    --estrecho: 91.4mm;
+    --margen: 9mm;        /* zona segura dentro de cada panel */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--texto);
+    font-size: 9.6pt;
+    line-height: 1.42;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cara {
+    width: 279.4mm; height: 215.9mm;
+    display: grid;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    position: relative;
+  }
+  .cara:last-child { page-break-after: auto; break-after: auto; }
+  .exterior { grid-template-columns: var(--estrecho) var(--ancho) var(--ancho); }
+  .interior { grid-template-columns: var(--ancho) var(--ancho) var(--estrecho); }
+  .panel {
+    padding: var(--margen);
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Pantalla: guías de doblez y separación entre caras */
+  @media screen {
+    body { background: #e6e7ef; padding: 12mm; }
+    .cara { margin: 0 auto 12mm; box-shadow: 0 2px 14px rgba(0,0,0,.18); background: #fff; }
+    .panel + .panel { border-left: 1px dashed #b9bee2; }
+  }
+
+  h1, h2, h3 { color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; }
+  h2 { font-size: 15pt; font-weight: 800; margin-bottom: 3mm; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin: 3.5mm 0 1.5mm; }
+  p + p { margin-top: 2mm; }
+  strong { font-weight: 700; color: var(--navy); }
+  .eyebrow {
+    font-size: 7.6pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--suave); margin-bottom: 2mm;
+  }
+  .barra { width: 14mm; height: 1.4mm; background: var(--cyan); border-radius: 1mm; margin-bottom: 4mm; }
+  ul.lista { list-style: none; }
+  ul.lista li { position: relative; padding-left: 4.5mm; margin-bottom: 1.4mm; }
+  ul.lista li::before {
+    content: ""; position: absolute; left: 0; top: 1.6mm;
+    width: 2mm; height: 2mm; border-radius: 50%; background: var(--cyan);
+  }
+  .url { font-weight: 600; color: var(--navy); font-size: 8.6pt; word-break: break-all; }
+  .qr { display: flex; gap: 3.5mm; align-items: center; margin-top: auto; padding-top: 4mm; }
+  .qr img { width: 24mm; height: 24mm; flex: none; }
+  .qr p { font-size: 8.4pt; line-height: 1.35; }
+
+  /* ---------- EXTERIOR ---------- */
+  .portada { background: var(--navy); color: #fff; padding: 12mm 10mm; }
+  .portada .marca img { width: 52mm; display: block; }
+  .portada .lema {
+    margin-top: auto; font-size: 25pt; font-weight: 800; line-height: 1.08;
+    color: #fff; letter-spacing: -0.02em;
+  }
+  .portada .lema span { color: var(--hielo); }
+  .portada .sub { margin-top: 5mm; font-size: 10.5pt; color: #fff; line-height: 1.4; }
+  .portada .evento {
+    margin-top: 8mm; padding-top: 4mm; border-top: 0.6mm solid var(--cyan);
+    font-size: 9pt; color: #fff;
+  }
+  .portada .evento b { display: block; font-size: 11pt; font-weight: 700; }
+  .formatos { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 6mm; }
+  .formatos span {
+    font-size: 7.6pt; font-weight: 700; letter-spacing: .04em;
+    border: 0.35mm solid var(--cyan); color: #fff; border-radius: 10mm; padding: 0.8mm 2.6mm;
+  }
+  .puntos {
+    position: absolute; right: -6mm; top: 34mm; width: 46mm; height: 46mm;
+    background-image: radial-gradient(circle, rgba(48,188,238,.55) 1.1mm, transparent 1.2mm);
+    background-size: 5.5mm 5.5mm; opacity: .7;
+  }
+
+  .solapa { background: var(--hielo); }
+  .cifra { margin-bottom: 4.5mm; }
+  .cifra b { display: block; font-size: 27pt; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -0.02em; }
+  .cifra span { font-size: 9.4pt; color: var(--texto); }
+  .solapa .cierre {
+    margin-top: auto; background: #fff; border-left: 1.4mm solid var(--navy);
+    padding: 3mm 3.5mm; font-size: 9.2pt; border-radius: 0 2mm 2mm 0;
+  }
+
+  .contra { background: #fff; }
+  .contra .qr-grande { margin: 4mm 0 3mm; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .contra .qr-grande img { width: 36mm; height: 36mm; }
+  .contra .qr-grande p { margin-top: 2mm; }
+  .aliados { margin-top: auto; border-top: 0.4mm solid #dde0f0; padding-top: 4mm; }
+  .aliados .fila { display: flex; align-items: center; justify-content: space-between; gap: 3mm; }
+  .aliados .chip { flex: 1; height: 20mm; border-radius: 2.5mm; display: flex; align-items: center; justify-content: center; }
+  .aliados .chip.oscuro { background: var(--navy); }
+  .aliados .chip.claro { border: 0.35mm solid #dde0f0; }
+  .aliados .ascis { height: 16mm; }
+  .aliados .olaac { width: 32mm; }
+  .logo-leelo { width: 40mm; display: block; margin-bottom: 4mm; }
+  .creditos { font-size: 7.6pt; color: var(--suave); margin-top: 3mm; line-height: 1.4; }
+
+  /* ---------- INTERIOR ---------- */
+  .ficha { display: grid; grid-template-columns: auto 1fr; gap: 1.2mm 3mm; background: var(--navy-50);
+    border-radius: 2.5mm; padding: 3mm 3.5mm; margin: 2.5mm 0 1mm; font-size: 8.8pt; }
+  .ficha dt { font-weight: 700; color: var(--navy); }
+  .gratis {
+    display: inline-block; background: var(--navy); color: #fff; font-weight: 700;
+    font-size: 8pt; letter-spacing: .08em; text-transform: uppercase; border-radius: 1.5mm; padding: 1mm 2.4mm;
+    margin-bottom: 2.5mm;
+  }
+  .herramientas { font-size: 8.6pt; color: var(--suave); margin-top: 2mm; }
+
+  .pasos-panel { background: var(--navy); color: #fff; }
+  .pasos-panel h2 { color: #fff; }
+  .pasos-panel .eyebrow { color: var(--hielo); }
+  .pasos { list-style: none; counter-reset: paso; margin-top: 1mm; }
+  .pasos li { counter-increment: paso; position: relative; padding-left: 12mm; margin-bottom: 5mm; }
+  .pasos li::before {
+    content: counter(paso); position: absolute; left: 0; top: 0;
+    width: 8.5mm; height: 8.5mm; border-radius: 50%; background: var(--cyan); color: var(--navy-900);
+    font-weight: 800; font-size: 12pt; display: flex; align-items: center; justify-content: center;
+  }
+  .pasos b { display: block; font-size: 10.8pt; color: #fff; margin-bottom: .6mm; }
+  .pasos span { font-size: 9pt; color: #fff; }
+  .llamado { margin-top: auto; background: #fff; color: var(--navy); border-radius: 2.5mm; padding: 3.5mm; }
+  .llamado p { font-size: 9.2pt; }
+  .llamado .qr { padding-top: 2.5mm; }
+  .llamado .qr img { width: 22mm; height: 22mm; }
+</style>
+</head>
+<body>
+
+<!-- ===================== PÁGINA 1 · EXTERIOR ===================== -->
+<section class="cara exterior" aria-label="Cara exterior">
+
+  <!-- Solapa interior (se ve al abrir la portada) -->
+  <div class="panel solapa">
+    <p class="eyebrow">¿Por qué importa?</p>
+    <div class="barra"></div>
+    <h2>La «hambruna de libros» sigue siendo real</h2>
+    <div class="cifra"><b>+180 M</b><span>personas con discapacidad visual en el mundo.</span></div>
+    <div class="cifra"><b>&lt;7 %</b><span>de los libros publicados existe en un formato que puedan leer.</span></div>
+    <p>Un libro accesible sirve también a personas con baja visión, dislexia o dificultad lectora, a quien escucha en voz alta y a quien necesita ajustar tamaño y contraste.</p>
+    <p class="cierre">Cuando un libro <strong>nace accesible</strong>, nadie tiene que esperar meses una adaptación ni quedarse sin leerlo.</p>
+  </div>
+
+  <!-- Contraportada -->
+  <div class="panel contra">
+    <p class="eyebrow">Versión digital accesible</p>
+    <div class="barra"></div>
+    <h2>Lee este folleto en tu formato</h2>
+    <p>Este mismo contenido está en línea, listo para lector de pantalla, ampliación o lectura en voz alta.</p>
+    <div class="qr-grande">
+      <img src="qr-fil.svg" alt="Código QR a olaac.org/fil-2026">
+      <p class="url">olaac.org/fil-2026</p>
+    </div>
+    <div class="aliados">
+      <p class="eyebrow">Impulsan</p>
+      <div class="fila">
+        <div class="chip oscuro"><img class="ascis" src="logo-ciegos-sinaloa.png" alt="ASCIS, Asociación de Ciegos Sinaloa"></div>
+        <div class="chip claro"><img class="olaac" src="logo-olaac.svg" alt="OLAAC, Observatorio Latinoamericano de Accesibilidad"></div>
+      </div>
+      <p class="creditos">El Proyecto Léelo es impulsado por Ciegos Sinaloa IAP y el Observatorio Latinoamericano de Accesibilidad AC.<br>olaac.org · proyectoleelo.org · ciegossinaloa.org</p>
+    </div>
+  </div>
+
+  <!-- Portada -->
+  <div class="panel portada">
+    <div class="puntos" aria-hidden="true"></div>
+    <div class="marca"><img src="leelo-simple-negativo.svg" alt="Léelo"></div>
+    <h1 class="lema">Que el formato <span>no limite</span> el acceso a la lectura</h1>
+    <p class="sub">Una invitación a las casas editoriales para crear libros accesibles y publicarlos en la Biblioteca Inclusiva <b>Léelo</b>.</p>
+    <div class="formatos" aria-label="Formatos accesibles">
+      <span>EPUB</span><span>AUDIO</span><span>VIDEO</span><span>TXT</span><span>PDF</span><span>DOCX</span>
+    </div>
+    <p class="evento"><b>FIL Culiacán 2026</b>4.ª Feria Internacional del Libro · Módulo de Ciegos Sinaloa IAP</p>
+  </div>
+</section>
+
+<!-- ===================== PÁGINA 2 · INTERIOR ===================== -->
+<section class="cara interior" aria-label="Cara interior">
+
+  <!-- Panel 1 · Léelo -->
+  <div class="panel">
+    <img class="logo-leelo" src="leelo-simple-positivo.svg" alt="Léelo">
+    <h2>Red por la Lectura Accesible</h2>
+    <p>Léelo es una red colaborativa que produce y difunde libros en múltiples formatos para personas con discapacidad visual o dificultad lectora. Su <strong>Biblioteca Inclusiva</strong> crece libro a libro gracias a instituciones, editoriales y personas voluntarias.</p>
+    <h3>Lo que ofrece a los lectores</h3>
+    <ul class="lista">
+      <li>Cada título en <strong>7 formatos</strong>: EPUB, MP3, MP4, TXT, PDF, DOCX y RTF.</li>
+      <li>Acceso <strong>gratuito</strong> para lectores con discapacidad.</li>
+      <li>Compatible con lectores de pantalla, síntesis de voz y líneas braille.</li>
+    </ul>
+    <h3>Lo que gana tu editorial</h3>
+    <ul class="lista">
+      <li>Tu catálogo llega a miles de lectores que hoy no pueden leerlo.</li>
+      <li>Respaldo del <strong>Tratado de Marrakesh</strong> (2013), ratificado por México.</li>
+      <li>Metodología, formación y control de calidad antes de publicar.</li>
+    </ul>
+    <div class="qr">
+      <img src="qr-leelo.svg" alt="Código QR a olaac.org/leelo">
+      <p>Conoce Léelo<br><span class="url">olaac.org/leelo</span></p>
+    </div>
+  </div>
+
+  <!-- Panel 2 · Academia OLAAC -->
+  <div class="panel">
+    <p class="eyebrow">Academia OLAAC</p>
+    <div class="barra"></div>
+    <h2>Curso: Creación de libros accesibles en EPUB</h2>
+    <p><span class="gratis">Gratuito · con certificado</span></p>
+    <p>Del manuscrito a un EPUB 3 que cumple <strong>EPUB Accessibility 1.1</strong> del W3C, el estándar que define qué es un libro digital accesible.</p>
+    <dl class="ficha">
+      <dt>Duración</dt><dd>8 a 10 horas, a tu ritmo</dd>
+      <dt>Modalidad</dt><dd>En línea</dd>
+      <dt>Requisito</dt><dd>Manejar un procesador de texto. No hace falta programar.</dd>
+    </dl>
+    <h3>Aprenderás a</h3>
+    <ul class="lista">
+      <li>Preparar el manuscrito con estructura y texto alternativo.</li>
+      <li>Convertirlo en EPUB con WordToEPUB.</li>
+      <li>Completar navegación, descripciones y metadatos de accesibilidad.</li>
+      <li>Validar con EPUBCheck y Ace by DAISY.</li>
+    </ul>
+    <p class="herramientas">Todo con herramientas gratuitas del Consorcio DAISY.</p>
+    <div class="qr">
+      <img src="qr-curso.svg" alt="Código QR al curso en academia.olaac.org">
+      <p>Inscríbete<br><span class="url">academia.olaac.org</span></p>
+    </div>
+  </div>
+
+  <!-- Panel 3 · Tres pasos (estrecho) -->
+  <div class="panel pasos-panel">
+    <p class="eyebrow">Para casas editoriales</p>
+    <div class="barra"></div>
+    <h2>Tu editorial en 3 pasos</h2>
+    <ol class="pasos">
+      <li><b>Toma el curso</b><span>Gratis y en línea en la Academia OLAAC.</span></li>
+      <li><b>Produce tu EPUB accesible</b><span>Aplica EPUB Accessibility 1.1 a tus títulos y valídalos con Ace by DAISY.</span></li>
+      <li><b>Publícalo en Léelo</b><span>Súmate a la Red como institución aliada y comparte tus libros en la Biblioteca Inclusiva.</span></li>
+    </ol>
+    <div class="llamado">
+      <p><strong>Empieza hoy.</strong> Escanea el código y lleva este folleto en formato digital.</p>
+      <div class="qr">
+        <img src="qr-fil.svg" alt="Código QR a olaac.org/fil-2026">
+        <p><span class="url">olaac.org/<br>fil-2026</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

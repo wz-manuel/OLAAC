@@ -40,6 +40,8 @@ const APP_SECTIONS: Array<{ path: string; priority: number }> = [
   { path: '/datos-abiertos', priority: 0.7 },
   { path: '/distintivo',     priority: 0.7 },
   { path: '/voluntarios',    priority: 0.7 },
+  { path: '/leelo',          priority: 0.7 },
+  { path: '/fil-2026',       priority: 0.5 },
   { path: '/donativos',      priority: 0.6 },
 ]
 
